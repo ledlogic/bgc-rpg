@@ -1,0 +1,10 @@
+Enemy: Bitter ex-friend or lover.
+Enemy: Relative.
+Enemy: Partner or co-worker.
+Enemy: From rival group or faction.
+Enemy: Powerful official or noble.
+Friend: Like a brother, sister, or parent to you.
+Friend: Partner or co-worker.
+Friend: Old lover.
+Friend: Old enemy.
+Friend: Met through common interest or acquaintance.

@@ -63,13 +63,13 @@ st.char = {
 
 		that.render();
 	},
-	loadPersonalities: function() {
+	loadTxt: function(url, spec) {
 		var that = st.char;
-		$.ajax({url: "data/personalities.txt",
+		$.ajax({url: url,
 				async: false})
 			.done(function(data, status, jqxhr) {
-				that.personalities = data.trim().split("\n");
-				st.log(["personalities",that.personalities]);
+				that[spec] = data.trim().split("\n");
+				st.log([spec,that[spec]]);
 			})
 			.fail(function() {
 				alert("Error: unable to load personalities.");
@@ -77,103 +77,37 @@ st.char = {
 			.always(function() {
 			});
 	},
+	loadPersonalities: function() {
+		var that = st.char;
+		that.loadTxt("data/personalities.txt","personalities");
+	},
 	loadValuesWho: function() {
 		var that = st.char;
-		$.ajax({url: "data/values-who.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.valuesWho = data.trim().split("\n");
-				st.log(["valuesWho",that.valuesWho]);
-			})
-			.fail(function() {
-				alert("Error: unable to load values-who.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/values-who.txt","valuesWho");
 	},
 	loadValuesWhat: function() {
 		var that = st.char;
-		$.ajax({url: "data/values-what.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.valuesWhat = data.trim().split("\n");
-				st.log(["valuesWhat",that.valuesWhat]);
-			})
-			.fail(function() {
-				alert("Error: unable to load values-what.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/values-what.txt","valuesWhat");
 	},
 	loadWorldviews: function() {
 		var that = st.char;
-		$.ajax({url: "data/worldviews.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.worldviews = data.trim().split("\n");
-				st.log(["worldviews",that.worldviews]);
-			})
-			.fail(function() {
-				alert("Error: unable to load worldviews.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/worldviews.txt","worldviews");
 	},
 	loadEarlybackgrounds: function() {
 		var that = st.char;
-		$.ajax({url: "data/earlybackgrounds.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.earlybackgrounds = data.trim().split("\n");
-				st.log(["earlybackgrounds",that.earlybackgrounds]);
-			})
-			.fail(function() {
-				alert("Error: unable to load early backgrounds.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/earlybackgrounds.txt","earlybackgrounds");
 	},
 	loadChildhoodevents: function() {
 		var that = st.char;
-		$.ajax({url: "data/childhoodevents.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.childhoodevents = data.trim().split("\n");
-				st.log(["childhoodevents",that.childhoodevents]);
-			})
-			.fail(function() {
-				alert("Error: unable to load early childhood events.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/childhoodevents.txt","childhoodevents");
 	},
 	loadFriendsenemies: function() {
 		var that = st.char;
-		$.ajax({url: "data/friendsenemies.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.friendsenemies = data.trim().split("\n");
-				st.log(["friendsenemies",that.friendsenemies]);
-			})
-			.fail(function() {
-				alert("Error: unable to load friends and enemies.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/friendsenemies.txt","friendsenemies");
 	},
 	loadLovewar: function() {
 		var that = st.char;
-		$.ajax({url: "data/lovewar.txt",
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that.lovewar = data.trim().split("\n");
-				st.log(["lovewar",that.lovewar]);
-			})
-			.fail(function() {
-				alert("Error: unable to load love and war.");
-			})
-			.always(function() {
-			});
+		that.loadTxt("data/lovewar.txt","lovewar");
 	},
 	calcChildhoodEvent: function() {
 		var that = st.char;

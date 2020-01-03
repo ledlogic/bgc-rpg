@@ -48,6 +48,15 @@ st.char = {
 		that.calcAge();
 		st.log(["age",that.spec.age]);
 
+		var years = that.spec.age - 16;
+		st.log(["years",years]);
+
+		that.spec.events = [];
+		for (var i=0; i<years; i++) {
+			that.calcLifeevent();
+		}
+		st.log(["lifeevents",that.spec.lifeevents]);
+
 		that.render();
 	},
 	loadPersonalities: function() {
@@ -175,6 +184,92 @@ st.char = {
 		var age = st.math.die(1, 10, 16);
 		that.spec.age = age;
 	},
+	calcLifeevent: function() {
+		var that = st.char;
+		var r = st.math.dieN(6);
+		switch (r) {
+			case 1:
+			case 2:
+				that.calcGoodWithTheBad();
+				break;
+			case 3:
+			case 4:
+				that.calcFriendsAndEnemies();
+				break;
+			case 5:
+				that.calcLoveAndWar();
+				break;
+		}
+	},
+	calcGoodWithTheBad: function() {
+		var that = st.char;
+		var r = st.math.dieN(10);
+		var evt = null;
+		switch (r) {
+			case 1:
+				var d = st.math.dieN(10);
+				evt = "Financial loss or debt: you've lost ¥" + d * 10000 + ".  If you can't play it now, you have a debt to pay, in money or blood.";
+				break;
+			case 2:
+				evt = "Make a powerful connection: A local power player (warlord, official, noble, whatever) befriends yo.  Gain one free Level 3 Favor.";
+				break;
+			case 3:
+				var lvl = Math.ceil(st.math.dieN(6) / 2.0);
+				evt = "Mentor: You gained a teach or mentor in your life.  This person has taught you one new skill up to a level of " + lvl + ".";
+				break;
+			case 4:
+				var d = st.math.dieN(10);
+				evt = "Imprisonment: You have been exilied, imprisoned or held hostage (your choice) for " + d + " year" + (d > 1 ? "s" : "") + ".  A good place for a PSYCHOLOGICAL complication.";
+				break;
+			case 5:
+				evt = "Falsely Accused: You were set up, and now face arrest or worse.  A good place for an ENEMY complication.";
+				break;
+			case 6:
+				var d = st.math.dieN(10);
+				evt = "Windfall: Your financial ship just came in, ¥" + d * 10000 + ".";
+				break;
+			case 7:
+				evt = "Accident or injury: You were in some kind of terrible accident or maimed in some other way.  A good place for a PHYSIOLOGICAL complication.";
+				break;
+			case 8:
+				evt = "Hunted: You incurred the wrath of a powerful person, family, or group.  A good place for an ENEMY complication.";
+				break;
+			case 9:
+				evt = "Mental or Physical Illness: You were struck down by a severe PHYSIOLOGICAL illness or PSYCHOLOGICAL complication.";
+				break;
+			case 10:
+				var d = st.math.dieN(10);
+				switch (true) {
+					case d < 4:
+						s = "They were murdered.";
+						break;
+					case d < 8:
+						s = "They died by accident or illness.";
+						break;
+					default:
+						s = "They vanished, killed themselves or just up and left without any explanation.";
+						break;
+				}
+				evt = "Emotional Loss: You lost someone you really cared about. " + s;
+				break;
+		}
+		that.addEvent(evt);
+	},
+	calcFriendsAndEnemies: function() {
+		var that = st.char;
+		var r = st.math.dieN(10);
+	},
+	calcLoveAndWar: function() {
+		var that = st.char;
+		var r = st.math.dieN(10);
+	},
+	addEvent: function(evt) {
+		var that = st.char;
+		if (!that.spec.events) {
+			that.spec.events = [];
+		}
+		that.spec.events.push(evt);
+	},
 	render: function() {
 		st.log("rendering char");
 		var that = st.char;
@@ -184,42 +279,21 @@ st.char = {
 	renderSpec: function() {
 		st.log("rendering spec");
 		var that = st.char;
+
+		that.spec.eventsHtml = that.spec.events.join("<br/>");
 		
 		var h = "<tr><th colspan=\"2\">Lifepath Notes</th>"
 			  + "<tr><td class=\"st-tb-lbl\">Age</td><td><%- age %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Worldview</td><td><%- worldview %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Life Event</td><td><%= eventsHtml %></td></tr>"
 		;
 		var template = _.template(h);
 		var t = "<table class=\"st-tb\"><tbody>" + template(that.spec) + "</tbody></table>";		
 		$(".st-page-ft").html(t);
-		
-		
-		
-		st.log(["personality",that.spec.personality]);
-
-		that.spec.valuesWho = st.math.dieArray(that.valuesWho);
-		st.log(["valuesWho",that.spec.valuesWho]);
-
-		that.spec.valuesWhat = st.math.dieArray(that.valuesWhat);
-		st.log(["valuesWhat",that.spec.valuesWhat]);
-
-		that.spec.worldview = st.math.dieArray(that.worldviews);
-		st.log(["worldview",that.spec.worldview]);
-		
-		that.spec.earlybackground = that.earlybackgrounds[st.math.dieArray(that.earlybackgrounds)];
-		st.log(["earlybackground",that.spec.earlybackground]);
-		
-		that.calcChildhoodEvent();
-		st.log(["childhoodevent",that.spec.childhoodevent]);
-
-		that.calcAge();
-		st.log(["age",that.spec.age]);
-
-		
 	},
 	renderReset: function() {
 		st.char.$pageft.html("");

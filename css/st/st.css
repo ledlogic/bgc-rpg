@@ -106,5 +106,6 @@ button {
 .st-tb th, .st-tb td {
 	border: 1px solid #333;
 	padding: 2px;
+	vertical-align: top;
 }
 

@@ -10,6 +10,7 @@ st.char = {
 	childhoodevents: [],
 	friendsenemies: [],
 	lovewar: [],
+	currentsituations: [],
 
 	init: function() {
 		st.log("init character");
@@ -22,6 +23,7 @@ st.char = {
 		that.loadChildhoodevents();
 		that.loadFriendsenemies();
 		that.loadLovewar();
+		that.loadCurrentsituations();
 	},
 	reset: function() {
 		var that = st.char;
@@ -61,6 +63,9 @@ st.char = {
 		}
 		st.log(["lifeevents",that.spec.lifeevents]);
 
+		that.spec.currentsituation = that.currentsituations[st.math.dieArray(that.currentsituations)];
+		st.log(["currentsituation",that.spec.currentsituation]);
+
 		that.render();
 	},
 	loadTxt: function(url, spec) {
@@ -77,7 +82,7 @@ st.char = {
 			.always(function() {
 			});
 	},
-	loadPersonalities: function() {
+	loadPersonalities: function() { 
 		var that = st.char;
 		that.loadTxt("data/personalities.txt","personalities");
 	},
@@ -108,6 +113,10 @@ st.char = {
 	loadLovewar: function() {
 		var that = st.char;
 		that.loadTxt("data/lovewar.txt","lovewar");
+	},
+	loadCurrentsituations: function() {
+		var that = st.char;
+		that.loadTxt("data/currentsituations.txt","currentsituations");
 	},
 	calcChildhoodEvent: function() {
 		var that = st.char;
@@ -289,6 +298,7 @@ st.char = {
 			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
 		;
 		var template = _.template(h);
 		var t = "<table class=\"st-tb\"><tbody>" + template(that.spec) + "</tbody></table>";		

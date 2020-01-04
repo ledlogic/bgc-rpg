@@ -8,8 +8,11 @@ var st = {
 	},
 
 	init: function() {
+		st.firebase.init();
+		st.math.init();
 		st.char.init();
 		st.nav.init();
+		st.render.init();
 	}
 };
 

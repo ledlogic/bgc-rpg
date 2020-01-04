@@ -11,6 +11,7 @@ st.char = {
 	friendsenemies: [],
 	lovewar: [],
 	currentsituations: [],
+	currentoutlooks: [],
 
 	init: function() {
 		st.log("init character");
@@ -24,6 +25,7 @@ st.char = {
 		that.loadFriendsenemies();
 		that.loadLovewar();
 		that.loadCurrentsituations();
+		that.loadCurrentoutlooks();
 	},
 	reset: function() {
 		var that = st.char;
@@ -66,7 +68,10 @@ st.char = {
 		that.spec.currentsituation = that.currentsituations[st.math.dieArray(that.currentsituations)];
 		st.log(["currentsituation",that.spec.currentsituation]);
 
-		that.render();
+		that.spec.currentoutlook = that.currentoutlooks[st.math.dieArray(that.currentoutlooks)];
+		st.log(["currentoutlook",that.spec.currentoutlook]);
+
+		st.render.render();
 	},
 	loadTxt: function(url, spec) {
 		var that = st.char;
@@ -117,6 +122,10 @@ st.char = {
 	loadCurrentsituations: function() {
 		var that = st.char;
 		that.loadTxt("data/currentsituations.txt","currentsituations");
+	},
+	loadCurrentoutlooks: function() {
+		var that = st.char;
+		that.loadTxt("data/currentoutlooks.txt","currentoutlooks");
 	},
 	calcChildhoodEvent: function() {
 		var that = st.char;
@@ -279,32 +288,5 @@ st.char = {
 			that.spec.events = [];
 		}
 		that.spec.events.push(evt);
-	},
-	render: function() {
-		st.log("rendering char");
-		var that = st.char;
-		that.renderSpec();
-		$(".st-page").removeClass("st-initial-state");
-	},
-	renderSpec: function() {
-		st.log("rendering spec");
-		var that = st.char;
-		that.spec.eventsHtml = that.spec.events.join("<br/>");
-		var h = "<tr><th colspan=\"2\">Lifepath Notes</th>"
-			  + "<tr><td class=\"st-tb-lbl\">Age</td><td><%- age %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
-		;
-		var template = _.template(h);
-		var t = "<table class=\"st-tb\"><tbody>" + template(that.spec) + "</tbody></table>";		
-		$(".st-page-ft").html(t);
-	},
-	renderReset: function() {
-		st.char.$pageft.html("");
 	}
 };

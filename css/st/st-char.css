@@ -34,6 +34,34 @@
 	left:0;
 }
 
+.st-name {
+	position: absolute;
+	display:inline-block;
+	font-size: 10px;
+	top: 49px; 
+	left: 154px; 
+	width: 179px;
+	text-align: left;
+}
+
+.st-age {
+	position: absolute;
+	display:inline-block;
+	font-size: 10px;
+	top: 477px; 
+	left: 110px; 
+	width: 39px;
+	text-align: center;
+}
+
+.st-lifepath {
+	position: relative;
+	font-size: 10px;
+	top: 518px; 
+	left: 68px; 
+	width: 262px;
+}
+
 /* border */
 
 .st-section {
@@ -54,8 +82,3 @@
 	border: 1px solid transparent;
 }
 
-.st-age {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-}

@@ -12,6 +12,7 @@ st.char = {
 	lovewar: [],
 	currentsituations: [],
 	currentoutlooks: [],
+	stats: [],
 
 	init: function() {
 		st.log("init character");
@@ -26,12 +27,16 @@ st.char = {
 		that.loadLovewar();
 		that.loadCurrentsituations();
 		that.loadCurrentoutlooks();
+		that.loadStats();
 	},
 	reset: function() {
+		st.log("char.reset");
 		var that = st.char;
 		that.spec = {};
+		that.spec.stats = {};
 	},
 	random: function() {
+		st.log("char.random");
 		var that = st.char;
 		that.reset();
 
@@ -70,6 +75,8 @@ st.char = {
 
 		that.spec.currentoutlook = that.currentoutlooks[st.math.dieArray(that.currentoutlooks)];
 		st.log(["currentoutlook",that.spec.currentoutlook]);
+
+		// todo stats
 
 		st.render.render();
 	},
@@ -126,6 +133,35 @@ st.char = {
 	loadCurrentoutlooks: function() {
 		var that = st.char;
 		that.loadTxt("data/currentoutlooks.txt","currentoutlooks");
+	},
+	loadStats: function() {
+		st.log("char.loadStats");
+		var that = st.char;
+
+		Papa.parse("data/stats.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.char.charResponse(d);
+			},
+			encoding: "UTF-8"
+		});
+	},
+	charResponse: function(d) {
+		st.log(d);
+		for (var i=0;i<d.data.length; i++) {
+			st.char.addStat(d.data[i]);
+		}
+		st.log(["st.char.stats",st.char.stats]);
+	},
+	addStat: function(d) {
+		var s = {
+			"stat": d["Statistic"], 
+			"abb": d["Abbreviation"],
+			"desc": d["Description"]
+		};
+		st.char.stats.push(s);
 	},
 	calcChildhoodEvent: function() {
 		var that = st.char;

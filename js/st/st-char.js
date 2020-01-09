@@ -76,7 +76,17 @@ st.char = {
 		that.spec.currentoutlook = that.currentoutlooks[st.math.dieArray(that.currentoutlooks)];
 		st.log(["currentoutlook",that.spec.currentoutlook]);
 
-		// todo stats
+		for (var i=0;i<that.stats.length;i++) {
+			var stat = that.stats[i];
+			that.spec.stats[stat.abb] = 0;
+		}
+
+		var max = 50;
+		for (var i=0;i<max;i++) {
+			var r = st.math.dieArray(that.stats);
+			var stat = that.stats[r];
+			that.spec.stats[stat.abb]++;
+		}
 
 		st.render.render();
 	},

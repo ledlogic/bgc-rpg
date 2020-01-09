@@ -16,12 +16,24 @@ st.render = {
 		var t = [];
 
 		// name
-		var h = "<input class=\"st-name\" value=\"<%= name %>\">";
+		var h = "<h4 class=\"st-elem st-title\">Title</h4>"
+		var template = _.template(h);
+		t.push(template(that.spec));
+			
+		// name
+		var h = "<label class=\"st-elem st-name-label\" for=\"st-name\">Character</label>"
+			+ "<input id=\"st-name\" class=\"st-elem st-name\" value=\"<%= name %>\" placeholder=\"Character\">";
+		var template = _.template(h);
+		t.push(template(that.spec));
+
+		// image
+		var h = "<img id=\"st-img\" class=\"st-img\" src=\"img/adpolice.jpg\">";
 		var template = _.template(h);
 		t.push(template(that.spec));
 						
 		// age
-		var h = "<input class=\"st-age\" value=\"<%= age %>\">";
+		var h = "<label class=\"st-elem st-age-label\" for=\"st-age\">Age</label>"
+			+ "<input id=\"st-age\" class=\"st-elem st-age\" value=\"<%= age %>\" placeholder=\"Age\">";
 		var template = _.template(h);
 		t.push(template(that.spec));
 
@@ -41,22 +53,21 @@ st.render = {
 		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
 
 		// statistics
-		/*
+		
 		var h = "<tr><th colspan=\"2\">Statistics</th>"
-			+ "<tr><td><%- int %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
-			+ "<tr><td><%- will %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
-			+ "<tr><td><%- pers %></td><td class=\"st-tb-lbl\">PERSonlality</td></tr>"
-			+ "<tr><td><%- tech %></td><td class=\"st-tb-lbl\">TECHnique</td></tr>"
-			+ "<tr><td><%- ref %></td><td class=\"st-tb-lbl\">REFlexes</td></tr>"
-			+ "<tr><td><%- dex %></td><td class=\"st-tb-lbl\">DEXterity</td></tr>"
-			+ "<tr><td><%- con %></td><td class=\"st-tb-lbl\">CONstitution</td></tr>"
-			+ "<tr><td><%- str %></td><td class=\"st-tb-lbl\">STRength</td></tr>"
-			+ "<tr><td><%- bod %></td><td class=\"st-tb-lbl\">BODy</td></tr>"
-			+ "<tr><td><%- move %></td><td class=\"st-tb-lbl\">MOVEment</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- INT %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- WILL %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- PERS %></td><td class=\"st-tb-lbl\">PERSonality</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- TECH %></td><td class=\"st-tb-lbl\">TECHnique</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- REF %></td><td class=\"st-tb-lbl\">REFlexes</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- DEX %></td><td class=\"st-tb-lbl\">DEXterity</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- CON %></td><td class=\"st-tb-lbl\">CONstitution</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- STR %></td><td class=\"st-tb-lbl\">STRength</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- BODY %></td><td class=\"st-tb-lbl\">BODy</td></tr>"
+			+ "<tr><td class=\"st-stat\"><%- MOVE %></td><td class=\"st-tb-lbl\">MOVEment</td></tr>"
 		;
 		var template = _.template(h);
 		t.push("<table class=\"st-tb st-statistics\"><tbody>" + template(that.spec.stats) + "</tbody></table>");
-		*/
 		
 		$(".st-page-ft").html(t.join(""));
 	},

@@ -53,7 +53,6 @@ st.render = {
 		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
 
 		// statistics
-		
 		var h = "<tr><th colspan=\"2\">Statistics</th>"
 			+ "<tr><td class=\"st-stat\"><%- INT %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
 			+ "<tr><td class=\"st-stat\"><%- WILL %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
@@ -68,6 +67,29 @@ st.render = {
 		;
 		var template = _.template(h);
 		t.push("<table class=\"st-tb st-statistics\"><tbody>" + template(that.spec.stats) + "</tbody></table>");
+		
+		// derived statistics
+		var h = "<tr><th colspan=\"12\">Derived Statistics</th>"
+			+ "<tr><td class=\"st-stat\" colspan=\"6\">LUC <%- LUC %></td><td class=\"st-stat\" colspan=\"6\">RES <%- RES %></td></tr>"
+			+ "<tr><td class=\"st-stat\" colspan=\"6\">PUN <%- PUN %></td><td class=\"st-stat\" colspan=\"6\">KICK <%- KICK %></td></tr>"
+			+ "<tr><td class=\"st-stat\" colspan=\"6\">END <%- END %></td><td class=\"st-stat\" colspan=\"6\">REC <%- REC %></td></tr>"
+			+ "<tr>"
+			+ "<td class=\"st-stat\" colspan=\"3\">MAX <%- MAX %></td><td class=\"st-stat\" colspan=\"3\">LIFT <%- LIFT %></td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">CARRY <%- CARRY %></td><td class=\"st-stat\" colspan=\"3\">THROW <%- THROW %></td>"
+			+ "</tr>"
+			+ "<tr>"
+			+ "<td class=\"st-stat\" colspan=\"4\">STUN <%- STUN %></td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">PD <%- PD %></td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">HITS <%- HITS %></td>"
+			+ "</tr>"
+			+ "<tr>"
+			+ "<td class=\"st-stat\" colspan=\"4\">RUN <%- RUN %></td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">LEAP <%- LEAP %></td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">SWIM <%- SWIM %></td>"
+			+ "</tr>"
+		;
+		var template = _.template(h);
+		t.push("<table class=\"st-tb st-derivedstatistics\"><tbody>" + template(that.spec.derivedstats) + "</tbody></table>");
 		
 		$(".st-page-ft").html(t.join(""));
 	},

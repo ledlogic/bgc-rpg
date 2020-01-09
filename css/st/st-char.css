@@ -97,6 +97,13 @@
 	width: 36px;
 }
 
+.st-derivedstatistics {
+	position: absolute;
+	top: 334px;
+	left: 502px;
+	width: 364px;
+}
+
 /* border */
 
 .st-section {

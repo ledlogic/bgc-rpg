@@ -13,6 +13,8 @@ st.char = {
 	currentsituations: [],
 	currentoutlooks: [],
 	stats: [],
+	derivedstats: [],
+	str: [],
 
 	init: function() {
 		st.log("init character");
@@ -28,12 +30,15 @@ st.char = {
 		that.loadCurrentsituations();
 		that.loadCurrentoutlooks();
 		that.loadStats();
+		that.loadDerivedstats();
+		that.loadStr();
 	},
 	reset: function() {
 		st.log("char.reset");
 		var that = st.char;
 		that.spec = {};
 		that.spec.stats = {};
+		that.spec.derivedstats = {};
 	},
 	random: function() {
 		st.log("char.random");
@@ -76,17 +81,11 @@ st.char = {
 		that.spec.currentoutlook = that.currentoutlooks[st.math.dieArray(that.currentoutlooks)];
 		st.log(["currentoutlook",that.spec.currentoutlook]);
 
-		for (var i=0;i<that.stats.length;i++) {
-			var stat = that.stats[i];
-			that.spec.stats[stat.abb] = 0;
-		}
+		that.calcStats();
+		st.log(["stats",that.spec.stats]);
 
-		var max = 50;
-		for (var i=0;i<max;i++) {
-			var r = st.math.dieArray(that.stats);
-			var stat = that.stats[r];
-			that.spec.stats[stat.abb]++;
-		}
+		that.calcDerivedstats();
+		st.log(["derivedstats",that.spec.derivedstats]);
 
 		st.render.render();
 	},
@@ -153,25 +152,60 @@ st.char = {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.char.charResponse(d);
+				st.char.charResponse("stats", d);
 			},
 			encoding: "UTF-8"
 		});
 	},
-	charResponse: function(d) {
-		st.log(d);
-		for (var i=0;i<d.data.length; i++) {
-			st.char.addStat(d.data[i]);
-		}
-		st.log(["st.char.stats",st.char.stats]);
+	loadDerivedstats: function() {
+		st.log("char.loadDerivedstats");
+		var that = st.char;
+
+		Papa.parse("data/derivedstats.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.char.charResponse("derivedstats", d);
+			},
+			encoding: "UTF-8"
+		});
 	},
-	addStat: function(d) {
+	loadStr: function() {
+		st.log("char.loadStr");
+		var that = st.char;
+
+		Papa.parse("data/str.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.char.strResponse(d);
+			},
+			encoding: "UTF-8"
+		});
+	},
+	charResponse: function(type, d) {
+		st.log("char.charResponse, type[" + type + "], d[" + d + "]");
+		for (var i=0;i<d.data.length; i++) {
+			st.char.addStat(type, d.data[i]);
+		}
+		st.log(["st.char." + type,st.char[type]]);
+	},
+	strResponse: function(d) {
+		st.log("char.strResponse, d[" + d + "]");
+		for (var i=0;i<d.data.length; i++) {
+			st.char.str[d.data[i]["STR"]] = d.data[i]["Lift"];
+		}
+		st.log(["st.char.str", st.char.str]);
+	},
+	addStat: function(type, d) {
 		var s = {
 			"stat": d["Statistic"], 
 			"abb": d["Abbreviation"],
 			"desc": d["Description"]
 		};
-		st.char.stats.push(s);
+		st.char[type].push(s);
 	},
 	calcChildhoodEvent: function() {
 		var that = st.char;
@@ -334,5 +368,39 @@ st.char = {
 			that.spec.events = [];
 		}
 		that.spec.events.push(evt);
+	},
+	calcStats: function() {
+		var that = st.char;
+
+		for (var i=0;i<that.stats.length;i++) {
+			var stat = that.stats[i];
+			that.spec.stats[stat.abb] = 0;
+		}
+
+		var max = 60;
+		for (var i=0;i<max;i++) {
+			var r = st.math.dieArray(that.stats);
+			var stat = that.stats[r];
+			that.spec.stats[stat.abb]++;
+		}
+	},
+	calcDerivedstats: function() {
+			var that = st.char;
+			var derivedstats = that.spec.derivedstats;
+		for (var i=0;i<that.derivedstats.length;i++) {
+			var derivedstat = that.derivedstats[i];
+			derivedstats[derivedstat.abb] = 0;
+		}
+
+		derivedstats["END"] = that.spec.stats["CON"] * 10;
+		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
+		derivedstats["RUN"] = that.spec.stats["MOVE"] * 3;
+		derivedstats["LEAP"] = Math.round(that.spec.stats["MOVE"] * 0.5);
+		derivedstats["SWIM"] = Math.round(that.spec.stats["MOVE"]);
+		derivedstats["LUCK"] = that.spec.stats["INT"] + that.spec.stats["REF"];
+		derivedstats["PD"] = that.spec.stats["CON"] * 2;
+		derivedstats["REC"] = that.spec.stats["STR"] + that.spec.stats["CON"];
+		derivedstats["RES"] = that.spec.stats["WILL"] * 3;
+		derivedstats["STUN"] = that.spec.stats["BODY"] * 5;
 	}
 };

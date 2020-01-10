@@ -385,8 +385,8 @@ st.char = {
 		}
 	},
 	calcDerivedstats: function() {
-			var that = st.char;
-			var derivedstats = that.spec.derivedstats;
+		var that = st.char;
+		var derivedstats = that.spec.derivedstats;
 		for (var i=0;i<that.derivedstats.length;i++) {
 			var derivedstat = that.derivedstats[i];
 			derivedstats[derivedstat.abb] = 0;
@@ -397,10 +397,18 @@ st.char = {
 		derivedstats["RUN"] = that.spec.stats["MOVE"] * 3;
 		derivedstats["LEAP"] = Math.round(that.spec.stats["MOVE"] * 0.5);
 		derivedstats["SWIM"] = Math.round(that.spec.stats["MOVE"]);
-		derivedstats["LUCK"] = that.spec.stats["INT"] + that.spec.stats["REF"];
+		derivedstats["LUC"] = that.spec.stats["INT"] + that.spec.stats["REF"];
+		derivedstats["PUN"] = that.spec.stats["STR"] + "d6";
+		derivedstats["KICK"] = (that.spec.stats["STR"]+1) + "d6";
 		derivedstats["PD"] = that.spec.stats["CON"] * 2;
 		derivedstats["REC"] = that.spec.stats["STR"] + that.spec.stats["CON"];
 		derivedstats["RES"] = that.spec.stats["WILL"] * 3;
 		derivedstats["STUN"] = that.spec.stats["BODY"] * 5;
+
+		derivedstats["MAX"] = st.char.str[that.spec.stats["STR"]];
+		derivedstats["LIFT"] = Math.round(st.char.str[that.spec.stats["STR"]] * 0.5);
+		derivedstats["CARRY"] = Math.round(st.char.str[that.spec.stats["STR"]] * 0.25);
+		derivedstats["THROW"] = that.spec.stats["BODY"] * 2;
+		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
 	}
 };

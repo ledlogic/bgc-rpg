@@ -14,11 +14,6 @@ st.render = {
 		var that = st.char;
 
 		var t = [];
-
-		// name
-		var h = "<h4 class=\"st-elem st-title\">Title</h4>"
-		var template = _.template(h);
-		t.push(template(that.spec));
 			
 		// name
 		var h = "<label class=\"st-elem st-name-label\" for=\"st-name\">Character</label>"

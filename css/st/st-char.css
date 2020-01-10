@@ -87,9 +87,17 @@
 
 .st-statistics {
 	position: absolute;
+	font-size: 13px;
+	font-weight: normal;
     top: 246px;
 	left: 350px;
 	width: 150px;
+}
+
+.st-lifepath th,
+.st-statistics th,
+.st-derivedstatistics th {
+	text-transform: uppercase;
 }
 
 .st-statistics .st-stat {
@@ -99,7 +107,9 @@
 
 .st-derivedstatistics {
 	position: absolute;
-	top: 334px;
+	font-size: 13px;
+	font-weight: normal;
+	top: 246px;
 	left: 502px;
 	width: 364px;
 }

@@ -34,7 +34,7 @@ st.render = {
 
 		// lifepath
 		that.spec.eventsHtml = that.spec.events.join("<br/>");
-		var h = "<tr><th colspan=\"2\">Lifepath</th>"
+		var h = "<tr><th colspan=\"2\">Lifepath</th></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
 			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
@@ -48,7 +48,7 @@ st.render = {
 		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
 
 		// statistics
-		var h = "<tr><th colspan=\"2\">Statistics</th>"
+		var h = "<tr><th colspan=\"2\">Statistics</th></tr>"
 			+ "<tr><td class=\"st-stat\"><%- INT %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
 			+ "<tr><td class=\"st-stat\"><%- WILL %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
 			+ "<tr><td class=\"st-stat\"><%- PERS %></td><td class=\"st-tb-lbl\">PERSonality</td></tr>"
@@ -64,7 +64,7 @@ st.render = {
 		t.push("<table class=\"st-tb st-statistics\"><tbody>" + template(that.spec.stats) + "</tbody></table>");
 		
 		// derived statistics
-		var h = "<tr><th colspan=\"12\">Derived Statistics</th>"
+		var h = "<tr><th colspan=\"12\">Derived Statistics</th></tr>"
 			+ "<tr><td class=\"st-stat\" colspan=\"6\">LUC <%- LUC %></td><td class=\"st-stat\" colspan=\"6\">RES <%- RES %></td></tr>"
 			+ "<tr><td class=\"st-stat\" colspan=\"6\">PUN <%- PUN %></td><td class=\"st-stat\" colspan=\"6\">KICK <%- KICK %></td></tr>"
 			+ "<tr><td class=\"st-stat\" colspan=\"6\">END <%- END %></td><td class=\"st-stat\" colspan=\"6\">REC <%- REC %></td></tr>"
@@ -86,6 +86,20 @@ st.render = {
 		var template = _.template(h);
 		t.push("<table class=\"st-tb st-derivedstatistics\"><tbody>" + template(that.spec.derivedstats) + "</tbody></table>");
 		
+		// skills
+		t.push("<table class=\"st-tb st-skills\"><tbody>");
+		t.push("<tr><th colspan=\"12\">Skills</th></tr>");
+		for(var i in that.spec.skills) {
+			var h = "<tr><td class=\"st-stat st-skill-lbl\">"
+				+ i
+				+ "</td><td class=\"st-skill-val\">"
+				+ that.spec.skills[i]
+				+ "</td></tr>"
+			;
+			t.push(h);
+		}
+
+		t.push("</tbody></table>");
 		$(".st-page-ft").html(t.join(""));
 	},
 	renderReset: function() {

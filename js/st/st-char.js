@@ -15,6 +15,8 @@ st.char = {
 	stats: [],
 	derivedstats: [],
 	str: [],
+	skills: [],
+	everymanskills: [],
 
 	init: function() {
 		st.log("init character");
@@ -32,6 +34,8 @@ st.char = {
 		that.loadStats();
 		that.loadDerivedstats();
 		that.loadStr();
+		that.loadSkills();
+		that.loadEverymanSkills();
 	},
 	reset: function() {
 		st.log("char.reset");
@@ -39,6 +43,7 @@ st.char = {
 		that.spec = {};
 		that.spec.stats = {};
 		that.spec.derivedstats = {};
+		that.spec.skills = {};
 	},
 	random: function() {
 		st.log("char.random");
@@ -87,6 +92,9 @@ st.char = {
 		that.calcDerivedstats();
 		st.log(["derivedstats",that.spec.derivedstats]);
 
+		that.calcSkills();
+		st.log(["skills",that.spec.skills]);
+
 		st.render.render();
 	},
 	loadTxt: function(url, spec) {
@@ -94,7 +102,10 @@ st.char = {
 		$.ajax({url: url,
 				async: false})
 			.done(function(data, status, jqxhr) {
-				that[spec] = data.trim().split("\n");
+				that[spec] = data.trim().replace("\r","").split("\n");
+				for (var i=0; i<that[spec].length; i++) {
+					that[spec][i] = that[spec][i].trim();
+				}
 				st.log([spec,that[spec]]);
 			})
 			.fail(function() {
@@ -152,10 +163,17 @@ st.char = {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.char.charResponse("stats", d);
+				st.char.statsResponse("stats", d);
 			},
 			encoding: "UTF-8"
 		});
+	},
+	statsResponse: function(type, d) {
+		st.log("char.charResponse, type[" + type + "], d[" + d + "]");
+		for (var i=0;i<d.data.length; i++) {
+			st.char.addStat(type, d.data[i]);
+		}
+		st.log(["st.char." + type,st.char[type]]);
 	},
 	loadDerivedstats: function() {
 		st.log("char.loadDerivedstats");
@@ -166,7 +184,7 @@ st.char = {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.char.charResponse("derivedstats", d);
+				st.char.statsResponse("derivedstats", d);
 			},
 			encoding: "UTF-8"
 		});
@@ -185,19 +203,44 @@ st.char = {
 			encoding: "UTF-8"
 		});
 	},
-	charResponse: function(type, d) {
-		st.log("char.charResponse, type[" + type + "], d[" + d + "]");
-		for (var i=0;i<d.data.length; i++) {
-			st.char.addStat(type, d.data[i]);
-		}
-		st.log(["st.char." + type,st.char[type]]);
-	},
 	strResponse: function(d) {
 		st.log("char.strResponse, d[" + d + "]");
 		for (var i=0;i<d.data.length; i++) {
 			st.char.str[d.data[i]["STR"]] = d.data[i]["Lift"];
 		}
 		st.log(["st.char.str", st.char.str]);
+	},
+	loadEverymanSkills: function() {
+		var that = st.char;
+		that.loadTxt("data/skills-everyman.txt","everymanskills");
+		for (var i=0; i<that.everymanskills.length; i++) {
+			that.everymanskills[i] = that.everymanskills[i].toUpperCase();
+		}
+	},
+	loadSkills: function() {
+		st.log("char.loadSkills");
+		var that = st.char;
+
+		Papa.parse("data/skills-bgc.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.char.skillsResponse(d);
+			},
+			encoding: "UTF-8"
+		});
+	},
+	skillsResponse: function(d) {
+		st.log("char.skillsResponse, d[" + d + "]");
+		for (var i=0;i<d.data.length; i++) {
+			st.log(["d.data[i]", d.data[i]]);
+			st.char.skills.push({
+				skill:d.data[i]["Skill"],
+				desc:d.data[i]["Description"]
+			});
+		}
+		st.log(["st.char.skills", st.char.skills]);
 	},
 	addStat: function(type, d) {
 		var s = {
@@ -377,7 +420,8 @@ st.char = {
 			that.spec.stats[stat.abb] = 0;
 		}
 
-		var max = 60;
+		// heroic
+		var max = 50;
 		for (var i=0;i<max;i++) {
 			var r = st.math.dieArray(that.stats);
 			var stat = that.stats[r];
@@ -410,5 +454,50 @@ st.char = {
 		derivedstats["CARRY"] = Math.round(st.char.str[that.spec.stats["STR"]] * 0.25);
 		derivedstats["THROW"] = that.spec.stats["BODY"] * 2;
 		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
+	},
+	calcSkills: function() {
+		var that = st.char;
+		
+		// everyman
+		for (var i=0;i<st.char.everymanskills.length;i++) {
+			var skill = st.char.everymanskills[i];
+			that.spec.skills[skill] = 1;
+		}
+
+		// heroic
+		var max = 40;
+		for (var i=0; i<max; i++) {
+			var r = st.math.dieN(2);
+			if (i > 1 && r == 2) {
+				that.incrExistingSkill();
+			} else {
+				that.incrRandomSkill();
+			}
+		}
+
+		that.spec.skills = that.sortObject(that.spec.skills);
+	},
+	sortObject: function(o) {
+		return Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
+	},
+	incrRandomSkill: function() {
+		st.log("incrRandomSkill");
+		var that = st.char;
+		var r = st.math.dieArray(that.skills);
+		var skill = that.skills[r];
+		if (typeof that.spec.skills[skill.skill] == "undefined") {
+			that.spec.skills[skill.skill] = 1;
+		} else {
+			that.spec.skills[skill.skill]++;
+		}
+	},
+	incrExistingSkill: function() {
+		st.log("incrExistingSkill");
+		var that = st.char;
+		var obj = that.spec.skills;
+		var keys = Object.keys(obj);
+		var r = st.math.dieN(keys.length) - 1;
+		var k = keys[r];
+		that.spec.skills[k]++;
 	}
 };

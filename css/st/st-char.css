@@ -96,7 +96,8 @@
 
 .st-lifepath th,
 .st-statistics th,
-.st-derivedstatistics th {
+.st-derivedstatistics th,
+.st-skills th {
 	text-transform: uppercase;
 }
 
@@ -113,6 +114,24 @@
 	left: 502px;
 	width: 364px;
 }
+
+.st-skills {
+	position: absolute;
+	font-size: 10px;
+    left: 346px;
+    top: 518px;
+	width: 260px;
+}
+
+.st-skills td.st-skill-lbl {
+	width: 370px;
+}
+
+.st-skills td.st-skill-val {
+	text-align: center;
+	width: 100px;
+}
+
 
 /* border */
 

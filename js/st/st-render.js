@@ -40,13 +40,19 @@ st.render = {
 		t.push("</tbody></table>");
 
 		// image
-		var h = "<img id=\"st-img\" class=\"st-img\" src=\"img/adpolice.jpg\">";
+		var h = "<div id=\"st-img\" class=\"st-img\"></div>";
 		var template = _.template(h);
 		t.push(template(that.spec));
 						
 		// age
 		var h = "<label class=\"st-elem st-age-label\" for=\"st-age\">Age</label>"
 			+ "<input id=\"st-age\" class=\"st-elem st-age\" value=\"<%= age %>\" placeholder=\"Age\">";
+		var template = _.template(h);
+		t.push(template(that.spec));
+
+		// occupation
+		var h = "<label class=\"st-elem st-occupation-label\" for=\"st-occupation\">Occupation</label>"
+			+ "<input id=\"st-occupation\" class=\"st-elem st-occupation\" placeholder=\"Occupation\">";
 		var template = _.template(h);
 		t.push(template(that.spec));
 
@@ -130,6 +136,16 @@ st.render = {
 		}	
 		t.push("</tbody></table>");
 		
+		// equipment
+		t.push("<table class=\"st-tb st-equipment\"><tbody>");
+		t.push("<tr><th colspan=\"4\">Equipment</th><th>Cost</th></tr>");
+		for(var i=0; i<10; i++) {
+			var h = "<tr><td colspan=\"4\">&nbsp;</td><td>&nbsp;</td></tr>";
+			t.push(h);
+		}	
+		t.push("</tbody></table>");
+
+
 		$(".st-page-ft").html(t.join(""));
 	},
 	renderReset: function() {

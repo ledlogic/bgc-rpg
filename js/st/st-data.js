@@ -181,5 +181,6 @@ st.data = {
 				desc:d.data[i]["Description"]
 			});
 		}
+		st.char.random();
 	}
 };

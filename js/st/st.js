@@ -13,7 +13,6 @@ var st = {
 		st.utils.init();
 		st.data.init();
 		st.char.init();
-		st.nav.init();
 		st.render.init();
 	}
 };

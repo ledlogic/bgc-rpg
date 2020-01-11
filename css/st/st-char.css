@@ -4,7 +4,7 @@
 
 .st-page {
 	position: relative;
-	height: 1194px;
+	height: 972px;
 	width: 1013px;
 }
 
@@ -14,7 +14,6 @@
 }
 
 .st-page-bk {
-	border: 1px solid red;
 	position: absolute;
 	top:0;
 	left:0;
@@ -48,43 +47,81 @@
 	font-size: 40px;
 }
 
+/* name */
+
 .st-name-label {
-	top: 52px;
+	top: 12px;
 	left: 86px; 
 }
 
 .st-name {
-	top: 49px; 
+	top: 9px; 
 	left: 154px; 
 	width: 179px;
 	text-align: left;
 }
 
 .st-img {
+	border: 1px solid #000;
 	position: absolute;
-	top: 74px;
+	top: 34px;
 	left: 72px;
 	width: 262px;
 	height: 398px;
 }
 
+/* age */
+
 .st-age-label {
-	top: 480px;
+	top: 440px;
 	left: 76px; 
 }
 .st-age {
-	top: 476px; 
+	top: 436px; 
 	left: 110px; 
 	width: 39px;
 	text-align: center;
 }
 
+/* occupation */
+
+.st-occupation-label {
+	top: 440px;
+	left: 166px; 
+}
+.st-occupation {
+	top: 436px; 
+	left: 236px; 
+	width: 98px;
+	text-align: center;
+}
+
+/* lifepath */
+
 .st-lifepath {
 	position: relative;
 	font-size: 10px;
-	top: 518px; 
+	top: 478px; 
 	left: 68px; 
 	width: 262px;
+}
+
+/* points */
+
+.st-points {
+	position: absolute;
+	font-size: 14px;
+    left: 350px;
+    top: 0px;
+	width: 522px;
+}
+
+.st-points th {
+	text-align: center;
+}
+
+.st-points td {
+	text-align: center;
 }
 
 /* stats */
@@ -93,7 +130,7 @@
 	position: absolute;
 	font-size: 13px;
 	font-weight: normal;
-    top: 246px;
+    top: 56px;
 	left: 350px;
 	width: 150px;
 }
@@ -114,27 +151,9 @@
 	position: absolute;
 	font-size: 13px;
 	font-weight: normal;
-	top: 246px;
+	top: 56px;
 	left: 502px;
 	width: 364px;
-}
-
-/* points */
-
-.st-points {
-	position: absolute;
-	font-size: 14px;
-    left: 350px;
-    top: 190px;
-	width: 522px;
-}
-
-.st-points th {
-	text-align: center;
-}
-
-.st-points td {
-	text-align: center;
 }
 
 /* skills */
@@ -143,7 +162,7 @@
 	position: absolute;
 	font-size: 10px;
     left: 346px;
-    top: 518px;
+    top: 478px;
 	width: 242px;
 }
 
@@ -156,11 +175,13 @@
 	width: 100px;
 }
 
+/* talents */
+
 .st-talents {
 	position: absolute;
 	font-size: 10px;
     left: 606px;
-    top: 518px;
+    top: 478px;
 	width: 260px;
 }
 
@@ -171,6 +192,24 @@
 .st-talents td.st-skill-val {
 	text-align: center;
 	width: 100px;
+}
+
+/* equipment */
+
+.st-equipment {
+	position: absolute;
+	font-size: 10px;
+	left: 606px; 
+    top: 760px;
+	width: 260px;
+}
+
+.st-equipment th {
+	text-align: center;
+}
+
+.st-equipment td {
+	text-align: center;
 }
 
 /* border */

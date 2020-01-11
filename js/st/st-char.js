@@ -20,7 +20,6 @@ st.char = {
 
 	init: function() {
 		st.log("char.init");
-		var that = st.char;
 	},
 	reset: function() {
 		st.log("char.reset");
@@ -302,8 +301,8 @@ st.char = {
 		derivedstats["STUN"] = that.spec.stats["BODY"] * 5;
 
 		derivedstats["MAX"] = st.char.str[that.spec.stats["STR"]];
-		derivedstats["LIFT"] = Math.round(st.char.str[that.spec.stats["STR"]] * 0.5);
-		derivedstats["CARRY"] = Math.round(st.char.str[that.spec.stats["STR"]] * 0.25);
+		derivedstats["LIFT"] = Math.round(data.str[that.spec.stats["STR"]] * 0.5);
+		derivedstats["CARRY"] = Math.round(data.str[that.spec.stats["STR"]] * 0.25);
 		derivedstats["THROW"] = that.spec.stats["BODY"] * 2;
 		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
 	},
@@ -328,7 +327,7 @@ st.char = {
 			//kspend ++;
 			//st.log("skill[" + kspend + "]");
 		}
-		st.utils.sortObject(that.spec.skills);
+		that.spec.skills = st.utils.sortObject(that.spec.skills);
 	},
 	incrRandomSkill: function() {
 		//st.log("char.incrRandomSkill");

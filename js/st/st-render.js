@@ -22,6 +22,23 @@ st.render = {
 		var template = _.template(h);
 		t.push(template(that.spec));
 
+		// skills
+		var points = that.spec.points;
+		t.push("<table class=\"st-tb st-points\"><tbody>");
+		t.push("<tr>");
+		t.push("<th>Stat Points</th>");
+		t.push("<th>Campaign Points</th>");
+		t.push("<th>Complication Points</th>");
+		t.push("<th>Total Points</th>");
+		t.push("</tr>");
+		t.push("<tr>");
+		t.push("<td>" + points.stat + "</td>");
+		t.push("<td>" + points.campaign + "</td>");
+		t.push("<td>" + points.complication + "</td>");
+		t.push("<td>" + points.total + "</td>");
+		t.push("<tr>");
+		t.push("</tbody></table>");
+
 		// image
 		var h = "<img id=\"st-img\" class=\"st-img\" src=\"img/adpolice.jpg\">";
 		var template = _.template(h);

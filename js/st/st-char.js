@@ -30,6 +30,13 @@ st.char = {
 		that.spec.derivedstats = [];
 		that.spec.skills = [];
 		that.spec.talents = [];
+		that.spec.points = [];
+		that.spec.points.stat = 50;
+		that.spec.points.skills = 31;
+		that.spec.points.talents = 9;
+		that.spec.points.campaign = that.spec.points.skills + that.spec.points.talents;
+		that.spec.points.complication = 0;
+		that.spec.points.total = that.spec.points.stat + that.spec.points.campaign + that.spec.points.complication;
 	},
 	random: function() {
 		st.log("char.random");
@@ -345,8 +352,7 @@ st.char = {
 		var data = st.data;
 
 		// heroic
-		var max = 3;
-		for (var i=0; i<max; i++) {
+		for (var i=0; i<that.spec.points.talents; i++) {
 			var r = st.math.dieArray(data.talents);
 			var talent = data.talents[r];
 			that.spec.talents.push(talent.talent);

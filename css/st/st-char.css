@@ -40,6 +40,8 @@
 	font-size: 10px;
 }
 
+/* left side */
+
 .st-title {
 	top: 52px;
 	left: 86px; 
@@ -85,6 +87,8 @@
 	width: 262px;
 }
 
+/* stats */
+
 .st-statistics {
 	position: absolute;
 	font-size: 13px;
@@ -114,6 +118,26 @@
 	left: 502px;
 	width: 364px;
 }
+
+/* points */
+
+.st-points {
+	position: absolute;
+	font-size: 14px;
+    left: 350px;
+    top: 190px;
+	width: 522px;
+}
+
+.st-points th {
+	text-align: center;
+}
+
+.st-points td {
+	text-align: center;
+}
+
+/* skills */
 
 .st-skills {
 	position: absolute;

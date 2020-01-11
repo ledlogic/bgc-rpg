@@ -132,6 +132,22 @@
 	width: 100px;
 }
 
+.st-talents {
+	position: absolute;
+	font-size: 10px;
+    left: 606px;
+    top: 518px;
+	width: 260px;
+}
+
+.st-talents td.st-skill-lbl {
+	width: 370px;
+}
+
+.st-talents td.st-skill-val {
+	text-align: center;
+	width: 100px;
+}
 
 /* border */
 

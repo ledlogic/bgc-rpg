@@ -25,10 +25,11 @@ st.char = {
 	reset: function() {
 		st.log("char.reset");
 		var that = st.char;
-		that.spec = {};
-		that.spec.stats = {};
-		that.spec.derivedstats = {};
-		that.spec.skills = {};
+		that.spec = [];
+		that.spec.stats = [];
+		that.spec.derivedstats = [];
+		that.spec.skills = [];
+		that.spec.talents = [];
 	},
 	random: function() {
 		st.log("char.random");
@@ -37,49 +38,52 @@ st.char = {
 		that.reset();
 
 		that.spec.personality = data.personalities[st.math.dieArray(data.personalities)];
-		st.log(["personality",that.spec.personality]);
+		//st.log(["personality",that.spec.personality]);
 
 		that.spec.valuesWho = data.valuesWho[st.math.dieArray(data.valuesWho)];
-		st.log(["valuesWho",that.spec.valuesWho]);
+		//st.log(["valuesWho",that.spec.valuesWho]);
 
 		that.spec.valuesWhat = data.valuesWhat[st.math.dieArray(data.valuesWhat)];
-		st.log(["valuesWhat",that.spec.valuesWhat]);
+		//st.log(["valuesWhat",that.spec.valuesWhat]);
 
 		that.spec.worldview = data.worldviews[st.math.dieArray(data.worldviews)];
-		st.log(["worldview",that.spec.worldview]);
+		//st.log(["worldview",that.spec.worldview]);
 		
 		that.spec.earlybackground = data.earlybackgrounds[st.math.dieArray(data.earlybackgrounds)];
-		st.log(["earlybackground",that.spec.earlybackground]);
+		//st.log(["earlybackground",that.spec.earlybackground]);
 		
 		that.calcChildhoodEvent();
-		st.log(["childhoodevent",that.spec.childhoodevent]);
+		//st.log(["childhoodevent",that.spec.childhoodevent]);
 		
 		that.calcAge();
-		st.log(["age",that.spec.age]);
+		//st.log(["age",that.spec.age]);
 
 		var years = that.spec.age - 16;
-		st.log(["years",years]);
+		//st.log(["years",years]);
 
 		that.spec.events = [];
 		for (var i=0; i<years; i++) {
 			that.calcLifeevent();
 		}
-		st.log(["lifeevents",that.spec.lifeevents]);
+		//st.log(["lifeevents",that.spec.lifeevents]);
 
 		that.spec.currentsituation = data.currentsituations[st.math.dieArray(data.currentsituations)];
-		st.log(["currentsituation",that.spec.currentsituation]);
+		//st.log(["currentsituation",that.spec.currentsituation]);
 
 		that.spec.currentoutlook = data.currentoutlooks[st.math.dieArray(data.currentoutlooks)];
-		st.log(["currentoutlook",that.spec.currentoutlook]);
+		//st.log(["currentoutlook",that.spec.currentoutlook]);
 
 		that.calcStats();
-		st.log(["stats",that.spec.stats]);
+		//st.log(["stats",that.spec.stats]);
 
 		that.calcDerivedstats();
-		st.log(["derivedstats",that.spec.derivedstats]);
+		//st.log(["derivedstats",that.spec.derivedstats]);
 
 		that.calcSkills();
-		st.log(["skills",that.spec.skills]);
+		//st.log(["skills",that.spec.skills]);
+
+		that.calcTalents();
+		st.log(["talents",that.spec.talents]);
 
 		st.render.render();
 	},
@@ -236,7 +240,7 @@ st.char = {
 							break;
 					}
 				}
-				st.log(["lovewar",that.spec.lovewar]);
+				//st.log(["lovewar",that.spec.lovewar]);
 				break;
 		}
 		that.addEvent(evt);
@@ -304,7 +308,7 @@ st.char = {
 		}
 
 		// heroic
-		var max = 40;
+		var max = 31;
 		for (var i=0; i<max; i++) {
 			var r = st.math.dieN(2);
 			if (i > 1 && r == 2) {
@@ -316,7 +320,7 @@ st.char = {
 		st.utils.sortObject(that.spec.skills);
 	},
 	incrRandomSkill: function() {
-		st.log("char.incrRandomSkill");
+		//st.log("char.incrRandomSkill");
 		var that = st.char;
 		var data = st.data;
 		var r = st.math.dieArray(data.skills);
@@ -328,12 +332,26 @@ st.char = {
 		}
 	},
 	incrExistingSkill: function() {
-		st.log("char.incrExistingSkill");
+		//st.log("char.incrExistingSkill");
 		var that = st.char;
 		var obj = that.spec.skills;
 		var keys = Object.keys(obj);
 		var r = st.math.dieN(keys.length) - 1;
 		var k = keys[r];
 		that.spec.skills[k]++;
-	}
+	},
+	calcTalents: function() {
+		var that = st.char;
+		var data = st.data;
+
+		// heroic
+		var max = 3;
+		for (var i=0; i<max; i++) {
+			var r = st.math.dieArray(data.talents);
+			var talent = data.talents[r];
+			that.spec.talents.push(talent.talent);
+		}
+		st.utils.sortArr(that.spec.talents);
+	},
+
 };

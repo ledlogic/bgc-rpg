@@ -99,8 +99,20 @@ st.render = {
 			;
 			t.push(h);
 		}
-
 		t.push("</tbody></table>");
+
+		// talents
+		t.push("<table class=\"st-tb st-talents\"><tbody>");
+		t.push("<tr><th colspan=\"12\">Talents</th></tr>");
+		for(var i in that.spec.talents) {
+			var h = "<tr><td class=\"st-stat st-talents-lbl\">"
+				+ that.spec.talents[i]
+				+ "</td></tr>"
+			;
+			t.push(h);
+		}	
+		t.push("</tbody></table>");
+		
 		$(".st-page-ft").html(t.join(""));
 	},
 	renderReset: function() {

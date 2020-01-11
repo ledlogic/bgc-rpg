@@ -32,7 +32,7 @@ st.render = {
 		t.push("<th>Total Points</th>");
 		t.push("</tr>");
 		t.push("<tr>");
-		t.push("<td>" + points.stat + "</td>");
+		t.push("<td>" + points.stats + "</td>");
 		t.push("<td>" + points.campaign + "</td>");
 		t.push("<td>" + points.complication + "</td>");
 		t.push("<td>" + points.total + "</td>");

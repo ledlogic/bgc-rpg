@@ -31,12 +31,17 @@ st.char = {
 		that.spec.skills = [];
 		that.spec.talents = [];
 		that.spec.points = [];
-		that.spec.points.stat = 50;
-		that.spec.points.skills = 31;
-		that.spec.points.talents = 9;
+		that.spec.points.stats = 50;
+
+		var talents = Math.floor(st.math.dieN(40) / 3.0);
+
+		that.spec.points.talents = talents * 3;
+		that.spec.points.skills = 40 - talents * 3;
 		that.spec.points.campaign = that.spec.points.skills + that.spec.points.talents;
 		that.spec.points.complication = 0;
-		that.spec.points.total = that.spec.points.stat + that.spec.points.campaign + that.spec.points.complication;
+		that.spec.points.total = that.spec.points.stats
+							   + that.spec.points.campaign
+							   + that.spec.points.complication;
 	},
 	random: function() {
 		st.log("char.random");
@@ -268,9 +273,7 @@ st.char = {
 			that.spec.stats[stat.abb] = 0;
 		}
 
-		// heroic
-		var max = 50;
-		for (var i=0;i<max;i++) {
+		for (var i=0;i<that.spec.points.stats;i++) {
 			var r = st.math.dieArray(data.stats);
 			var stat = data.stats[r];
 			that.spec.stats[stat.abb]++;
@@ -314,8 +317,7 @@ st.char = {
 			that.spec.skills[skill] = 1;
 		}
 
-		// heroic
-		var max = 31;
+		var max = that.spec.points.skills;
 		for (var i=0; i<max; i++) {
 			var r = st.math.dieN(2);
 			if (i > 1 && r == 2) {
@@ -323,6 +325,8 @@ st.char = {
 			} else {
 				that.incrRandomSkill();
 			}
+			//kspend ++;
+			//st.log("skill[" + kspend + "]");
 		}
 		st.utils.sortObject(that.spec.skills);
 	},
@@ -330,6 +334,7 @@ st.char = {
 		//st.log("char.incrRandomSkill");
 		var that = st.char;
 		var data = st.data;
+
 		var r = st.math.dieArray(data.skills);
 		var skill = data.skills[r];
 		if (typeof that.spec.skills[skill.skill] == "undefined") {
@@ -351,13 +356,21 @@ st.char = {
 		var that = st.char;
 		var data = st.data;
 
-		// heroic
-		for (var i=0; i<that.spec.points.talents; i++) {
+		for (var i=0; i<that.spec.points.talents; i+=3) {
 			var r = st.math.dieArray(data.talents);
 			var talent = data.talents[r];
-			that.spec.talents.push(talent.talent);
+			if (that.spec.talents.indexOf(talent.talent) > -1) {
+				i-=3;
+			} else {
+				//tspend += 3;
+				//st.log("talent[" + talent.talent + tspend + "]");
+				that.spec.talents.push(talent.talent);
+			}
 		}
 		st.utils.sortArr(that.spec.talents);
 	},
 
 };
+
+//var tspend = 0;
+//var kspend = 0;

@@ -19,23 +19,8 @@ st.char = {
 	everymanskills: [],
 
 	init: function() {
-		st.log("init character");
+		st.log("char.init");
 		var that = st.char;
-		that.loadPersonalities();
-		that.loadValuesWho();
-		that.loadValuesWhat();
-		that.loadWorldviews();
-		that.loadEarlybackgrounds();
-		that.loadChildhoodevents();
-		that.loadFriendsenemies();
-		that.loadLovewar();
-		that.loadCurrentsituations();
-		that.loadCurrentoutlooks();
-		that.loadStats();
-		that.loadDerivedstats();
-		that.loadStr();
-		that.loadSkills();
-		that.loadEverymanSkills();
 	},
 	reset: function() {
 		st.log("char.reset");
@@ -48,21 +33,22 @@ st.char = {
 	random: function() {
 		st.log("char.random");
 		var that = st.char;
+		var data = st.data;
 		that.reset();
 
-		that.spec.personality = that.personalities[st.math.dieArray(that.personalities)];
+		that.spec.personality = data.personalities[st.math.dieArray(data.personalities)];
 		st.log(["personality",that.spec.personality]);
 
-		that.spec.valuesWho = that.valuesWho[st.math.dieArray(that.valuesWho)];
+		that.spec.valuesWho = data.valuesWho[st.math.dieArray(data.valuesWho)];
 		st.log(["valuesWho",that.spec.valuesWho]);
 
-		that.spec.valuesWhat = that.valuesWhat[st.math.dieArray(that.valuesWhat)];
+		that.spec.valuesWhat = data.valuesWhat[st.math.dieArray(data.valuesWhat)];
 		st.log(["valuesWhat",that.spec.valuesWhat]);
 
-		that.spec.worldview = that.worldviews[st.math.dieArray(that.worldviews)];
+		that.spec.worldview = data.worldviews[st.math.dieArray(data.worldviews)];
 		st.log(["worldview",that.spec.worldview]);
 		
-		that.spec.earlybackground = that.earlybackgrounds[st.math.dieArray(that.earlybackgrounds)];
+		that.spec.earlybackground = data.earlybackgrounds[st.math.dieArray(data.earlybackgrounds)];
 		st.log(["earlybackground",that.spec.earlybackground]);
 		
 		that.calcChildhoodEvent();
@@ -80,10 +66,10 @@ st.char = {
 		}
 		st.log(["lifeevents",that.spec.lifeevents]);
 
-		that.spec.currentsituation = that.currentsituations[st.math.dieArray(that.currentsituations)];
+		that.spec.currentsituation = data.currentsituations[st.math.dieArray(data.currentsituations)];
 		st.log(["currentsituation",that.spec.currentsituation]);
 
-		that.spec.currentoutlook = that.currentoutlooks[st.math.dieArray(that.currentoutlooks)];
+		that.spec.currentoutlook = data.currentoutlooks[st.math.dieArray(data.currentoutlooks)];
 		st.log(["currentoutlook",that.spec.currentoutlook]);
 
 		that.calcStats();
@@ -97,161 +83,9 @@ st.char = {
 
 		st.render.render();
 	},
-	loadTxt: function(url, spec) {
-		var that = st.char;
-		$.ajax({url: url,
-				async: false})
-			.done(function(data, status, jqxhr) {
-				that[spec] = data.trim().replace("\r","").split("\n");
-				for (var i=0; i<that[spec].length; i++) {
-					that[spec][i] = that[spec][i].trim();
-				}
-				st.log([spec,that[spec]]);
-			})
-			.fail(function() {
-				alert("Error: unable to load personalities.");
-			})
-			.always(function() {
-			});
-	},
-	loadPersonalities: function() { 
-		var that = st.char;
-		that.loadTxt("data/personalities.txt","personalities");
-	},
-	loadValuesWho: function() {
-		var that = st.char;
-		that.loadTxt("data/values-who.txt","valuesWho");
-	},
-	loadValuesWhat: function() {
-		var that = st.char;
-		that.loadTxt("data/values-what.txt","valuesWhat");
-	},
-	loadWorldviews: function() {
-		var that = st.char;
-		that.loadTxt("data/worldviews.txt","worldviews");
-	},
-	loadEarlybackgrounds: function() {
-		var that = st.char;
-		that.loadTxt("data/earlybackgrounds.txt","earlybackgrounds");
-	},
-	loadChildhoodevents: function() {
-		var that = st.char;
-		that.loadTxt("data/childhoodevents.txt","childhoodevents");
-	},
-	loadFriendsenemies: function() {
-		var that = st.char;
-		that.loadTxt("data/friendsenemies.txt","friendsenemies");
-	},
-	loadLovewar: function() {
-		var that = st.char;
-		that.loadTxt("data/lovewar.txt","lovewar");
-	},
-	loadCurrentsituations: function() {
-		var that = st.char;
-		that.loadTxt("data/currentsituations.txt","currentsituations");
-	},
-	loadCurrentoutlooks: function() {
-		var that = st.char;
-		that.loadTxt("data/currentoutlooks.txt","currentoutlooks");
-	},
-	loadStats: function() {
-		st.log("char.loadStats");
-		var that = st.char;
-
-		Papa.parse("data/stats.csv", {
-			delimiter: "|",
-			download: true,
-			header: true,
-			complete: function(d) {
-				st.char.statsResponse("stats", d);
-			},
-			encoding: "UTF-8"
-		});
-	},
-	statsResponse: function(type, d) {
-		st.log("char.charResponse, type[" + type + "], d[" + d + "]");
-		for (var i=0;i<d.data.length; i++) {
-			st.char.addStat(type, d.data[i]);
-		}
-		st.log(["st.char." + type,st.char[type]]);
-	},
-	loadDerivedstats: function() {
-		st.log("char.loadDerivedstats");
-		var that = st.char;
-
-		Papa.parse("data/derivedstats.csv", {
-			delimiter: "|",
-			download: true,
-			header: true,
-			complete: function(d) {
-				st.char.statsResponse("derivedstats", d);
-			},
-			encoding: "UTF-8"
-		});
-	},
-	loadStr: function() {
-		st.log("char.loadStr");
-		var that = st.char;
-
-		Papa.parse("data/str.csv", {
-			delimiter: "|",
-			download: true,
-			header: true,
-			complete: function(d) {
-				st.char.strResponse(d);
-			},
-			encoding: "UTF-8"
-		});
-	},
-	strResponse: function(d) {
-		st.log("char.strResponse, d[" + d + "]");
-		for (var i=0;i<d.data.length; i++) {
-			st.char.str[d.data[i]["STR"]] = d.data[i]["Lift"];
-		}
-		st.log(["st.char.str", st.char.str]);
-	},
-	loadEverymanSkills: function() {
-		var that = st.char;
-		that.loadTxt("data/skills-everyman.txt","everymanskills");
-		for (var i=0; i<that.everymanskills.length; i++) {
-			that.everymanskills[i] = that.everymanskills[i].toUpperCase();
-		}
-	},
-	loadSkills: function() {
-		st.log("char.loadSkills");
-		var that = st.char;
-
-		Papa.parse("data/skills-bgc.csv", {
-			delimiter: "|",
-			download: true,
-			header: true,
-			complete: function(d) {
-				st.char.skillsResponse(d);
-			},
-			encoding: "UTF-8"
-		});
-	},
-	skillsResponse: function(d) {
-		st.log("char.skillsResponse, d[" + d + "]");
-		for (var i=0;i<d.data.length; i++) {
-			st.log(["d.data[i]", d.data[i]]);
-			st.char.skills.push({
-				skill:d.data[i]["Skill"],
-				desc:d.data[i]["Description"]
-			});
-		}
-		st.log(["st.char.skills", st.char.skills]);
-	},
-	addStat: function(type, d) {
-		var s = {
-			"stat": d["Statistic"], 
-			"abb": d["Abbreviation"],
-			"desc": d["Description"]
-		};
-		st.char[type].push(s);
-	},
 	calcChildhoodEvent: function() {
 		var that = st.char;
+		var data = st.data;
 		var r = st.math.dieN(10);
 		switch (true) {
 			case r<7:
@@ -269,7 +103,7 @@ st.char = {
 						prefix = "Your entire family was";
 						break;
 				}
-				var r2 = st.math.dieArray(that.childhoodevents);
+				var r2 = st.math.dieArray(data.childhoodevents);
 				if (r2 === 7) {
 					var r3 = st.math.dieN(10);			
 					switch (true) {
@@ -282,7 +116,7 @@ st.char = {
 							break;
 					}
 				}
-				that.spec.childhoodevent = (prefix + " " + that.childhoodevents[r2] + " " + suffix).trim();
+				that.spec.childhoodevent = (prefix + " " + data.childhoodevents[r2] + " " + suffix).trim();
 				break;
 		}
 	},
@@ -364,12 +198,14 @@ st.char = {
 	},
 	calcFriendsAndEnemies: function() {
 		var that = st.char;
+		var data = st.data;
 		var evt = "Friends & Enemies: ";
-		evt += that.friendsenemies[st.math.dieArray(that.friendsenemies)];
+		evt += data.friendsenemies[st.math.dieArray(data.friendsenemies)];
 		that.addEvent(evt);
 	},
 	calcLoveAndWar: function() {
 		var that = st.char;
+		var data = st.data;
 		var r = st.math.dieN(10);
 		var evt = "Love & War: ";
 		switch (r) {
@@ -384,8 +220,8 @@ st.char = {
 				evt += "Nothing serious: 'Nuff said.";
 				break;
 			default:
-				var index = st.math.dieArray(that.lovewar);
-				evt += that.lovewar[index];
+				var index = st.math.dieArray(data.lovewar);
+				evt += data.lovewar[index];
 				if (index === 3) {
 					var w = st.math.dieN(3);
 					switch (w) {
@@ -414,25 +250,27 @@ st.char = {
 	},
 	calcStats: function() {
 		var that = st.char;
+		var data = st.data;
 
-		for (var i=0;i<that.stats.length;i++) {
-			var stat = that.stats[i];
+		for (var i=0;i<data.stats.length;i++) {
+			var stat = data.stats[i];
 			that.spec.stats[stat.abb] = 0;
 		}
 
 		// heroic
 		var max = 50;
 		for (var i=0;i<max;i++) {
-			var r = st.math.dieArray(that.stats);
-			var stat = that.stats[r];
+			var r = st.math.dieArray(data.stats);
+			var stat = data.stats[r];
 			that.spec.stats[stat.abb]++;
 		}
 	},
 	calcDerivedstats: function() {
 		var that = st.char;
+		var data = st.data;
 		var derivedstats = that.spec.derivedstats;
-		for (var i=0;i<that.derivedstats.length;i++) {
-			var derivedstat = that.derivedstats[i];
+		for (var i=0;i<data.derivedstats.length;i++) {
+			var derivedstat = data.derivedstats[i];
 			derivedstats[derivedstat.abb] = 0;
 		}
 
@@ -457,10 +295,11 @@ st.char = {
 	},
 	calcSkills: function() {
 		var that = st.char;
-		
+		var data = st.data;
+
 		// everyman
-		for (var i=0;i<st.char.everymanskills.length;i++) {
-			var skill = st.char.everymanskills[i];
+		for (var i=0;i<data.everymanskills.length;i++) {
+			var skill = data.everymanskills[i];
 			that.spec.skills[skill] = 1;
 		}
 
@@ -474,17 +313,14 @@ st.char = {
 				that.incrRandomSkill();
 			}
 		}
-
-		that.spec.skills = that.sortObject(that.spec.skills);
-	},
-	sortObject: function(o) {
-		return Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
+		st.utils.sortObject(that.spec.skills);
 	},
 	incrRandomSkill: function() {
-		st.log("incrRandomSkill");
+		st.log("char.incrRandomSkill");
 		var that = st.char;
-		var r = st.math.dieArray(that.skills);
-		var skill = that.skills[r];
+		var data = st.data;
+		var r = st.math.dieArray(data.skills);
+		var skill = data.skills[r];
 		if (typeof that.spec.skills[skill.skill] == "undefined") {
 			that.spec.skills[skill.skill] = 1;
 		} else {
@@ -492,7 +328,7 @@ st.char = {
 		}
 	},
 	incrExistingSkill: function() {
-		st.log("incrExistingSkill");
+		st.log("char.incrExistingSkill");
 		var that = st.char;
 		var obj = that.spec.skills;
 		var keys = Object.keys(obj);

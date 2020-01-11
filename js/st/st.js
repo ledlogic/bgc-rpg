@@ -8,8 +8,10 @@ var st = {
 	},
 
 	init: function() {
-		st.firebase.init();
+		st.log("st.init");
 		st.math.init();
+		st.utils.init();
+		st.data.init();
 		st.char.init();
 		st.nav.init();
 		st.render.init();

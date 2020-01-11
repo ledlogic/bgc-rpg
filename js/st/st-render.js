@@ -2,6 +2,7 @@
 
 st.render = {
 	init: function() {
+		st.log("render.init");
 	},
 	render: function() {
 		st.log("rendering char");

@@ -2,7 +2,8 @@
 
 st.nav = {
 	init: function() {
-		st.log("init nav");
-		$(".st-action-random").click(st.char.random);
+		st.log("nav.init");
+		var char = st.char;
+		$(".st-action-random").click(char.random);
 	}
 };

@@ -9,6 +9,7 @@ p {
 }
 
 body {
+	color: #000;
 	margin: 16px;
 }
 
@@ -32,9 +33,6 @@ button {
 
 .progress-bar {
 	background: #ac2629;
-}
-
-#st-select-char {
 }
 
 .st-nav {
@@ -92,12 +90,12 @@ button {
 }
 
 .st-tb th {
-	background-color: #333;
+	background-color: #000;
 	color: #fff;
 }
 
 .st-tb th, .st-tb td {
-	border: 1px solid #333;
+	border: 1px solid #000;
 	padding: 2px;
 	vertical-align: top;
 }

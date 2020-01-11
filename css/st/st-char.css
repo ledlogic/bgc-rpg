@@ -212,6 +212,24 @@
 	text-align: center;
 }
 
+/* weapons */
+
+.st-weapons {
+	position: absolute;
+	font-size: 10px;
+	left: 350px; 
+    top: 320px;
+	width: 520px;
+}
+
+.st-weapons th {
+	text-align: center;
+}
+
+.st-weapons td {
+	text-align: center;
+}
+
 /* border */
 
 .st-section {

@@ -145,6 +145,29 @@ st.render = {
 		}	
 		t.push("</tbody></table>");
 
+		// weapons
+		t.push("<table class=\"st-tb st-weapons\"><tbody>");
+		t.push("<tr>"
+			+ "<th>Weapon</th>"
+			+ "<th>WA</th>"
+			+ "<th>Range</th>"
+			+ "<th>Damage</th>"
+			+ "<th>Shots</th>"
+			+ "<th>ROF</th>"
+			+ "<th>COST</th>"
+			+ "</tr>");
+		for(var i=0; i<6; i++) {
+			t.push("<tr>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "</tr>");
+		}	
+		t.push("</tbody></table>");
 
 		$(".st-page-ft").html(t.join(""));
 	},

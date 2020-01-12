@@ -12,9 +12,8 @@
 	height: 2600px;
 }
 
-.st-page.st-initial-state {
-	/* initial state */
-	display: none;
+.st-page.st-page-talents {
+	height: 1200px;
 }
 
 .st-page-bk {

@@ -4,7 +4,7 @@
 
 .st-page {
 	position: relative;
-	height: 1040px;
+	height: 1240px;
 	width: 1020px;
 }
 
@@ -151,7 +151,8 @@
 .st-skills th,
 .st-talents th,
 .st-equipment th,
-.st-weapons th {
+.st-weapons th,
+.st-talents-desc th {
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -222,6 +223,10 @@
 	width: 100px;
 }
 
+.st-talents-desc th, .st-talents-desc td {
+	padding: 4px;
+}
+
 /* equipment */
 
 .st-equipment {
@@ -259,4 +264,3 @@
 .no-border .st-item {
 	border: 1px solid transparent;
 }
-

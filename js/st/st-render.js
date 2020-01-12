@@ -10,6 +10,9 @@ st.render = {
 		st.render.renderSpec();
 		$(".st-page").removeClass("st-initial-state");
 	},
+	renderReset: function() {
+		$(".st-page-ft").html("");
+	},
 	renderSpec: function() {
 		st.log("rendering spec");
 		var that = st.char;
@@ -170,8 +173,5 @@ st.render = {
 		t.push("</tbody></table>");
 
 		$(".st-page-ft").html(t.join(""));
-	},
-	renderReset: function() {
-		$(".st-page-ft").html("");
 	}
 };

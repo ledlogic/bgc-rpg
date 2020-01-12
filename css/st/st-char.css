@@ -4,8 +4,8 @@
 
 .st-page {
 	position: relative;
-	height: 972px;
-	width: 1013px;
+	height: 1040px;
+	width: 1020px;
 }
 
 .st-page.st-initial-state {
@@ -22,9 +22,12 @@
 }
 
 .st-page-ft {
+	border: 1px solid #acacac;
 	position: absolute;
 	top:0;
 	left:0;
+	width: 100%;
+	height: 100%;
 }
 
 .st-page-ft {
@@ -35,75 +38,85 @@
 
 .st-elem {
 	position: absolute;
-	display:inline-block;
-	font-size: 10px;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
 }
 
-/* left side */
+.st-label {
+	text-transform: uppercase;
+}
 
-.st-title {
-	top: 52px;
-	left: 86px; 
-	font-size: 40px;
+.st-tb th {
+	background-color: #000;
+	color: #fff;
+}
+
+.st-tb th, .st-tb td {
+	border: 1px solid #000;
+	padding: 2px;
+	vertical-align: top;
 }
 
 /* name */
 
 .st-name-label {
-	top: 12px;
-	left: 86px; 
+	top: 4px;
+	left: 0px;
+	width: 80px;
 }
 
 .st-name {
-	top: 9px; 
-	left: 154px; 
-	width: 179px;
-	text-align: left;
-}
-
-.st-img {
-	border: 1px solid #000;
-	position: absolute;
-	top: 34px;
-	left: 72px;
-	width: 262px;
-	height: 398px;
+	top: 0px; 
+	left: 90px; 
+	width: 180px;
 }
 
 /* age */
 
 .st-age-label {
-	top: 440px;
-	left: 76px; 
+	top: 34px;
+	left: 0px;
+	width: 80px;
 }
 .st-age {
-	top: 436px; 
-	left: 110px; 
-	width: 39px;
-	text-align: center;
+	top: 30px; 
+	left: 90px; 
+	width: 180px;
 }
 
 /* occupation */
 
 .st-occupation-label {
-	top: 440px;
-	left: 166px; 
+	top: 64px;
+	left: 0px;
+	width: 80px;
 }
 .st-occupation {
-	top: 436px; 
-	left: 236px; 
-	width: 98px;
+	top: 60px;
+	left: 90px; 
+	width: 180px;
 	text-align: center;
+}
+
+/* img */
+
+.st-img {
+	border: 1px solid #000;
+	position: absolute;
+	top: 90px;
+	left: 0px;
+	width: 270px;
+	height: 376px;
 }
 
 /* lifepath */
 
 .st-lifepath {
 	position: relative;
-	font-size: 10px;
 	top: 478px; 
-	left: 68px; 
-	width: 262px;
+	left: 0px; 
+	width: 490px;
 }
 
 /* points */
@@ -111,13 +124,9 @@
 .st-points {
 	position: absolute;
 	font-size: 14px;
-    left: 350px;
+    left: 280px;
     top: 0px;
-	width: 522px;
-}
-
-.st-points th {
-	text-align: center;
+	width: 730px;
 }
 
 .st-points td {
@@ -128,17 +137,22 @@
 
 .st-statistics {
 	position: absolute;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: normal;
-    top: 56px;
-	left: 350px;
+    top: 54px;
+	left: 280px;
 	width: 150px;
 }
 
 .st-lifepath th,
 .st-statistics th,
 .st-derivedstatistics th,
-.st-skills th {
+.st-points th,
+.st-skills th,
+.st-talents th,
+.st-equipment th,
+.st-weapons th {
+	text-align: center;
 	text-transform: uppercase;
 }
 
@@ -149,19 +163,33 @@
 
 .st-derivedstatistics {
 	position: absolute;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: normal;
-	top: 56px;
-	left: 502px;
-	width: 364px;
+	top: 54px;
+	left: 440px;
+	width: 570px;
+}
+
+/* weapons */
+
+.st-weapons {
+	position: absolute;
+	font-size: 14px;
+	left: 280px; 
+    top: 310px;
+	width: 730px;
+}
+
+.st-weapons td {
+	text-align: center;
 }
 
 /* skills */
 
 .st-skills {
 	position: absolute;
-	font-size: 10px;
-    left: 346px;
+	font-size: 14px;
+    left: 500px;
     top: 478px;
 	width: 242px;
 }
@@ -179,8 +207,8 @@
 
 .st-talents {
 	position: absolute;
-	font-size: 10px;
-    left: 606px;
+	font-size: 14px;
+    left: 750px;
     top: 478px;
 	width: 260px;
 }
@@ -198,9 +226,9 @@
 
 .st-equipment {
 	position: absolute;
-	font-size: 10px;
-	left: 606px; 
-    top: 760px;
+	font-size: 14px;
+	left: 750px; 
+    top: 730px;
 	width: 260px;
 }
 
@@ -209,24 +237,6 @@
 }
 
 .st-equipment td {
-	text-align: center;
-}
-
-/* weapons */
-
-.st-weapons {
-	position: absolute;
-	font-size: 10px;
-	left: 350px; 
-    top: 320px;
-	width: 520px;
-}
-
-.st-weapons th {
-	text-align: center;
-}
-
-.st-weapons td {
 	text-align: center;
 }
 

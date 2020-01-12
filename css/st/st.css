@@ -9,8 +9,8 @@ p {
 }
 
 body {
+	border: 1px solid #333;
 	color: #000;
-	margin: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,69 +34,3 @@ button {
 .progress-bar {
 	background: #ac2629;
 }
-
-.st-nav {
-	height: 30px;
-	margin: 8px 0 8px 0;
-	padding: 2px;
-	width: 1013px;
-}
-
-.st-nav .col-md-6 {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.st-nav ul li {
-	display: inline-block;
-	height: 8px;
-	margin: 0 0 0 8px;
-	text-transform: uppercase;
-}
-
-.st-nav a, .st-nav label,.st-nav select {
-	font-size: 12px;
-}
-
-.st-nav-links {
-	display: none; /* initially hidden */
-	float: right;
-	text-align: right;
-	width: 50%;
-}
-
-.st-nav-link {
-	color: #ac2629;
-}
-
-.st-nav-link:hover {
-	color: #ff9999;
-}
-
-.st-nav-link.st-nav-link-active {
-	background: #ac2629;
-	color: #ffffff;
-	cursor: default;
-	text-decoration: none;
-}
-
-.st-nav-link.st-nav-link-active:hover {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.st-nav-char .progress {
-	display: none;
-}
-
-.st-tb th {
-	background-color: #000;
-	color: #fff;
-}
-
-.st-tb th, .st-tb td {
-	border: 1px solid #000;
-	padding: 2px;
-	vertical-align: top;
-}
-

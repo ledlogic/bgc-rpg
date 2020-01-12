@@ -22,23 +22,6 @@ st.render = {
 		var template = _.template(h);
 		t.push(template(that.spec));
 
-		// skills
-		var points = that.spec.points;
-		t.push("<table class=\"st-tb st-points\"><tbody>");
-		t.push("<tr>");
-		t.push("<th>Stat Points</th>");
-		t.push("<th>Campaign Points</th>");
-		t.push("<th>Complication Points</th>");
-		t.push("<th>Total Points</th>");
-		t.push("</tr>");
-		t.push("<tr>");
-		t.push("<td>" + points.stats + "</td>");
-		t.push("<td>" + points.campaign + "</td>");
-		t.push("<td>" + points.complication + "</td>");
-		t.push("<td>" + points.total + "</td>");
-		t.push("<tr>");
-		t.push("</tbody></table>");
-
 		// image
 		var h = "<div id=\"st-img\" class=\"st-img\"></div>";
 		var template = _.template(h);
@@ -56,20 +39,22 @@ st.render = {
 		var template = _.template(h);
 		t.push(template(that.spec));
 
-		// lifepath
-		that.spec.eventsHtml = that.spec.events.join("<br/>");
-		var h = "<tr><th colspan=\"2\">Lifepath</th></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Current Outlook</td><td><%= currentoutlook %></td></tr>"
-		;
-		var template = _.template(h);
-		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
+		// points
+		var points = that.spec.points;
+		t.push("<table class=\"st-tb st-points\"><tbody>");
+		t.push("<tr>");
+		t.push("<th>Stat Points</th>");
+		t.push("<th>Campaign Points</th>");
+		t.push("<th>Complication Points</th>");
+		t.push("<th>Total Points</th>");
+		t.push("</tr>");
+		t.push("<tr>");
+		t.push("<td>" + points.stats + "</td>");
+		t.push("<td>" + points.campaign + "</td>");
+		t.push("<td>" + points.complication + "</td>");
+		t.push("<td>" + points.total + "</td>");
+		t.push("<tr>");
+		t.push("</tbody></table>");
 
 		// statistics
 		var h = "<tr><th colspan=\"2\">Statistics</th></tr>"
@@ -110,6 +95,45 @@ st.render = {
 		var template = _.template(h);
 		t.push("<table class=\"st-tb st-derivedstatistics\"><tbody>" + template(that.spec.derivedstats) + "</tbody></table>");
 		
+		// weapons
+		t.push("<table class=\"st-tb st-weapons\"><tbody>");
+		t.push("<tr>"
+			+ "<th>Weapon</th>"
+			+ "<th>WA</th>"
+			+ "<th>Range</th>"
+			+ "<th>Damage</th>"
+			+ "<th>Shots</th>"
+			+ "<th>ROF</th>"
+			+ "<th>COST</th>"
+			+ "</tr>");
+		for(var i=0; i<6; i++) {
+			t.push("<tr>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "<td>&nbsp;</td>"
+				+ "</tr>");
+		}	
+		t.push("</tbody></table>");
+
+		// lifepath
+		that.spec.eventsHtml = that.spec.events.join("<br/>");
+		var h = "<tr><th colspan=\"2\">Lifepath</th></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
+			  + "<tr><td class=\"st-tb-lbl\">Current Outlook</td><td><%= currentoutlook %></td></tr>"
+		;
+		var template = _.template(h);
+		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
+
 		// skills
 		t.push("<table class=\"st-tb st-skills\"><tbody>");
 		t.push("<tr><th colspan=\"12\">Skills</th></tr>");
@@ -142,30 +166,6 @@ st.render = {
 		for(var i=0; i<10; i++) {
 			var h = "<tr><td colspan=\"4\">&nbsp;</td><td>&nbsp;</td></tr>";
 			t.push(h);
-		}	
-		t.push("</tbody></table>");
-
-		// weapons
-		t.push("<table class=\"st-tb st-weapons\"><tbody>");
-		t.push("<tr>"
-			+ "<th>Weapon</th>"
-			+ "<th>WA</th>"
-			+ "<th>Range</th>"
-			+ "<th>Damage</th>"
-			+ "<th>Shots</th>"
-			+ "<th>ROF</th>"
-			+ "<th>COST</th>"
-			+ "</tr>");
-		for(var i=0; i<6; i++) {
-			t.push("<tr>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "<td>&nbsp;</td>"
-				+ "</tr>");
 		}	
 		t.push("</tbody></table>");
 

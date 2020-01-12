@@ -32,7 +32,7 @@ st.char = {
 		that.spec.points = [];
 		that.spec.points.stats = 50;
 
-		var talents = Math.floor(st.math.dieN(40) / 3.0);
+		var talents = Math.max(Math.min(Math.floor(st.math.dieN(40) / 3.0), 10), 2);
 
 		that.spec.points.talents = talents * 3;
 		that.spec.points.skills = 40 - talents * 3;
@@ -72,6 +72,8 @@ st.char = {
 		var years = that.spec.age - 16;
 		//st.log(["years",years]);
 
+		that.spec.complications = [];
+
 		that.spec.events = [];
 		for (var i=0; i<years; i++) {
 			that.calcLifeevent();
@@ -101,7 +103,7 @@ st.char = {
 	calcChildhoodEvent: function() {
 		var that = st.char;
 		var data = st.data;
-		var r = st.math.dieN(10);
+		var r = st.math.dieN(6);
 		switch (true) {
 			case r<7:
 				that.spec.childhoodevent = "Boring childhood";
@@ -178,20 +180,29 @@ st.char = {
 				evt += "Imprisonment: You have been exilied, imprisoned or held hostage (your choice) for " + d + " year" + (d > 1 ? "s" : "") + ".  A good place for a PSYCHOLOGICAL complication.";
 				break;
 			case 5:
-				evt += "Falsely Accused: You were set up, and now face arrest or worse.  A good place for an ENEMY complication.";
+				evt += "Falsely Accused: You were set up, and now face arrest or worse.";
+				that.spec.complications.push("ENEMY");
 				break;
 			case 6:
 				var d = st.math.dieN(10);
 				evt += "Windfall: Your financial ship just came in, ¥" + d * 10000 + ".";
 				break;
 			case 7:
-				evt += "Accident or injury: You were in some kind of terrible accident or maimed in some other way.  A good place for a PHYSIOLOGICAL complication.";
+				evt += "Accident or injury: You were in some kind of terrible accident or maimed in some other way.";
+				that.spec.complications.push("PSYCHOLOGICAL");
 				break;
 			case 8:
-				evt += "Hunted: You incurred the wrath of a powerful person, family, or group.  A good place for an ENEMY complication.";
+				evt += "Hunted: You incurred the wrath of a powerful person, family, or group.";
+				that.spec.complications.push("ENEMY");
 				break;
 			case 9:
-				evt += "Mental or Physical Illness: You were struck down by a severe PHYSIOLOGICAL illness or PSYCHOLOGICAL complication.";
+				evt += "Mental or Physical Illness.";
+				var d = st.math.dieN(2);
+				if (d == 1) {
+					that.spec.complications.push("PHYSIOLOGICAL");
+				} else {
+					that.spec.complications.push("PSYCHOLOGICAL");
+				}
 				break;
 			case 10:
 				evt += "Emotional Loss: You lost someone you really cared about. ";

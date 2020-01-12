@@ -1,4 +1,4 @@
-/* st-render-talents.js */
+/* st-render-skills.js */
 
 st.render = {
 	init: function() {
@@ -20,16 +20,15 @@ st.render = {
 		var t = [];
 			
 		// talents
-		t.push("<table class=\"st-tb st-talents-desc\"><tbody>");
-		t.push("<tr><th colspan=\"3\">Talents</th></tr>");
+		t.push("<table class=\"st-tb st-skills-desc\"><tbody>");
+		t.push("<tr><th colspan=\"4\">Skills</th></tr>");
 
-		st.log(st.data.talents);
-
-		for(var i=0; i<st.data.talents.length; i++) {
+		for(var i=0; i<st.data.skills.length; i++) {
 			var h = "<tr>"
 				+ "<td>" + (i+1) + "</td>"
-				+ "<td>" + st.data.talents[i].talent + "</td>" 
-				+ "<td>" + st.data.talents[i].desc + "</td>" 
+				+ "<td>" + st.data.skills[i].skill + "</td>" 
+				+ "<td>" + st.data.skills[i].stat + "</td>" 
+				+ "<td>" + st.data.skills[i].desc + "</td>" 
 				+ "</tr>"
 			;
 			t.push(h);

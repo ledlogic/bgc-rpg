@@ -8,6 +8,10 @@
 	width: 1020px;
 }
 
+.st-page.st-page-skills {
+	height: 2600px;
+}
+
 .st-page.st-initial-state {
 	/* initial state */
 	display: none;
@@ -22,7 +26,6 @@
 }
 
 .st-page-ft {
-	border: 1px solid #acacac;
 	position: absolute;
 	top:0;
 	left:0;
@@ -149,10 +152,11 @@
 .st-derivedstatistics th,
 .st-points th,
 .st-skills th,
+.st-skills-desc th,
 .st-talents th,
+.st-talents-desc th,
 .st-equipment th,
-.st-weapons th,
-.st-talents-desc th {
+.st-weapons th {
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -204,6 +208,10 @@
 	width: 100px;
 }
 
+.st-skills-desc th, .st-skills-desc td {
+	padding: 4px;
+}
+
 /* talents */
 
 .st-talents {
@@ -243,24 +251,4 @@
 
 .st-equipment td {
 	text-align: center;
-}
-
-/* border */
-
-.st-section {
-	border: 1px solid #ff0000;
-}
-
-.st-item {
-	border: 1px solid #cc0000;
-}
-
-/* .no-border */
-
-.no-border .st-section {
-	border: 1px solid transparent;
-}
-
-.no-border .st-item {
-	border: 1px solid transparent;
 }

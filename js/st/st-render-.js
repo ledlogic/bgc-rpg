@@ -1,4 +1,4 @@
-/* st-render-talents.js */
+/* st-render.js */
 
 st.render = {
 	init: function() {

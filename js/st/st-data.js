@@ -150,6 +150,7 @@ st.data = {
 		for (var i=0; i<d.data.length; i++) {
 			st.data.skills.push({
 				skill:d.data[i]["Skill"],
+				stat:d.data[i]["Stat"],
 				desc:d.data[i]["Description"]
 			});
 		}

@@ -60,7 +60,7 @@ st.render = {
 		t.push("</tbody></table>");
 
 		// statistics
-		var h = "<tr><th colspan=\"2\">Statistics</th></tr>"
+		var h = "<tr><th colspan=\"2\"><a href=\"stats.html\">Statistics</a></th></tr>"
 			+ "<tr><td class=\"st-stat\"><%- INT %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
 			+ "<tr><td class=\"st-stat\"><%- WILL %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
 			+ "<tr><td class=\"st-stat\"><%- PERS %></td><td class=\"st-tb-lbl\">PERSonality</td></tr>"
@@ -139,7 +139,7 @@ st.render = {
 
 		// skills
 		t.push("<table class=\"st-tb st-skills\"><tbody>");
-		t.push("<tr><th colspan=\"12\">Skills</th></tr>");
+		t.push("<tr><th colspan=\"12\"><a href=\"skills.html\">Skills</a></th></tr>");
 		for(var i in that.spec.skills) {
 			var h = "<tr><td class=\"st-stat st-skill-lbl\">"
 				+ i
@@ -153,7 +153,7 @@ st.render = {
 
 		// talents
 		t.push("<table class=\"st-tb st-talents\"><tbody>");
-		t.push("<tr><th colspan=\"12\">Talents</th></tr>");
+		t.push("<tr><th colspan=\"12\"><a href=\"talents.html\">Talents</a></th></tr>");
 		for(var i in that.spec.talents) {
 			var h = "<tr><td class=\"st-stat st-talents-lbl\">"
 				+ that.spec.talents[i]

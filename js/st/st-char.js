@@ -327,7 +327,7 @@ st.char = {
 			that.spec.skills[skill] = 1;
 		}
 
-		var max = that.spec.points.skills;
+		var max = that.spec.points.skills - 10;
 		for (var i=0; i<max; i++) {
 			var r = st.math.dieN(2);
 			if (i > 1 && r == 2) {

@@ -148,6 +148,7 @@
 
 .st-lifepath th,
 .st-statistics th,
+.st-statistics-desc th,
 .st-derivedstatistics th,
 .st-points th,
 .st-skills th,
@@ -207,10 +208,6 @@
 	width: 100px;
 }
 
-.st-skills-desc th, .st-skills-desc td {
-	padding: 4px;
-}
-
 /* talents */
 
 .st-talents {
@@ -230,6 +227,8 @@
 	width: 100px;
 }
 
+.st-stats-desc th, .st-stats-desc td,
+.st-skills-desc th, .st-skills-desc td,
 .st-talents-desc th, .st-talents-desc td {
 	padding: 4px;
 }

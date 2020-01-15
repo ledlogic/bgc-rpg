@@ -30,6 +30,7 @@ st.char = {
 		that.spec.skills = [];
 		that.spec.talents = [];
 		that.spec.points = [];
+
 		that.spec.points.stats = 50;
 
 		var talents = Math.max(Math.min(Math.floor(st.math.dieN(40) / 3.0), 10), 2);
@@ -96,7 +97,7 @@ st.char = {
 		//st.log(["skills",that.spec.skills]);
 
 		that.calcTalents();
-		st.log(["talents",that.spec.talents]);
+		//st.log(["talents",that.spec.talents]);
 
 		st.render.render();
 	},
@@ -306,7 +307,8 @@ st.char = {
 		derivedstats["LUC"] = that.spec.stats["INT"] + that.spec.stats["REF"];
 		derivedstats["PUN"] = that.spec.stats["STR"] + "d6";
 		derivedstats["KICK"] = (that.spec.stats["STR"]+1) + "d6";
-		derivedstats["PD"] = that.spec.stats["CON"] * 2;
+		derivedstats["SD"] = that.spec.stats["CON"] * 2;
+		derivedstats["KD"] = that.spec.stats["CON"] * 2;
 		derivedstats["REC"] = that.spec.stats["STR"] + that.spec.stats["CON"];
 		derivedstats["RES"] = that.spec.stats["WILL"] * 3;
 		derivedstats["STUN"] = that.spec.stats["BODY"] * 5;
@@ -329,8 +331,8 @@ st.char = {
 
 		var max = that.spec.points.skills - 10;
 		for (var i=0; i<max; i++) {
-			var r = st.math.dieN(2);
-			if (i > 1 && r == 2) {
+			var r = st.math.dieN(10);
+			if (i > 1 && r >= 4) {
 				that.incrExistingSkill();
 			} else {
 				that.incrRandomSkill();

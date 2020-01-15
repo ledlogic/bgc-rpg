@@ -1,17 +1,18 @@
-|Statistic|Abbreviation|Description
-|Endurance|END|How long the character can expend energy, whever in physical endurance or in the use of a special ability (like a superpower or talent).
-|Punch|PUN|Punch
-|Kick|KICK|Kick
-|Hits|HITS|How much killing damage yoo can take before you are dying. 
-|Run|RUN|How fast the character runs
-|Leap|LEAP|How fast the character can leap from a standing start.
-|Swim|SWIM|How fast the character swims
-|Luck|LUC|Fate acting on your behalf.
-|Physical Defense|PD|How resistant you are to Stun damage; your PD is subtracted from any Stun damage you take.
-|Recovery|REC|How fast the character recovers from damage.
-|Resistance|RES|Resistance to being knocked out, and their ability to resist seduction, intimidation and other Persuasion rolls.  Also if you take more hits than resistance in a single blow, you are rendered unconscious.
-|Stun|STUN|How much stunning/brawling damage you can take before you are battered into unconsiousness.
-|Max|MAX|
-|Lift|LIFT|
-|Carry|CARRY|
-|Throw|THROW|
+|Statistic|Abbreviation|Units|Description
+|Endurance|END|Points|How long the character can expend energy, whever in physical endurance or in the use of a special ability (like a superpower or talent).
+|Punch|PUN|Points|Punch
+|Kick|KICK|Points|Kick
+|Hits|HITS|Points|How much killing damage you can take before you are dying. 
+|Run|RUN|m|How fast the character runs
+|Leap|LEAP|m|How fast the character can leap from a standing start.
+|Swim|SWIM|m|How fast the character swims
+|Luck|LUC|Points|Fate acting on your behalf.
+|Stun Defense|SD|Points|How resistant you are to stun damage; your PD is subtracted from any Stun damage you take.
+|Recovery|REC|Points|How fast the character recovers from damage.
+|Resistance|RES|Points|Resistance to being knocked out, and their ability to resist seduction, intimidation and other Persuasion rolls.  Also if you take more hits than resistance in a single blow, you are rendered unconscious.
+|Stun|STUN|Points|How much stunning/brawling damage you can take before you are battered into unconsiousness.
+|KD|KD|Points|How much stunning/brawling damage you can take before you are battered into unconsiousness.
+|Max|MAX|kg|
+|Lift|LIFT|kg|
+|Carry|CARRY|kg|
+|Throw|THROW|kg|

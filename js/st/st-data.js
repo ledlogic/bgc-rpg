@@ -159,6 +159,7 @@ st.data = {
 		var s = {
 			"stat": d["Statistic"], 
 			"abb": d["Abbreviation"],
+			"units": d["Units"],
 			"desc": d["Description"]
 		};
 		st.data[type].push(s);

@@ -85,9 +85,14 @@ st.render = {
 			+ "<td class=\"st-stat\" colspan=\"3\">CARRY <%- CARRY %></td><td class=\"st-stat\" colspan=\"3\">THROW <%- THROW %></td>"
 			+ "</tr>"
 			+ "<tr>"
-			+ "<td class=\"st-stat\" colspan=\"4\">STUN <%- STUN %></td>"
-			+ "<td class=\"st-stat\" colspan=\"4\">PD <%- PD %></td>"
-			+ "<td class=\"st-stat\" colspan=\"4\">HITS <%- HITS %></td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">SD <%- SD %></td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">STUN <%- STUN %>"
+			+ st.render.renderBoxes(that.spec.derivedstats.STUN)
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">KD <%- KD %></td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">HITS <%- HITS %>"
+			+ st.render.renderBoxes(that.spec.derivedstats.HITS)
+			+ "</td>"
 			+ "</tr>"
 			+ "<tr>"
 			+ "<td class=\"st-stat\" colspan=\"4\">RUN <%- RUN %></td>"
@@ -143,6 +148,7 @@ st.render = {
 		for(var i in that.spec.skills) {
 			var h = "<tr><td class=\"st-stat st-skill-lbl\">"
 				+ i
+				+ st.render.renderDefaultSkill(i)
 				+ "</td><td class=\"st-skill-val\">"
 				+ that.spec.skills[i]
 				+ "</td></tr>"
@@ -173,5 +179,26 @@ st.render = {
 		t.push("</tbody></table>");
 
 		$(".st-page-ft").html(t.join(""));
+	},
+
+	renderBoxes: function(qty) {
+		var r = [];
+		r.push("<br/>");
+		for (var i=0; i<qty; i++) {
+			r.push("□");
+			if ((i+1) % 10 === 0) {
+				r.push("<br/>");
+			}
+		}
+		return r.join("");
+	},
+
+	renderDefaultSkill: function(i) {
+		var data = st.data;
+		if (_.contains(data.everymanskills, i)) {
+			return "*";
+		} else {
+			return "";
+		}
 	}
 };

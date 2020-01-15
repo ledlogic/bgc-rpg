@@ -19,7 +19,7 @@ st.render = {
 
 		var t = [];
 			
-		// talents
+		// skills
 		t.push("<table class=\"st-tb st-skills-desc\"><tbody>");
 		t.push("<tr><th colspan=\"4\">Skills</th></tr>");
 

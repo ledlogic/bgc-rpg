@@ -1,11 +1,11 @@
-|Statistic|Abbreviation|Description
-|Intelligence|INT|How generally bright you are.  As a rule, this is more than sheer intelligence, but also cleverness, awareness, perception and ability to learn; mental deficiencies don't become apparent until you hit 1 or lower.
-|Willpower|WILL|Your determination and ability to face danger and/or stress. This Stat represents your courage and cool.
-|Personality|PERS|Your ability to impress and influence people through your character and charisma; how well you get along with others; how you interact in social situations.
-|Technique|TECH|Your ability to manipulate tools or instruments.
-|Reflexes|REF|Your response time and coordination, as used in aiming, throwing, juggling.
-|Dexterity|DEX|Your overall physical competence, as pertains to balancing, leaping, jumping, combat and other athletic activities.
-|Constitution|CON|How healthy you are.  How resistant to shock effects, poisons and disease.
-|Strength|STR|Your muscle mass and how effective it is for exerting force.  The higher your stength, the more you can lift, drag, etc. and the more powerful the blows from your fists and other body parts.
-|Body Type|BODY|You size, toughness and ability to stay alive and conscious due to physical mass and structure.
-|Movement|MOVE|Your speed of movement; running, leaping, swimming, etc. There is only one Stat in this group.
+|Statistic|Abbreviation|Units|Description
+|Intelligence|INT|-|How generally bright you are.  As a rule, this is more than sheer intelligence, but also cleverness, awareness, perception and ability to learn; mental deficiencies don't become apparent until you hit 1 or lower.
+|Willpower|WILL|-|Your determination and ability to face danger and/or stress. This Stat represents your courage and cool.
+|Personality|PERS|-|Your ability to impress and influence people through your character and charisma; how well you get along with others; how you interact in social situations.
+|Technique|TECH|-|Your ability to manipulate tools or instruments.
+|Reflexes|REF|-|Your response time and coordination, as used in aiming, throwing, juggling.
+|Dexterity|DEX|-|Your overall physical competence, as pertains to balancing, leaping, jumping, combat and other athletic activities.
+|Constitution|CON|-|How healthy you are.  How resistant to shock effects, poisons and disease.
+|Strength|STR|-|Your muscle mass and how effective it is for exerting force.  The higher your stength, the more you can lift, drag, etc. and the more powerful the blows from your fists and other body parts.
+|Body Type|BODY|-|You size, toughness and ability to stay alive and conscious due to physical mass and structure.
+|Movement|MOVE|-|Your speed of movement; running, leaping, swimming, etc. There is only one Stat in this group.

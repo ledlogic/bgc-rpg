@@ -34,7 +34,7 @@ st.char = {
 		// calculated mean stat points for all characters in television show
 		that.spec.points.stats = 50;
 
-		var talents = Math.max(Math.min(Math.floor(st.math.dieN(40) / 3.0), 10), 2);
+		var talents = Math.max(Math.floor(st.math.dieN(10) / 3.0), 0);
 
 		// calculated mean skill for all characters in television show
 		that.spec.points.skills = 65;

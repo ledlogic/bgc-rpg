@@ -43,6 +43,11 @@
 |STEALTH|REF/BODY|The skill of hiding, shadowing, avoiding pursuit and/or notice.
 |SURVIVAL|WILL|The skills of orienting yourself and finding food, shelter and protection in a particularly adverse environment.  The environment (which must be specified) could be anything from the wilderness, to inner city New York, to the martian deserts.
 |TEACHING|PRE|The ability to impart information or skills to other. Can be used to train animals as well as teaching humans. Average this skill with the skill being taught; this is the level to which students can be raised
-|TECHNICAL|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.  Must specify area of expertise (Basic Tech, High Tech, Military Tech, Superscience, Aeronautical Tech, Pharmaceuticals).
+|TECHNICAL-BASIC TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECHNICAL-HIGH TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECHNICAL-MILITARY TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECHNICAL-SUPERSCIENCE|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECHNICAL-AERONAUTICAL TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECHNICAL-PHARMACEUTICALS|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
 |WARDROBE & STYLE|PRE|A grasp of fashion, wardrobe, and personal grooming.
 |WRITING|INT/PERS|Composing salable songs, novels, poems, speeches and documents.

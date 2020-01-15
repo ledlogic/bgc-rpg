@@ -16,6 +16,7 @@ st.render = {
 	renderSpec: function() {
 		st.log("rendering spec");
 		var that = st.char;
+		var data = st.data;
 
 		var t = [];
 			
@@ -77,13 +78,34 @@ st.render = {
 		
 		// derived statistics
 		var h = "<tr><th colspan=\"12\">Derived Statistics</th></tr>"
-			+ "<tr><td class=\"st-stat\" colspan=\"6\">LUC <%- LUC %></td><td class=\"st-stat\" colspan=\"6\">RES <%- RES %></td></tr>"
-			+ "<tr><td class=\"st-stat\" colspan=\"6\">PUN <%- PUN %></td><td class=\"st-stat\" colspan=\"6\">KICK <%- KICK %></td></tr>"
-			+ "<tr><td class=\"st-stat\" colspan=\"6\">END <%- END %></td><td class=\"st-stat\" colspan=\"6\">REC <%- REC %></td></tr>"
 			+ "<tr>"
-			+ "<td class=\"st-stat\" colspan=\"3\">MAX <%- MAX %></td><td class=\"st-stat\" colspan=\"3\">LIFT <%- LIFT %></td>"
-			+ "<td class=\"st-stat\" colspan=\"3\">CARRY <%- CARRY %></td><td class=\"st-stat\" colspan=\"3\">THROW <%- THROW %></td>"
+			+ "<td class=\"st-stat\" colspan=\"6\">"
+			+ "LUC <%- LUC %>"
+			+ st.render.renderBoxes(that.spec.derivedstats.LUC)
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"6\">RES <%- RES %></td></tr>"
+			+ "<tr><td class=\"st-stat\" colspan=\"6\">PUN <%- PUN %></td>"
+			+ "<td class=\"st-stat\" colspan=\"6\">KICK <%- KICK %></td>"
 			+ "</tr>"
+
+			+ "<tr><td class=\"st-stat\" colspan=\"6\">END <%- END %></td>"+"<td class=\"st-stat\" colspan=\"6\">REC <%- REC %></td></tr>"
+			+ "<tr>"
+			+ "<td class=\"st-stat\" colspan=\"3\">"
+			+ "MAX <%- MAX %>"
+			+ st.data.findDerivedStat("MAX").units
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">"
+			+ "LIFT <%- LIFT %>"
+			+ st.data.findDerivedStat("LIFT").units
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">"
+			+ "CARRY <%- CARRY %>"
+			+ "</td><td class=\"st-stat\" colspan=\"3\">"
+			+ "THROW <%- THROW %>" + st.data.findDerivedStat("THROW").units
+			+ "      <%- THROWDIST %>" + st.data.findDerivedStat("THROWDIST").units
+			+ "</td>"
+			+ "</tr>"
+
 			+ "<tr>"
 			+ "<td class=\"st-stat\" colspan=\"3\">SD <%- SD %></td>"
 			+ "<td class=\"st-stat\" colspan=\"3\">STUN <%- STUN %>"
@@ -94,10 +116,20 @@ st.render = {
 			+ st.render.renderBoxes(that.spec.derivedstats.HITS)
 			+ "</td>"
 			+ "</tr>"
+
 			+ "<tr>"
-			+ "<td class=\"st-stat\" colspan=\"4\">RUN <%- RUN %></td>"
-			+ "<td class=\"st-stat\" colspan=\"4\">LEAP <%- LEAP %></td>"
-			+ "<td class=\"st-stat\" colspan=\"4\">SWIM <%- SWIM %></td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">"
+			+ "RUN <%- RUN %>"
+			+ st.data.findDerivedStat("RUN").units
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">"
+			+ "LEAP <%- LEAP %>"
+			+ st.data.findDerivedStat("LEAP").units
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"4\">"
+			+ "SWIM <%- SWIM %>"
+			+ st.data.findDerivedStat("SWIM").units
+			+ "</td>"
 			+ "</tr>"
 		;
 		var template = _.template(h);
@@ -145,6 +177,7 @@ st.render = {
 		// skills
 		t.push("<table class=\"st-tb st-skills\"><tbody>");
 		t.push("<tr><th colspan=\"12\"><a href=\"skills.html\">Skills</a></th></tr>");
+		that.spec.skilltotal = 0;
 		for(var i in that.spec.skills) {
 			var h = "<tr><td class=\"st-stat st-skill-lbl\">"
 				+ i
@@ -154,7 +187,17 @@ st.render = {
 				+ "</td></tr>"
 			;
 			t.push(h);
+
+			that.spec.skilltotal += that.spec.skills[i];
 		}
+		var h = "<tr class=\"st-total\"><td class=\"st-stat st-skill-lbl\">"
+			+ "TOTAL"
+			+ "</td><td class=\"st-skill-val\">"
+			+ that.spec.skilltotal
+			+ "</td></tr>"
+		;
+		t.push(h);
+
 		t.push("</tbody></table>");
 
 		// talents

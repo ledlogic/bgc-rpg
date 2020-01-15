@@ -36,8 +36,9 @@ st.char = {
 
 		var talents = Math.max(Math.min(Math.floor(st.math.dieN(40) / 3.0), 10), 2);
 
+		// calculated mean skill for all characters in television show
+		that.spec.points.skills = 65;
 		that.spec.points.talents = talents * 3;
-		that.spec.points.skills = 40 - talents * 3;
 		that.spec.points.campaign = that.spec.points.skills + that.spec.points.talents;
 		that.spec.points.complication = 0;
 		that.spec.points.total = that.spec.points.stats
@@ -314,10 +315,11 @@ st.char = {
 		derivedstats["RES"] = that.spec.stats["WILL"] * 3;
 		derivedstats["STUN"] = that.spec.stats["BODY"] * 5;
 
-		derivedstats["MAX"] = st.char.str[that.spec.stats["STR"]];
+		derivedstats["MAX"] = st.data.str[that.spec.stats["STR"]];
 		derivedstats["LIFT"] = Math.round(data.str[that.spec.stats["STR"]] * 0.5);
 		derivedstats["CARRY"] = Math.round(data.str[that.spec.stats["STR"]] * 0.25);
 		derivedstats["THROW"] = that.spec.stats["BODY"] * 2;
+		derivedstats["THROWDIST"] = that.spec.stats["STR"] * 10;
 		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
 	},
 	calcSkills: function() {
@@ -325,15 +327,20 @@ st.char = {
 		var data = st.data;
 
 		// everyman
+		var everymanAdjustment = 2;
+		that.spec.everymanskillstotal = 0;
 		for (var i=0;i<data.everymanskills.length;i++) {
-			var skill = data.everymanskills[i];
-			that.spec.skills[skill] = 1;
-		}
 
-		var max = that.spec.points.skills - 10;
+			var skill = data.everymanskills[i];
+			that.spec.skills[skill] = everymanAdjustment;
+			that.spec.everymanskillstotal += everymanAdjustment;
+		}
+		//st.log(["that.spec.everymanskillstotal",that.spec.everymanskillstotal]);
+
+		var max = that.spec.points.skills - that.spec.everymanskillstotal;
 		for (var i=0; i<max; i++) {
 			var r = st.math.dieN(10);
-			if (i > 1 && r >= 4) {
+			if (i > 4 && r >= 3) {
 				that.incrExistingSkill();
 			} else {
 				that.incrRandomSkill();

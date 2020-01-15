@@ -250,3 +250,7 @@
 .st-equipment td {
 	text-align: center;
 }
+
+.st-total {
+	font-weight: bold;
+}

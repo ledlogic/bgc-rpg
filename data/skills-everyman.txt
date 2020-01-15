@@ -1,7 +1,8 @@
-Athletics
-Concentration
-Education
-Local Knowledge
-Perception
-Social
+ATHLETICS
+CONCENTRATION
+EDUCATION
+LOCAL KNOWLEDGE
+PERCEPTION
+PERSUASION
+SOCIAL
 TEACHING

@@ -184,5 +184,11 @@ st.data = {
 			});
 		}
 		st.char.random();
+	},
+	findDerivedStat: function(abb) {
+		var data = st.data;
+		var r = _.find(data.derivedstats,
+			function(stat) { return stat.abb == abb; });
+		return r;
 	}
 };

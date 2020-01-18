@@ -19,37 +19,33 @@ st.char = {
 	everymanskills: [],
 
 	init: function() {
-		st.log("char.init");
+		//st.log("char.init");
 	},
 	reset: function() {
-		st.log("char.reset");
+		//st.log("char.reset");
 		var that = st.char;
-		that.spec = [];
-		that.spec.stats = [];
-		that.spec.derivedstats = [];
+		that.spec = {};
+		that.spec.stats = {};
+		that.spec.derivedstats = {};
 		that.spec.skills = [];
 		that.spec.talents = [];
-		that.spec.points = [];
+		that.spec.points = {};
 
 		// calculated mean stat points for all characters in television show
-		that.spec.points.stats = 50;
-
-		var talents = Math.max(Math.floor(st.math.dieN(10) / 3.0), 0);
-
-		// calculated mean skill for all characters in television show
-		that.spec.points.skills = 65;
-		that.spec.points.talents = talents * 3;
-		that.spec.points.campaign = that.spec.points.skills + that.spec.points.talents;
+		that.spec.points.stats = 0;
+		that.spec.points.skills = 0;
+		that.spec.points.talents = 0;
+		that.spec.points.campaign = 0;
 		that.spec.points.complication = 0;
-		that.spec.points.total = that.spec.points.stats
-							   + that.spec.points.campaign
-							   + that.spec.points.complication;
+		that.spec.points.total = 0;
 	},
 	random: function() {
-		st.log("char.random");
+		//st.log("char.random");
 		var that = st.char;
 		var data = st.data;
 		that.reset();
+
+		that.spec.points.stats = 50;
 
 		that.spec.personality = data.personalities[st.math.dieArray(data.personalities)];
 		//st.log(["personality",that.spec.personality]);
@@ -88,6 +84,20 @@ st.char = {
 
 		that.spec.currentoutlook = data.currentoutlooks[st.math.dieArray(data.currentoutlooks)];
 		//st.log(["currentoutlook",that.spec.currentoutlook]);
+
+		var complicationPoints = that.calcComplications();
+		st.log(["complications",that.spec.complications]);
+		st.log(["complicationPoints",that.spec.complicationPoints]);		
+
+		// calculated mean skill for all characters in television show
+		that.spec.points.skills = 65 + complicationPoints;
+		var talents = Math.max(Math.floor(st.math.dieN(10) / 3.0), 0);
+		that.spec.points.talents = talents * 3;
+		that.spec.points.campaign = that.spec.points.skills + that.spec.points.talents;
+		that.spec.points.complication = -complicationPoints;
+		that.spec.points.total = that.spec.points.stats
+							   + that.spec.points.campaign
+							   + that.spec.points.complication;
 
 		that.calcStats();
 		//st.log(["stats",that.spec.stats]);
@@ -382,14 +392,67 @@ st.char = {
 			if (that.spec.talents.indexOf(talent.talent) > -1) {
 				i-=3;
 			} else {
-				//tspend += 3;
-				//st.log("talent[" + talent.talent + tspend + "]");
 				that.spec.talents.push(talent.talent);
 			}
 		}
 		st.utils.sortArr(that.spec.talents);
 	},
+	// calcualate complications up to the amount in the value complication
+	// return the final computation
+	calcComplications: function() {
+		var complicationPoints = 0;
+		var that = st.char;
+		var data = st.data;
 
+		var complications = [];
+		
+		st.log(that.spec.complications);
+		st.log(["that.spec.complications",that.spec.complications]);
+
+		var complication = 5 * Math.max((st.math.dieN(4) - 1), that.spec.complications.length);
+		st.log(["complication",complication]);
+		
+		for (var i=0; i<that.spec.complications.length; i++) {
+			var complicationType = that.spec.complications[i];
+			var complication = data.findComplicationOfType(complicationType);
+			if (complication) {
+				var frequency = 5 * st.math.dieN(3);
+				var maxIntensity = 4;
+				if (!complication.extreme) {
+					maxIntensity = 3;
+				}
+				var intensity = 5 * st.math.dieN(maxIntensity);
+				var importance = st.math.dieN(3);
+				var importanceCoefficient = 0;
+				switch (importance) {
+					case 1:
+						importanceCoefficient = 0.2;
+						break;
+					case 2:
+						importanceCoefficient = 0.5;
+						break;
+					case 3:
+						importanceCoefficient = 1.0;
+						break;
+				}
+				var points = Math.round((importanceCoefficient * (frequency + intensity)));
+				var spec = {
+					complication: complication,
+					intensity: intensity,
+					frequency: frequency,
+					importance: importance,
+					points: points
+				}
+				st.log(["spec", spec]);
+				complications.push(spec);
+				complicationPoints += points;
+			} else {
+				st.log("Could not find complication of complicationType[" + complicationType + "]");
+			}
+		}
+		that.spec.complications = complications;
+		return complicationPoints;
+	}
 };
 
 //var tspend = 0;

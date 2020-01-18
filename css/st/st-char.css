@@ -143,7 +143,7 @@
 	font-weight: normal;
     top: 54px;
 	left: 280px;
-	width: 150px;
+	width: 200px;
 }
 
 .st-lifepath th,
@@ -166,13 +166,32 @@
 	width: 36px;
 }
 
+.st-statistics .st-stat-extreme {
+	color: purple;
+	font-weight: bold;
+}
+
+.st-statistics .st-stat-high {
+	color: blue;
+	font-weight: bold;
+}
+
+.st-statistics .st-stat-medium {
+	color: green;
+	font-weight: bold;
+}
+
+.st-statistics .st-stat-low {
+	color: black;
+}
+
 .st-derivedstatistics {
 	position: absolute;
 	font-size: 14px;
 	font-weight: normal;
 	top: 54px;
-	left: 440px;
-	width: 570px;
+	left: 490px;
+	width: 520px;
 }
 
 /* weapons */

@@ -61,20 +61,44 @@ st.render = {
 		t.push("</tbody></table>");
 
 		// statistics
-		var h = "<tr><th colspan=\"2\"><a href=\"stats.html\">Statistics</a></th></tr>"
-			+ "<tr><td class=\"st-stat\"><%- INT %></td><td class=\"st-tb-lbl\">INTelligence</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- WILL %></td><td class=\"st-tb-lbl\">WILLpower</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- PERS %></td><td class=\"st-tb-lbl\">PERSonality</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- TECH %></td><td class=\"st-tb-lbl\">TECHnique</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- REF %></td><td class=\"st-tb-lbl\">REFlexes</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- DEX %></td><td class=\"st-tb-lbl\">DEXterity</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- CON %></td><td class=\"st-tb-lbl\">CONstitution</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- STR %></td><td class=\"st-tb-lbl\">STRength</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- BODY %></td><td class=\"st-tb-lbl\">BODy</td></tr>"
-			+ "<tr><td class=\"st-stat\"><%- MOVE %></td><td class=\"st-tb-lbl\">MOVEment</td></tr>"
+		var statsDisplay = [];
+		_.each(that.spec.stats, function(value, key, list) {
+			var stat = data.findStat(key);
+			var statClass = "";
+			switch (true) {
+				case value >= 9:
+					statClass = "st-stat-extreme";
+					break;
+				case value >= 6:
+					statClass = "st-stat-high";
+					break;
+				case value >= 3:
+					statClass = "st-stat-medium";
+					break;
+				default:
+					statClass = "st-stat-low";
+					break;
+			}
+			statsDisplay[key] = {
+				stat: value,
+				class: statClass,
+				group: stat.group
+			};
+		});
+		var h = "<tr><th colspan=\"4\"><a href=\"stats.html\">Statistics</a></th></tr>"
+			+ "<tr><td><%- INT.group %></td><td class=\"st-stat <%- INT.class %>\"><%- INT.stat %></td><td class=\"st-tb-lbl <%- INT.class %>\">INTelligence</td></tr>"
+			+ "<tr><td><%- WILL.group %></td><td class=\"st-stat <%- WILL.class %>\"><%- WILL.stat %></td><td class=\"st-tb-lbl <%- WILL.class %>\">WILLpower</td></tr>"
+			+ "<tr><td><%- PERS.group %></td><td class=\"st-stat <%- PERS.class %>\"><%- PERS.stat %></td><td class=\"st-tb-lbl <%- PERS.class %>\">PERSonality</td></tr>"
+			+ "<tr><td><%- TECH.group %></td><td class=\"st-stat <%- TECH.class %>\"><%- TECH.stat %></td><td class=\"st-tb-lbl <%- TECH.class %>\">TECHnique</td></tr>"
+			+ "<tr><td><%- REF.group %></td><td class=\"st-stat <%- REF.class %>\"><%- REF.stat %></td><td class=\"st-tb-lbl <%- REF.class %>\">REFlexes</td></tr>"
+			+ "<tr><td><%- DEX.group %></td><td class=\"st-stat <%- DEX.class %>\"><%- DEX.stat %></td><td class=\"st-tb-lbl <%- DEX.class %>\">DEXterity</td></tr>"
+			+ "<tr><td><%- CON.group %></td><td class=\"st-stat <%- CON.class %>\"><%- CON.stat %></td><td class=\"st-tb-lbl <%- CON.class %>\">CONstitution</td></tr>"
+			+ "<tr><td><%- STR.group %></td><td class=\"st-stat <%- STR.class %>\"><%- STR.stat %></td><td class=\"st-tb-lbl <%- STR.class %>\">STRength</td></tr>"
+			+ "<tr><td><%- BODY.group %></td><td class=\"st-stat <%- BODY.class %>\"><%- BODY.stat %></td><td class=\"st-tb-lbl <%- BODY.class %>\">BODy</td></tr>"
+			+ "<tr><td><%- MOVE.group %></td><td class=\"st-stat <%- MOVE.class %>\"><%- MOVE.stat %></td><td class=\"st-tb-lbl <%- MOVE.class %>\">MOVEment</td></tr>"
 		;
 		var template = _.template(h);
-		t.push("<table class=\"st-tb st-statistics\"><tbody>" + template(that.spec.stats) + "</tbody></table>");
+		t.push("<table class=\"st-tb st-statistics\"><tbody>" + template(statsDisplay) + "</tbody></table>");
 		
 		// derived statistics
 		var h = "<tr><th colspan=\"12\">Derived Statistics</th></tr>"

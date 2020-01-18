@@ -17,6 +17,7 @@ st.data = {
 	skills: [],
 	everymanskills: [],
 	talents: [],
+	complications: [],
 
 	init: function() {
 		st.log("data.init");
@@ -37,6 +38,7 @@ st.data = {
 		data.loadSkills();
 		data.loadEverymanSkills();
 		data.loadTalents();
+		data.loadComplications();
 	},
 	loadTxt: function(url, spec) {
 		var data = st.data;
@@ -159,6 +161,7 @@ st.data = {
 		var s = {
 			"stat": d["Statistic"], 
 			"abb": d["Abbreviation"],
+			"group": d["Group"],
 			"units": d["Units"],
 			"desc": d["Description"]
 		};
@@ -183,12 +186,55 @@ st.data = {
 				desc:d.data[i]["Description"]
 			});
 		}
+	},
+	loadComplications: function() {
+		st.log("data.loadComplications");
+		Papa.parse("data/complications.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.data.complicationsResponse(d);
+			},
+			encoding: "UTF-8"
+		});
+	},
+	complicationsResponse: function(d) {
+		for (var i=0; i<d.data.length; i++) {
+			st.data.complications.push({
+				complication:d.data[i]["Complication"],
+				type:d.data[i]["Type"],
+				basedesc:d.data[i]["Base Description"],
+				mild:d.data[i]["Mild"],
+				strong:d.data[i]["Strong"],
+				severe:d.data[i]["Severe"],
+				extreme:d.data[i]["Extreme"]
+			});
+		}
 		st.char.random();
+	},
+	findStat: function(abb) {
+		var data = st.data;
+		var r = _.find(data.stats,
+			function(item) { return item.abb == abb; });
+		return r;
 	},
 	findDerivedStat: function(abb) {
 		var data = st.data;
 		var r = _.find(data.derivedstats,
 			function(stat) { return stat.abb == abb; });
 		return r;
+	},
+	findComplicationOfType: function(complicationType) {
+		var complications = st.data.complications;
+		var complicationsOfType = [];
+		for (var i=0; i<complications.length;i++) {
+			if (complications[i].type == complicationType) {
+				complicationsOfType.push(complications[i]);
+			}
+		}
+
+		var complication = complicationsOfType[st.math.dieArray(complicationsOfType)];
+		return complication;
 	}
 };

@@ -54,7 +54,9 @@ st.render = {
 		t.push("</tr>");
 		t.push("<tr>");
 		t.push("<td>" + points.stats + "</td>");
-		t.push("<td>" + points.campaign + "</td>");
+		t.push("<td>" + points.campaign 
+			+ " (" + points.skills + ", " + points.talents + ")"
+			+ "</td>");
 		t.push("<td>" + points.complication + "</td>");
 		t.push("<td>" + points.total + "</td>");
 		t.push("<tr>");
@@ -103,8 +105,10 @@ st.render = {
 		// derived statistics
 		var h = "<tr><th colspan=\"12\">Derived Statistics</th></tr>"
 			+ "<tr>"
-			+ "<td class=\"st-stat\" colspan=\"6\">"
+			+ "<td class=\"st-stat\" colspan=\"3\">"
 			+ "LUC <%- LUC %>"
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"3\">"
 			+ st.render.renderBoxes(that.spec.derivedstats.LUC)
 			+ "</td>"
 			+ "<td class=\"st-stat\" colspan=\"6\">RES <%- RES %></td></tr>"
@@ -132,11 +136,15 @@ st.render = {
 
 			+ "<tr>"
 			+ "<td class=\"st-stat\" colspan=\"3\">SD <%- SD %></td>"
-			+ "<td class=\"st-stat\" colspan=\"3\">STUN <%- STUN %>"
+			+ "<td class=\"st-stat\" colspan=\"1\">STUN <%- STUN %>"
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"2\">"
 			+ st.render.renderBoxes(that.spec.derivedstats.STUN)
 			+ "</td>"
 			+ "<td class=\"st-stat\" colspan=\"3\">KD <%- KD %></td>"
-			+ "<td class=\"st-stat\" colspan=\"3\">HITS <%- HITS %>"
+			+ "<td class=\"st-stat\" colspan=\"1\">HITS <%- HITS %>"
+			+ "</td>"
+			+ "<td class=\"st-stat\" colspan=\"2\">"
 			+ st.render.renderBoxes(that.spec.derivedstats.HITS)
 			+ "</td>"
 			+ "</tr>"
@@ -201,12 +209,20 @@ st.render = {
 		// skills
 		t.push("<table class=\"st-tb st-skills\"><tbody>");
 		t.push("<tr><th colspan=\"12\"><a href=\"skills.html\">Skills</a></th></tr>");
+
+		// account for everyman skills
 		that.spec.skilltotal = 0;
+		var cnt = 0;
 		for(var i in that.spec.skills) {
-			var h = "<tr><td class=\"st-stat st-skill-lbl\">"
+			var h = "<tr>"
+				+ "<td class=\"st-cnt\" colspan=\"2\">"
+				+ (++cnt)
+				+ "</td>"
+				+ "<td class=\"st-stat\" colspan=\"8\">"
 				+ i
 				+ st.render.renderDefaultSkill(i)
-				+ "</td><td class=\"st-skill-val\">"
+				+ "</td>"
+				+ "<td class=\"st-skill-val\" colspan=\"2\">"
 				+ that.spec.skills[i]
 				+ "</td></tr>"
 			;
@@ -214,26 +230,85 @@ st.render = {
 
 			that.spec.skilltotal += that.spec.skills[i];
 		}
-		var h = "<tr class=\"st-total\"><td class=\"st-stat st-skill-lbl\">"
+		var h = "<tr class=\"st-total\"><td class=\"st-stat st-skill-lbl\" colspan=\"10\">"
 			+ "TOTAL"
-			+ "</td><td class=\"st-skill-val\">"
-			+ that.spec.skilltotal
+			+ "</td>"
+			+ "<td class=\"st-skill-val\" colspan=\"2\">"
+			+ (that.spec.skilltotal - that.spec.points.everymanskillstotal) + "/" + that.spec.skilltotal
 			+ "</td></tr>"
 		;
 		t.push(h);
 
-		t.push("</tbody></table>");
+		t.push("<tr><td colspan=\"12\">* Everyman skills</td></tr>");
 
+		t.push("</tbody></table>");
 		// talents
 		t.push("<table class=\"st-tb st-talents\"><tbody>");
-		t.push("<tr><th colspan=\"12\"><a href=\"talents.html\">Talents</a></th></tr>");
+		t.push("<tr><th colspan=\"12\">Talents</th></tr>");
+
+		var cnt = 0;
 		for(var i in that.spec.talents) {
-			var h = "<tr><td class=\"st-stat st-talents-lbl\">"
-				+ that.spec.talents[i]
-				+ "</td></tr>"
+			var h = "<tr>"
+				+ "<td class=\"st-stat st-talents-lbl\">"
+				+ that.spec.talents[i].talent
+				+ "</td>"
+				+ "<td>"
+				+ that.spec.talents[i].ranks
+				+ "</td>"
+				+ "</tr>"
 			;
 			t.push(h);
+			cnt++;
+		}
+		for (var i=cnt; i<3; i++) {
+			var h = "<tr><td class=\"st-stat st-talents-lbl\"></td><td>&nbsp;</td></tr>";
+			t.push(h);
+		}
+		t.push("</tbody></table>");
+
+		// complications
+		t.push("<table class=\"st-tb st-complications\"><tbody>");
+		t.push("<tr>"
+			+ "<th colspan=\"2\">Type</th>"
+			+ "<th colspan=\"6\">Complication</th>"
+			+ "<th>Intensity</th>"
+			+ "<th>Frequency</th>"
+			+ "<th>Importance</th>"
+			+ "<th>Points</th>"
+			+ "</tr>");
+		var cnt = 0;
+		for(var i in that.spec.complications) {
+			var h = "<tr>"
+				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\" width=\"50\">"
+				+ that.spec.complications[i].type
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\">"
+				+ that.spec.complications[i].complication
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"4\">"
+				+ data.findComplication(that.spec.complications[i].complication).basedesc
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+				+ that.spec.complications[i].intensity
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+				+ that.spec.complications[i].frequency
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+				+ that.spec.complications[i].importance
+				+ "</td>"
+				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+				+ that.spec.complications[i].points
+				+ "</td>"
+				+ "</tr>"
+			;
+			t.push(h);
+			cnt++;
 		}	
+		for (var i=cnt; i<3; i++) {
+			var h = "<tr><td colspan=\"2\" width=\"50\">&nbsp;</td><td colspan=\"6\">&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td></tr>";
+			t.push(h);
+		}
 		t.push("</tbody></table>");
 		
 		// equipment
@@ -250,7 +325,6 @@ st.render = {
 
 	renderBoxes: function(qty) {
 		var r = [];
-		r.push("<br/>");
 		for (var i=0; i<qty; i++) {
 			r.push("□");
 			if ((i+1) % 10 === 0) {

@@ -226,7 +226,8 @@ st.data = {
 		return r;
 	},
 	findComplicationOfType: function(complicationType) {
-		var complications = st.data.complications;
+		var data = st.data;
+		var complications = data.complications;
 		var complicationsOfType = [];
 		for (var i=0; i<complications.length;i++) {
 			if (complications[i].type == complicationType) {
@@ -236,5 +237,11 @@ st.data = {
 
 		var complication = complicationsOfType[st.math.dieArray(complicationsOfType)];
 		return complication;
+	},
+	findComplication: function(complication) {
+		var data = st.data;
+		var r = _.find(data.complications,
+			function(item) { return item.complication == complication; });
+		return r;
 	}
 };

@@ -116,7 +116,7 @@
 
 .st-lifepath {
 	position: relative;
-	top: 534px; 
+	top: 626px; 
 	left: 0px; 
 	width: 490px;
 }
@@ -156,7 +156,8 @@
 .st-talents th,
 .st-talents-desc th,
 .st-equipment th,
-.st-weapons th {
+.st-weapons th,
+.st-complications th {
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -167,22 +168,23 @@
 }
 
 .st-statistics .st-stat-extreme {
-	color: purple;
-	font-weight: bold;
-}
-
-.st-statistics .st-stat-high {
 	color: blue;
 	font-weight: bold;
 }
 
-.st-statistics .st-stat-medium {
+.st-statistics .st-stat-high {
 	color: green;
 	font-weight: bold;
 }
 
+.st-statistics .st-stat-medium {
+	color: orange;
+	font-weight: bold;
+}
+
 .st-statistics .st-stat-low {
-	color: black;
+	color: red;
+	font-weight: bold;
 }
 
 .st-derivedstatistics {
@@ -200,7 +202,7 @@
 	position: absolute;
 	font-size: 14px;
 	left: 280px; 
-    top: 354px;
+	top: 336px;
 	width: 730px;
 }
 
@@ -214,7 +216,7 @@
 	position: absolute;
 	font-size: 14px;
     left: 500px;
-    top: 534px;
+    top: 626px;
 	width: 242px;
 }
 
@@ -233,7 +235,7 @@
 	position: absolute;
 	font-size: 14px;
     left: 750px;
-    top: 534px;
+    top: 626px;
 	width: 260px;
 }
 
@@ -252,13 +254,32 @@
 	padding: 4px;
 }
 
+/* complications */
+
+.st-complications {
+	position: absolute;
+	font-size: 10px;
+	top: 518px; 
+	left: 0px; 
+	width: 1010px;
+}
+
+.st-complications td.st-skill-lbl {
+	width: 370px;
+}
+
+.st-complications td.st-skill-val {
+	text-align: center;
+	width: 100px;
+}
+
 /* equipment */
 
 .st-equipment {
 	position: absolute;
 	font-size: 14px;
 	left: 750px; 
-    top: 816px;
+    top: 732px;
 	width: 260px;
 }
 

@@ -4,6 +4,13 @@ st.utils = {
 	init: function() {
 		st.log("utils.init");
 	},
+	mapSize: function(map) {
+		var cnt = 0;
+		for (var i in map) {
+			cnt++;
+		}
+		return cnt;
+	},
 	sortArr: function(o) {
 		return o.sort();
 	},

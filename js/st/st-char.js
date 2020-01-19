@@ -157,7 +157,7 @@ st.char = {
 	},
 	calcAge: function() {
 		var that = st.char;
-		var age = st.math.die(1, 10, 16);
+		var age = st.math.die(1, 7, 16);
 		that.spec.age = age;
 	},
 	calcLifeevents: function(years) {

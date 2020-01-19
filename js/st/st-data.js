@@ -39,9 +39,11 @@ st.data = {
 		data.loadEverymanSkills();
 		data.loadTalents();
 		data.loadComplications();
+		data.readyCheck();
 	},
 	loadTxt: function(url, spec) {
 		var data = st.data;
+
 		$.ajax({url: url,
 				async: false})
 			.done(function(d, status, jqxhr) {
@@ -212,7 +214,6 @@ st.data = {
 				extreme:d.data[i]["Extreme"]
 			});
 		}
-		st.char.random();
 	},
 	findStat: function(abb) {
 		var data = st.data;
@@ -245,8 +246,8 @@ st.data = {
 		return r;
 	},
 	findComplicationIntensity: function(intensity) {
-		st.log("findComplicationIntensity");
-		st.log(["intensity",intensity]);
+		//st.log("findComplicationIntensity");
+		//st.log(["intensity",intensity]);
 		var ret = "";
 		switch (intensity) {
 			case 5:
@@ -262,12 +263,12 @@ st.data = {
 				ret = "extreme"
 				break;
 		}
-		st.log(["ret",ret]);
+		//st.log(["ret",ret]);
 		return ret;
 	},
 	findComplicationImportance: function(importance) {
-		st.log("findComplicationImportance");
-		st.log(["importance",importance]);
+		//st.log("data.findComplicationImportance");
+		//st.log(["importance",importance]);
 		var ret = "";
 		switch (importance) {
 			case 0.2:
@@ -280,7 +281,29 @@ st.data = {
 				ret = "extreme";
 				break;
 		}
-		st.log(["ret",ret]);
+		//st.log(["ret",ret]);
 		return ret;
+	},
+	readyCheck: function() {
+		st.log("data.readyCheck");
+		var data = st.data;
+		if (!data.stats || st.utils.mapSize(data.stats) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
+		} else if (!data.str || st.utils.mapSize(data.str) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
+		} else if (!data.skills || st.utils.mapSize(data.skills) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
+		} else if (!data.talents || st.utils.mapSize(data.talents) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
+		} else if (!data.complications || st.utils.mapSize(data.complications) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
+		} else {
+			st.char.random();
+		}
 	}
 };

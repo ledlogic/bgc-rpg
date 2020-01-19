@@ -200,8 +200,9 @@ st.data = {
 		});
 	},
 	complicationsResponse: function(d) {
+		var data = st.data;
 		for (var i=0; i<d.data.length; i++) {
-			st.data.complications.push({
+			data.complications.push({
 				complication:d.data[i]["Complication"],
 				type:d.data[i]["Type"],
 				basedesc:d.data[i]["Base Description"],
@@ -234,7 +235,6 @@ st.data = {
 				complicationsOfType.push(complications[i]);
 			}
 		}
-
 		var complication = complicationsOfType[st.math.dieArray(complicationsOfType)];
 		return complication;
 	},
@@ -243,5 +243,44 @@ st.data = {
 		var r = _.find(data.complications,
 			function(item) { return item.complication == complication; });
 		return r;
+	},
+	findComplicationIntensity: function(intensity) {
+		st.log("findComplicationIntensity");
+		st.log(["intensity",intensity]);
+		var ret = "";
+		switch (intensity) {
+			case 5:
+				ret = "mild";
+				break;
+			case 10:
+				ret = "strong";
+				break;
+			case 15:
+				ret = "severe";
+				break;
+			case 20:
+				ret = "extreme"
+				break;
+		}
+		st.log(["ret",ret]);
+		return ret;
+	},
+	findComplicationImportance: function(importance) {
+		st.log("findComplicationImportance");
+		st.log(["importance",importance]);
+		var ret = "";
+		switch (importance) {
+			case 0.2:
+				ret = "minor";
+				break;
+			case 0.5:
+				ret = "major";
+				break;
+			case 1.0:
+				ret = "extreme";
+				break;
+		}
+		st.log(["ret",ret]);
+		return ret;
 	}
 };

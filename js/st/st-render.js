@@ -270,7 +270,8 @@ st.render = {
 		t.push("<table class=\"st-tb st-complications\"><tbody>");
 		t.push("<tr>"
 			+ "<th colspan=\"2\">Type</th>"
-			+ "<th colspan=\"6\">Complication</th>"
+			+ "<th colspan=\"2\">Complication</th>"
+			+ "<th colspan=\"4\">Effect</th>"
 			+ "<th>Intensity</th>"
 			+ "<th>Frequency</th>"
 			+ "<th>Importance</th>"
@@ -278,6 +279,27 @@ st.render = {
 			+ "</tr>");
 		var cnt = 0;
 		for(var i in that.spec.complications) {
+			var specComplication = that.spec.complications[i];
+			var dataComplication = data.findComplication(specComplication.complication);
+			st.log(["dataComplication",dataComplication]);
+			var basedesc = dataComplication.basedesc;
+			var intensity = data.findComplicationIntensity(specComplication.intensity);
+			st.log(["intensity",intensity]);
+			var descsuffix = dataComplication[intensity];
+			var frequency = "";
+			switch (that.spec.complications[i].frequency) {
+				case 5: 
+					frequency = "infrequently";
+					break;
+				case 10:
+					frequency = "frequently";
+					break;
+				case 15:
+					frequency = "constantly";
+					break;	
+			}
+			var importance = that.spec.complications[i].importance;
+			var importancesuffix = data.findComplicationImportance(importance);
 			var h = "<tr>"
 				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\" width=\"50\">"
 				+ that.spec.complications[i].type
@@ -286,16 +308,19 @@ st.render = {
 				+ that.spec.complications[i].complication
 				+ "</td>"
 				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"4\">"
-				+ data.findComplication(that.spec.complications[i].complication).basedesc
+				+  basedesc + descsuffix
 				+ "</td>"
 				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ that.spec.complications[i].intensity
+				+ intensity.toUpperCase()
+				+ "(" + that.spec.complications[i].intensity + ")"
 				+ "</td>"
 				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ that.spec.complications[i].frequency
+				+ frequency.toUpperCase()
+				+ "(" + that.spec.complications[i].frequency + ")"
 				+ "</td>"
 				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ that.spec.complications[i].importance
+				+ importancesuffix.toUpperCase()
+				 + "(" + that.spec.complications[i].importance + ")"
 				+ "</td>"
 				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
 				+ that.spec.complications[i].points
@@ -306,7 +331,14 @@ st.render = {
 			cnt++;
 		}	
 		for (var i=cnt; i<3; i++) {
-			var h = "<tr><td colspan=\"2\" width=\"50\">&nbsp;</td><td colspan=\"6\">&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td><td width=20>&nbsp;</td></tr>";
+			var h = "<tr><td colspan=\"2\" width=\"50\">&nbsp;</td>"
+				+ "<td colspan=\"2\">&nbsp;</td>"
+				+ "<td colspan=\"4\">&nbsp;</td>"
+				+ "<td width=20>&nbsp;</td>"
+				+ "<td width=20>&nbsp;</td>"
+				+ "<td width=20>&nbsp;</td>"
+				+ "<td width=20>&nbsp;</td>"
+				+ "</tr>";
 			t.push(h);
 		}
 		t.push("</tbody></table>");

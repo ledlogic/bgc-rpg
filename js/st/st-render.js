@@ -5,16 +5,17 @@ st.render = {
 		st.log("render.init");
 	},
 	render: function() {
-		st.log("rendering char");
+		st.log("render");
 		st.render.renderReset();
 		st.render.renderSpec();
 		$(".st-page").removeClass("st-initial-state");
 	},
 	renderReset: function() {
+		st.log("render reset");
 		$(".st-page-ft").html("");
 	},
 	renderSpec: function() {
-		st.log("rendering spec");
+		st.log("render spec");
 		var that = st.char;
 		var data = st.data;
 
@@ -211,14 +212,14 @@ st.render = {
 		// lifepath
 		that.spec.eventsHtml = that.spec.events.join("<br/>");
 		var h = "<tr><th colspan=\"2\">Lifepath</th></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
-			  + "<tr><td class=\"st-tb-lbl\">Current Outlook</td><td><%= currentoutlook %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Personality</td><td><%- personality %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Values - people</td><td><%- valuesWho %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Values - things</td><td><%- valuesWhat %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Early Background</td><td><%- earlybackground %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Childhood Event</td><td><%- childhoodevent %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Life Event(s)</td><td><%= eventsHtml %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Current Situation</td><td><%= currentsituation %></td></tr>"
+			+ "<tr><td class=\"st-tb-lbl\">Current Outlook</td><td><%= currentoutlook %></td></tr>"
 		;
 		var template = _.template(h);
 		t.push("<table class=\"st-tb st-lifepath\"><tbody>" + template(that.spec) + "</tbody></table>");
@@ -295,56 +296,42 @@ st.render = {
 			+ "<th>Points</th>"
 			+ "</tr>");
 		var cnt = 0;
-		for(var i in that.spec.complications) {
+		for(var i=0; i<that.spec.complications.length; i++) {
 			var specComplication = that.spec.complications[i];
-			var dataComplication = data.findComplication(specComplication.complication);
-			st.log(["dataComplication",dataComplication]);
-			var basedesc = dataComplication.basedesc;
-			var intensity = data.findComplicationIntensity(specComplication.intensity);
-			st.log(["intensity",intensity]);
-			var descsuffix = dataComplication[intensity];
-			var frequency = "";
-			switch (that.spec.complications[i].frequency) {
-				case 5: 
-					frequency = "infrequently";
-					break;
-				case 10:
-					frequency = "frequently";
-					break;
-				case 15:
-					frequency = "constantly";
-					break;	
+			var h = "";
+			if (specComplication.complicationType == "ENEMY") {
+				var dataCapabilities = data.findComplication("Capabilities");
+				var dataExtent = data.findComplication("Extent");
+				var dataIntensity = data.findComplication("Intensity");
+				var description = "";
+				var intensity = "";
+				var frequency = "";
+				var importance = "";
+				var points = "";
+				h = st.render.renderComplication(specComplication.complicationType,
+					"Enemy",
+					description,
+					intensity,
+					frequency,
+					importance,
+					points);
+			} else {
+				var dataComplication = data.findComplication(specComplication.complication);
+				var basedesc = dataComplication.basedesc;
+				var intensity = data.findComplicationIntensity(specComplication.intensity);
+				var descsuffix = dataComplication[intensity];
+				var frequencySuffix = data.findFrequencySuffix(specComplication.frequency);
+				var importance = specComplication.importance;
+				var importancesuffix = data.findComplicationImportance(importance);
+				h = st.render.renderComplication(specComplication.complicationType,
+					specComplication.complication,
+					basedesc + descsuffix,
+					intensity.toUpperCase() + "(" + specComplication.intensity + ")",
+					frequencySuffix.toUpperCase() + "(" + specComplication.frequency + ")",
+					importancesuffix.toUpperCase() + "(" + specComplication.importance + ")",
+					specComplication.points);
 			}
-			var importance = that.spec.complications[i].importance;
-			var importancesuffix = data.findComplicationImportance(importance);
-			var h = "<tr>"
-				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\" width=\"50\">"
-				+ that.spec.complications[i].type
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\">"
-				+ that.spec.complications[i].complication
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" colspan=\"4\">"
-				+  basedesc + descsuffix
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ intensity.toUpperCase()
-				+ "(" + that.spec.complications[i].intensity + ")"
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ frequency.toUpperCase()
-				+ "(" + that.spec.complications[i].frequency + ")"
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ importancesuffix.toUpperCase()
-				 + "(" + that.spec.complications[i].importance + ")"
-				+ "</td>"
-				+ "<td class=\"st-stat st-complications-lbl\" width=20>"
-				+ that.spec.complications[i].points
-				+ "</td>"
-				+ "</tr>"
-			;
-			t.push(h);
+			t.push(h);			
 			cnt++;
 		}	
 		for (var i=cnt; i<3; i++) {
@@ -370,6 +357,33 @@ st.render = {
 		t.push("</tbody></table>");
 
 		$(".st-page-ft").html(t.join(""));
+	},
+
+	renderComplication: function(complicationType, complication, description, intensity, frequency, importance, points) {
+		var r = "<tr>"
+			+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\" width=\"50\">"
+			+ complicationType
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" colspan=\"2\">"
+			+ complication
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" colspan=\"4\">"
+			+ description
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+			+ intensity
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+			+ frequency
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+			+ importance
+			+ "</td>"
+			+ "<td class=\"st-stat st-complications-lbl\" width=20>"
+			+ points
+			+ "</td>"
+			+ "</tr>";
+		return r;
 	},
 
 	renderBoxes: function(qty) {

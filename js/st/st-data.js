@@ -210,7 +210,7 @@ st.data = {
 		for (var i=0; i<d.data.length; i++) {
 			data.complications.push({
 				complication:d.data[i]["Complication"],
-				type:d.data[i]["Type"],
+				complicationType:d.data[i]["Type"],
 				basedesc:d.data[i]["Base Description"],
 				mild:d.data[i]["Mild"],
 				strong:d.data[i]["Strong"],
@@ -236,11 +236,12 @@ st.data = {
 		var complications = data.complications;
 		var complicationsOfType = [];
 		for (var i=0; i<complications.length;i++) {
-			if (complications[i].type == complicationType) {
+			if (complications[i].complicationType == complicationType) {
 				complicationsOfType.push(complications[i]);
 			}
 		}
-		var complication = complicationsOfType[st.math.dieArray(complicationsOfType)];
+		var r = st.math.dieArray(complicationsOfType);
+		var complication = complicationsOfType[r];
 		return complication;
 	},
 	findComplication: function(complication) {
@@ -250,8 +251,6 @@ st.data = {
 		return r;
 	},
 	findComplicationIntensity: function(intensity) {
-		//st.log("findComplicationIntensity");
-		//st.log(["intensity",intensity]);
 		var ret = "";
 		switch (intensity) {
 			case 5:
@@ -267,12 +266,9 @@ st.data = {
 				ret = "extreme"
 				break;
 		}
-		//st.log(["ret",ret]);
 		return ret;
 	},
 	findComplicationImportance: function(importance) {
-		//st.log("data.findComplicationImportance");
-		//st.log(["importance",importance]);
 		var ret = "";
 		switch (importance) {
 			case 0.2:
@@ -285,11 +281,9 @@ st.data = {
 				ret = "extreme";
 				break;
 		}
-		//st.log(["ret",ret]);
 		return ret;
 	},
 	loadWeapons: function() {
-		st.log("data.loadWeapons");
 		Papa.parse("data/weapons.csv", {
 			delimiter: "|",
 			download: true,
@@ -320,30 +314,39 @@ st.data = {
 			function(item) { return item.weapon.indexOf(weapon) > -1 ? item : null; });
 		return r;
 	},
+	findFrequencySuffix: function(frequency) {
+		var suffix = "";
+		switch (frequency) {
+			case 5: 
+				suffix = "infrequently";
+				break;
+			case 10:
+				suffix = "frequently";
+				break;
+			case 15:
+				suffix = "constantly";
+				break;	
+		}
+		return suffix;
+	},
 	readyCheck: function() {
 		st.log("data.readyCheck");
+		
 		var data = st.data;
 		if (!data.stats || st.utils.mapSize(data.stats) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else if (!data.str || st.utils.mapSize(data.str) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else if (!data.skills || st.utils.mapSize(data.skills) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else if (!data.talents || st.utils.mapSize(data.talents) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else if (!data.complications || st.utils.mapSize(data.complications) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else if (!data.weapons || st.utils.mapSize(data.weapons) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
-			return;
 		} else {
-			st.log(["st.data",st.data]);
-			st.char.random();
+			window.setTimeout("st.char.random()", 100);
 		}
 	}
 };

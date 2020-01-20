@@ -58,7 +58,7 @@ st.render = {
 		t.push("<td>" + points.campaign 
 			+ " (s" + points.skills + ", t" + points.talents + ", w" + points.weapons + ")"
 			+ "</td>");
-		t.push("<td>" + points.complication + "</td>");
+		t.push("<td>" + points.complications + "</td>");
 		t.push("<td>" + points.total + "</td>");
 		t.push("<tr>");
 		t.push("</tbody></table>");
@@ -303,18 +303,36 @@ st.render = {
 				var dataCapabilities = data.findComplication("Capabilities");
 				var dataExtent = data.findComplication("Extent");
 				var dataIntensity = data.findComplication("Intensity");
-				var description = "";
-				var intensity = "";
-				var frequency = "";
-				var importance = "";
-				var points = "";
+				var capabilitiesIntensity = data.findComplicationIntensity(specComplication.capabilities);
+				var capabilitiesDescription = dataCapabilities[capabilitiesIntensity];
+				var extentIntensity = data.findComplicationIntensity(specComplication.extent);
+				var extentDescription = dataExtent[extentIntensity];
+				var intensityValue = 0;
+				switch (specComplication.intensity) {
+					case 0.2:
+						intensityValue = 5;
+						break;
+					case 0.5:
+						intensityValue = 10;
+						break;
+					case 1:
+						intensityValue = 15;
+						break;
+				}
+				var intensityIntensity = data.findComplicationIntensity(intensityValue);
+				var intensityDescription = dataIntensity[intensityIntensity];
+
+				var description = capabilitiesDescription + "(" + specComplication.capabilities + ") "
+					+ extentDescription + "(" + specComplication.extent + ") "
+					+ intensityDescription + "(" + specComplication.intensity + "x) "
+
 				h = st.render.renderComplication(specComplication.complicationType,
-					"Enemy",
+					specComplication.complication,
 					description,
-					intensity,
-					frequency,
-					importance,
-					points);
+					"*",
+					"*",
+					"*",
+					specComplication.points);
 			} else {
 				var dataComplication = data.findComplication(specComplication.complication);
 				var basedesc = dataComplication.basedesc;

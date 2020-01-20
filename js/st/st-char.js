@@ -437,42 +437,73 @@ st.char = {
 				complicationType = complication.complicationType;
 			}
 			if (complication) {
-				var frequency = 5 * st.math.dieN(3);
-				var maxIntensity = 4;
-				if (!complication.extreme) {
-					maxIntensity = 3;
-				}
-				if (!complication.severe) {
-					maxIntensity = 2;
-				}
-				if (!complication.strong) {
-					maxIntensity = 1;
-				}
-				var intensity = 5 * st.math.dieN(maxIntensity);
-				var importance = st.math.dieN(3);
-				var importanceCoefficient = 0;
-				switch (importance) {
-					case 1:  
-						importanceCoefficient = 0.2;
-						break;
-					case 2:
-						importanceCoefficient = 0.5;
-						break;
-					case 3:
-						importanceCoefficient = 1.0;
-						break;
-				}
-				var points = Math.round((importanceCoefficient * (frequency + intensity)));
-				var spec = {
-					complicationType: complicationType,
-					complication: complication.complication,
-					intensity: intensity,
-					frequency: frequency,
-					importance: importanceCoefficient,
-					points: points
+				var spec = {};
+				var points = 0;
+				if (complicationType == "ENEMY") {
+					// enemy spec
+					var capabilities = 5 * st.math.dieN(4);
+					var extent = 5 * st.math.dieN(3);
+					var intensity = st.math.dieN(3);
+					var intensityCoefficient = 0;
+					switch (intensity) {
+						case 1:  
+							intensityCoefficient = 0.2;
+							break;
+						case 2:
+							intensityCoefficient = 0.5;
+							break;
+						case 3:
+							intensityCoefficient = 1.0;
+							break;
+					}
+					points = Math.round((intensityCoefficient * (capabilities + extent)));
+					spec = {
+						complicationType: complicationType,
+						complication: "Enemy",
+						capabilities: capabilities,
+						extent: extent,
+						intensity: intensityCoefficient,
+						points: points
+					}
+				} else {
+					// standard spec
+					var frequency = 5 * st.math.dieN(3);
+					var maxIntensity = 4;
+					if (!complication.extreme) {
+						maxIntensity = 3;
+					}
+					if (!complication.severe) {
+						maxIntensity = 2;
+					}
+					if (!complication.strong) {
+						maxIntensity = 1;
+					}
+					var intensity = 5 * st.math.dieN(maxIntensity);
+					var importance = st.math.dieN(3);
+					var importanceCoefficient = 0;
+					switch (importance) {
+						case 1:  
+							importanceCoefficient = 0.2;
+							break;
+						case 2:
+							importanceCoefficient = 0.5;
+							break;
+						case 3:
+							importanceCoefficient = 1.0;
+							break;
+					}
+					points = Math.round((importanceCoefficient * (frequency + intensity)));
+					spec = {
+						complicationType: complicationType,
+						complication: complication.complication,
+						intensity: intensity,
+						frequency: frequency,
+						importance: importanceCoefficient,
+						points: points
+					}
 				}
 				complications.push(spec);
-				that.spec.points.complications -= points;
+				that.spec.points.complications -= spec.points;
 			} else {
 				st.log("Could not find complication of complicationType[" + complicationType + "]");
 			}

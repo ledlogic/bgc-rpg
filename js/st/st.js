@@ -11,9 +11,9 @@ var st = {
 		st.log("st.init");
 		st.math.init();
 		st.utils.init();
-		st.data.init();
-		st.char.init();
 		st.render.init();
+		st.char.init();
+		st.data.init();
 	}
 };
 

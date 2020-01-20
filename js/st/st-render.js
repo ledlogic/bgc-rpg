@@ -55,7 +55,7 @@ st.render = {
 		t.push("<tr>");
 		t.push("<td>" + points.stats + "</td>");
 		t.push("<td>" + points.campaign 
-			+ " (" + points.skills + ", " + points.talents + ")"
+			+ " (s" + points.skills + ", t" + points.talents + ", w" + points.weapons + ")"
 			+ "</td>");
 		t.push("<td>" + points.complication + "</td>");
 		t.push("<td>" + points.total + "</td>");
@@ -174,11 +174,28 @@ st.render = {
 			+ "<th>WA</th>"
 			+ "<th>Range</th>"
 			+ "<th>Damage</th>"
-			+ "<th>Shots</th>"
 			+ "<th>ROF</th>"
+			+ "<th>Shots</th>"
 			+ "<th>COST</th>"
 			+ "</tr>");
-		for(var i=0; i<6; i++) {
+
+		var h = "<tr>"
+			+ "<td><%- weapon %></td>"
+			+ "<td><%- wa %></td>"
+			+ "<td><%- range %></td>"
+			+ "<td><%- damage %></td>"
+			+ "<td><%- rof %></td>"
+			+ "<td><%- shots %></td>"
+			+ "<td><%- cost %> (<%- cp %>)</td>"
+			+ "</tr>";
+		var template = _.template(h);
+		for (var i in that.spec.weapons) {
+			var w = that.spec.weapons[i];
+			t.push(template(w));
+		}
+
+		var weaponsize = st.utils.mapSize(that.spec.weapons);
+		for(var i=weaponsize; i<6; i++) {
 			t.push("<tr>"
 				+ "<td>&nbsp;</td>"
 				+ "<td>&nbsp;</td>"
@@ -188,7 +205,7 @@ st.render = {
 				+ "<td>&nbsp;</td>"
 				+ "<td>&nbsp;</td>"
 				+ "</tr>");
-		}	
+		}
 		t.push("</tbody></table>");
 
 		// lifepath

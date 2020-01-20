@@ -1,44 +1,48 @@
 /* st-data.js */
 
 st.data = {
-	personalities: [],
-	valuesWho: [],
-	valuesWhat: [],
-	worldviews: [],
-	earlybackgrounds: [],
 	childhoodevents: [],
+	complications: [],
+	currentoutlooks: [],
+	currentsituations: [],
+	derivedstats: [],
+	earlybackgrounds: [],
+	everymanskills: [],
 	friendsenemies: [],
 	lovewar: [],
-	currentsituations: [],
-	currentoutlooks: [],
-	stats: [],
-	derivedstats: [],
-	str: [],
+	personalities: [],
 	skills: [],
-	everymanskills: [],
+	stats: [],
+	str: [],
 	talents: [],
-	complications: [],
+	valuesWhat: [],
+	valuesWho: [],
+	weapons: [],
+	worldviews: [],
 
 	init: function() {
 		st.log("data.init");
 		var data = st.data;
-		data.loadPersonalities();
-		data.loadValuesWho();
-		data.loadValuesWhat();
-		data.loadWorldviews();
-		data.loadEarlybackgrounds();
+
 		data.loadChildhoodevents();
+		data.loadComplications();
+		data.loadCurrentoutlooks();
+		data.loadCurrentsituations();
+		data.loadDerivedstats();
+		data.loadEarlybackgrounds();
+		data.loadEverymanSkills();
 		data.loadFriendsenemies();
 		data.loadLovewar();
-		data.loadCurrentsituations();
-		data.loadCurrentoutlooks();
-		data.loadStats();
-		data.loadDerivedstats();
-		data.loadStr();
+		data.loadPersonalities();
 		data.loadSkills();
-		data.loadEverymanSkills();
+		data.loadStats();
+		data.loadStr();
 		data.loadTalents();
-		data.loadComplications();
+		data.loadValuesWhat();
+		data.loadValuesWho();
+		data.loadWeapons();
+		data.loadWorldviews();
+
 		data.readyCheck();
 	},
 	loadTxt: function(url, spec) {
@@ -284,6 +288,38 @@ st.data = {
 		//st.log(["ret",ret]);
 		return ret;
 	},
+	loadWeapons: function() {
+		st.log("data.loadWeapons");
+		Papa.parse("data/weapons.csv", {
+			delimiter: "|",
+			download: true,
+			header: true,
+			complete: function(d) {
+				st.data.weaponsResponse(d);
+			},
+			encoding: "UTF-8"
+		});
+	},
+	weaponsResponse: function(d) {
+		for (var i=0; i<d.data.length; i++) {
+			st.data.weapons.push({
+				weapon:d.data[i]["Weapon"],
+				wa:d.data[i]["WA"],
+				range:d.data[i]["Range"],
+				damage:d.data[i]["Damage"],
+				shots:d.data[i]["Shots"],
+				rof:d.data[i]["ROF"],
+				cost:d.data[i]["Cost"],
+				cp:d.data[i]["CP"]
+			});
+		}
+	},
+	findWeapon: function(weapon) {
+		var data = st.data;
+		var r = _.find(data.weapons,
+			function(item) { return item.weapon.indexOf(weapon) > -1 ? item : null; });
+		return r;
+	},
 	readyCheck: function() {
 		st.log("data.readyCheck");
 		var data = st.data;
@@ -302,7 +338,11 @@ st.data = {
 		} else if (!data.complications || st.utils.mapSize(data.complications) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
 			return;
+		} else if (!data.weapons || st.utils.mapSize(data.weapons) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
+			return;
 		} else {
+			st.log(["st.data",st.data]);
 			st.char.random();
 		}
 	}

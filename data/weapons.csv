@@ -1,0 +1,5 @@
+|Weapon|WA|Range|Damage|Shots|ROF|Cost|CP
+|M42-A1 Short Machinegun|2|200m|7d6|66|42|100000|10
+|12-Gauge Riot Shotgun|-1|50m|6d6|8|1|50000|5
+|Stomach Railgun|0|300m|14d6AP|3|2|600000|20
+|Combat Handgun|0|40m|4d6|15|2|40000|4

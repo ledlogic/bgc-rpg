@@ -28,12 +28,13 @@ st.char = {
 		//st.log("char.reset");
 		var that = st.char;
 		that.spec = {};
+		that.spec.points = {};
 		that.spec.stats = {};
 		that.spec.derivedstats = {};
 		that.spec.skills = [];
 		that.spec.talents = [];
-		that.spec.points = {};
 		that.spec.complications = [];
+		that.spec.weapons = [];
 
 		// calculated mean stat points for all characters in television show
 		that.spec.points.stats = 0;
@@ -41,6 +42,7 @@ st.char = {
 		that.spec.points.talents = 0;
 		that.spec.points.campaign = 0;
 		that.spec.points.complication = 0;
+		that.spec.points.weapons = 0;
 		that.spec.points.total = 0;
 	},
 	random: function() {
@@ -90,9 +92,28 @@ st.char = {
 
 		// calculated mean skill for all characters in television show
 
-		that.spec.points.complicationToTalents = ((-that.spec.points.complication * Math.random() * 0.5) / 3 >> 0) * 3;
+		// weapons
+		that.spec.points.complicationAfterWeapons = that.spec.points.complication;
+		if (that.spec.points.complicationAfterWeapons < -20) {
+			that.spec.points.weapons = 20;
+			that.spec.points.complicationAfterWeapons += 20;
+		}
+		if (that.spec.points.complicationAfterWeapons < -10) {
+			that.spec.points.weapons = 10;
+			that.spec.points.complicationAfterWeapons += 10;
+		} 
+		if (that.spec.points.complicationAfterWeapons < -5) {
+			that.spec.points.weapons = 5;
+			that.spec.points.complicationAfterWeapons += 5;
+		}
+		st.log(["that.spec.points.complicationAfterWeapons",that.spec.points.complicationAfterWeapons]);
+		that.calcWeapons();
+		st.log(["weapons",that.spec.weapons]);
+
+		that.spec.points.complicationToTalents = ((-that.spec.points.complicationAfterWeapons * Math.random() * 0.5) / 3 >> 0) * 3;
 		st.log(["that.spec.points.complicationToTalents",that.spec.points.complicationToTalents]);
-		that.spec.points.complicationToSkills = -that.spec.points.complication -that.spec.points.complicationToTalents;
+
+		that.spec.points.complicationToSkills = -that.spec.points.complicationAfterWeapons - that.spec.points.complicationToTalents;
 		st.log(["that.spec.points.complicationToSkills",that.spec.points.complicationToSkills]);
 
 		that.spec.points.skills = 65 + that.spec.points.complicationToSkills;
@@ -503,6 +524,41 @@ st.char = {
 		that.spec.complications = _.sortBy(complications, function(complication) { 
             return complication.type + ":" + complication.complication; 
         });
+	},
+	calcWeapons: function() {
+		st.log("char.calcWeapons");
+		
+		var that = st.char;
+		var data = st.data;
+
+		var weapons = that.spec.weapons;
+		var w = data.findWeapon("Handgun");
+
+st.log({w:w});
+
+		that.addWeapon(w);
+		switch (that.spec.points.weapons) {
+			case 20:
+				var w = data.findWeapon("Railgun");
+				that.addWeapon(w);
+				break;
+			case 10:
+				var w = data.findWeapon("M42-A1");
+				that.addWeapon(w);
+				break;
+			case 5:
+				var w = data.findWeapon("Shotgun");
+				that.addWeapon(w);
+				break;
+		}
+	},
+	addWeapon: function(w) {
+		var that = st.char;
+		var weapons = that.spec.weapons;
+		if (!w) {
+			debugger;
+		}
+		weapons.push(w);
 	}
 };
 

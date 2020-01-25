@@ -1,0 +1,180 @@
+[
+{
+"name": "AD Police Inspector",
+"skills": ["Detective", "Perception", "Persuasion", "Firearms", "Driving", "Hand-to-Hand", "Athletics"],
+"options": ["Membership [AD Police]", "Contacts", "Combat Sense"],
+"equipment": ["Uniform with KD15 bulletprool vest (EVO)",
+    "combat revolver or combat auto",
+    "police cruiser", 
+    "handheld radio (1km range)",
+    "police minicomputer (POW-1, either in vehicle or hendheld model)",
+    "modest lifestyle (Wealth 2) with Residential Zone apartment"]
+},
+{
+"name": "Hacker",
+"skills": ["Hacking", "Persuasion", "Research", "Perception", "Computers", "Steaith"],
+"options": ["Time Sense", "Contacts (other Hackers)"],
+"equipment": ["Casual clothes",
+    "motorscooter",
+    "pocket minicomputer (POW-1)", 
+    "personal workstation (POW-6)",
+    "poor lifestyle (nmo Wealth) with slum apartment"]
+},
+{
+"name": "Street Operative",
+"skills": ["Athletics", "Hand-to-Hand Perception", "Persuasion", "Melee", "Firearms", "Social (Street)"],
+"options": ["Blind Reaction", "Membership (Gang)"],
+"equipment": ["Punk-styled or sleazy clothes",
+    "combat auto",
+    "brass knuckles", 
+    "motorcycle",
+    "breaking & entering tools",
+    "low lifestyle (no Wealth) with slum apartment"]
+},
+{
+"name": "Entertainer",
+"skills": ["Performance", "Artistry", "Dance", "Persuation", "Perception", "Wardrobe & Style"],
+"options": ["Perfect Pitch", "Renown"],
+"equipment": ["Stylish clothes and stage costumes",
+    "mini-revolver",
+    "motorcycle or tour bus", 
+    "musical and stereo equipment with CDs and stage props",
+    "modest lifestyle (Wealth 1) with Residential Zone apartment"]
+},
+{
+"name": "Executive",
+"skills": ["Business", "Espionage", "Persuation", "Perception", "Wardrobe & Style"],
+"options": ["Lightning Calculator", "Eidetic Memory", "Membership"],
+"equipment": ["Business suits (or other such garb)",
+    "mini-revolver",
+    "sedan", 
+    "cellular phone",
+    "laptop computer (POW-3)",
+    "well-off lifestyle (Wealth 4) with downtown apartment"]
+},
+{
+"name": "Street Tech",
+"skills": ["High Tech", "Basic Tech", "Persuasion", "Area Knowledge", "Perception", "Firearms", "Milspec Tech"],
+"options": ["Knack"],
+"equipment": ["Grimy coveralls",
+    "mini-handgun",
+    "assorted tools", 
+    "minicar or motorcycle",
+    "pocket computer (POW-1)",
+    "low lifestyle with a garage or old warehouse as your combined lab/workshop/home/nest"]
+},
+{
+"name": "Reporter",
+"skills": ["Perception", "Photo & Film", "Persuasion", "Writing", "Area Knowledge", "Research", "Athletics"],
+"options": ["Acute Senses", "Intuition"],
+"equipment": ["Stylish clothes or businesswear",
+    "minicar",
+    "video camera or digital camera and digital recorder", 
+    "laptop computer (POW-2)",
+    "good lifestyle (Wealth 3) with Residential Zone apartment"]
+},
+{
+"name": "Agent",
+"skills": ["Persuasion", "Perception", "Stealth", "Disguise", "Espionage", "Driving", "Research"],
+"options": ["Membership or License", "Night Vision", "Acute Senses"],
+"equipment": ["Combat auto with silencer",
+    "sedan",
+    "scrambled micro-radio (1km range)", 
+    "espionage tools (bugs, forensics, B&E and electronics)",
+    "modest lifestyle (Wealth 2) with Residential Zone apartment"]
+},
+{
+"name": "Scientist",
+"skills": ["Science (specify)", "Education", "Tech (specify)", "Research", "Persuasion"],
+"options": ["Lightning Calculator", "Eidetic Memory"],
+"equipment": ["Casual clothes",
+    "minicar",
+    "micro-tools",
+    "access card to research facility",
+    "laptop computer (POW-2)",
+    "well-off lifestyle (Wealth 4) with midtown apartment"]
+},
+{
+"name": "Soldier",
+"skills": ["Firearms", "Athletics", "Perception", "Autofire", "Hand-to-Hand", "Heavy Weapons", "Gunnery", "Driving", "Mecha Pilot"],
+"options": ["Combat Sense", "Blind Reaction", "Ambidexterity"],
+"equipment": ["Fatigues",
+    "KD29 field armor",
+    "assault rifle",
+    "helicopter or powered suit",
+    "average lifestyle (Wealth 1) with barracks"]
+},
+{
+"name": "AD Police Frontline Officer",
+"skills": ["Athletics", "Autofire Weapons", "Driving", "Firearms", "Hand-to-Hand", "Heavy Weapons", "Melee Weapons", "Detective"],
+"options": ["Combat Sense", "Membership (AD Police)"],
+"equipment": ["ADP armor (by period) or Fatigues (KD15)",
+    "ADP Combat Handgun",
+    "M-42A1 Short MG",
+    "12-Gauge Pump Shotgun",
+    "Radio (10km)",
+    "Gasmask (8 minutes air)",
+    "Dogtags",
+    "Boomer Deactivator",
+    "Police Baton (or Knife)",
+    "average lifestyle (Wealth 1) with tiny aparment in residential zone"]
+},
+{
+"name": "AD Police Mecha Pilot",
+"skills": ["Athletics", "Gunnery", "Firearms", "Heavy Equipment", "Mechapilot"],
+"options": ["Combat Sense", "Membership (AD Police)"],
+"equipment": ["Skintight mecha pilot bodysuit (KB 10) worn under armor",
+    "Dogtags",
+    "Boomer Deactivator",
+    "Police Baton (or Knife)",
+    "average lifestyle (Wealth 1) with tiny aparment in residential zone"]
+},
+{
+"name": "Normal Police Detective",
+"skills": ["Computers", "Detective", "Driving", "Firearms", "Law", "Local Knowledge (MegaTokyo)", "Perception", "Persuasion", "Photogaphy"],
+"options": ["Contact", "Intuition"],
+"equipment": ["Police uniform With bulletproof vest (KD 10)",
+    "normal police handgun",
+    "one reload in belt",
+    "nightstick",
+    "computer (POW-1)",
+    "car",
+    "sometimes camera (for surveillence)",
+    "average lifestyle (Wealth 1) with small apartment"]
+},
+{
+"name": "AD Police Pilot",
+"skills": ["Athletics", "Electronic Warfare", "Firearms", "Gunnery", "Navigation", "Perception", "Pilot (Helicopter)"],
+"options": ["Combat Sense", "License (Pilot)", "Membership (AD Police)"],
+"equipment": ["Pilot's helmet (KD20. equipped with low-light, telescopic and targeting optics)",
+    "dogtags",
+    "flight suit (KD 10)",
+    "ADP issue handgun",
+    "Radio (10 km)",
+    "Average lifestyle (Wealth 1) With tiny apartment in Residential Zone"]
+},
+{
+"name": "AD Police Operator",
+"skills": ["Computers", "Driving", "Electronic Warfare", "Hacking", "Firearms (at low level)", "Language (Computer Code)", "Local Knowledge (MegaTokyo)", "Persuasion", "Research", "Writing"],
+"options": ["Membership (AD Police)"],
+"equipment": ["Police uniform",
+    "pocket computer (POW-1)",
+    "minicar or scooter",
+    "average lifestyle (Wealth 1) with tiny apartment"]
+},
+{
+"name": "K-9 Officer",
+"skills": ["Animal Handling", "Driving", "Firearms", "Local Knowledge (MegaTokyo)", "Perception", "Persuasion"],
+"options": ["Membership (AD Police)", "Animal Empathy"],
+"equipment": ["Police dog (typically lNT 0, PRE 2, TECH 0, MOVE 9, REF 5, DEX 5, STR 3, CON 4, BOD 2. Perception +10, Tracking +10, Athletics +4. Hand-to-Hand +4: bite 3d6)",
+    "Some dogs are issued with a tight kevlar vest (KD 8)",
+    "Police uniform With bulletproof vest (KD 10)",
+    "normal police handgun",
+    "one reload in belt",
+    "nightstick",
+    "computer (POW-1)",
+    "car",
+    "sometimes camera (for surveillence)",
+    "average lifestyle (Wealth 1) with small apartment"]
+}
+]

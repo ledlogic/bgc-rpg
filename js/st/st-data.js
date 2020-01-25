@@ -15,6 +15,7 @@ st.data = {
 	stats: [],
 	str: [],
 	talents: [],
+	templates: [],
 	valuesWhat: [],
 	valuesWho: [],
 	weapons: [],
@@ -38,6 +39,7 @@ st.data = {
 		data.loadStats();
 		data.loadStr();
 		data.loadTalents();
+		data.loadTemplates();
 		data.loadValuesWhat();
 		data.loadValuesWho();
 		data.loadWeapons();
@@ -343,10 +345,26 @@ st.data = {
 			window.setTimeout("st.data.readyCheck()", 100);
 		} else if (!data.complications || st.utils.mapSize(data.complications) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
+		} else if (!data.templates || st.utils.mapSize(data.templates) === 0) {
+			window.setTimeout("st.data.readyCheck()", 100);
 		} else if (!data.weapons || st.utils.mapSize(data.weapons) === 0) {
 			window.setTimeout("st.data.readyCheck()", 100);
 		} else {
 			window.setTimeout("st.char.random()", 100);
 		}
-	}
+	},
+	loadTemplates: function() {
+		st.log("data.loadTemplates");
+		var data = st.data;
+		var url = "data/templates.json";
+		$.ajax({url: url, async: false})
+			.done(function(d, status, jqxhr) {
+				data.templates = d;
+			})
+			.fail(function() {
+				alert("Error: unable to load templates.");
+			})
+			.always(function() {
+			});
+	},
 };

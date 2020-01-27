@@ -1,9 +1,9 @@
 /* st-desc.css */
 
-.st-skills-desc,
-.st-stats-desc,
-.st-talents-desc,
-.st-weapons-desc {
+.st-skills-desc th,
+.st-stats-desc th,
+.st-talents-desc th,
+.st-weapons-desc th {
     text-align: center;
 	text-transform: uppercase;
 	width: 100%;

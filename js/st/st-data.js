@@ -306,7 +306,8 @@ st.data = {
 				shots:d.data[i]["Shots"],
 				rof:d.data[i]["ROF"],
 				cost:d.data[i]["Cost"],
-				cp:d.data[i]["CP"]
+				cp:d.data[i]["CP"],
+				src:d.data[i]["Source"]
 			});
 		}
 	},

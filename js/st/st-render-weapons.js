@@ -26,23 +26,25 @@ st.render = {
 		st.log(data.weapons);
 
 		t.push("<tr>"
-			+ "<th>Weapon</th>"
+			+ "<th class=\"st-name\">Weapon</th>"
 			+ "<th>WA</th>"
 			+ "<th>Range</th>"
 			+ "<th>Damage</th>"
 			+ "<th>ROF</th>"
 			+ "<th>Shots</th>"
 			+ "<th>COST</th>"
+			+ "<th>Source</th>"
 			+ "</tr>");
 
 		var h = "<tr>"
-			+ "<td><%- weapon %></td>"
+			+ "<td class=\"st-name\"><%- weapon %></td>"
 			+ "<td><%- wa %></td>"
 			+ "<td><%- range %></td>"
 			+ "<td><%- damage %></td>"
 			+ "<td><%- rof %></td>"
 			+ "<td><%- shots %></td>"
 			+ "<td><%- cost %> (<%- cp %>)</td>"
+			+ "<td><%- src %></td>"
 			+ "</tr>";
 		var template = _.template(h);
 		for (var i=0; i<data.weapons.length; i++) {

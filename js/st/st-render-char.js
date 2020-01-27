@@ -28,7 +28,8 @@ st.render = {
 		t.push(template(that.spec));
 
 		// image
-		var slug = data.findTemplate(that.spec.template).slug;
+		var chartemplate = data.findTemplate(that.spec.template)
+		var slug = chartemplate.slug;
 		var h = "<div id=\"st-img\" class=\"st-img\">"
 			+ "<img src=\"img/" + slug + ".jpg\" />"
 			+ "</div>";
@@ -379,7 +380,13 @@ st.render = {
 		// equipment
 		t.push("<table class=\"st-tb st-equipment\"><tbody>");
 		t.push("<tr><th colspan=\"4\">Equipment</th><th>Cost</th></tr>");
-		for(var i=0; i<10; i++) {
+
+		var equipment = chartemplate.equipment;
+		for(var i=0; i<equipment.length; i++) {
+			var h = "<tr><td colspan=\"4\">" + equipment[i] + "</td><td>&nbsp;</td></tr>";
+			t.push(h);
+		}
+		for(; i<10; i++) {
 			var h = "<tr><td colspan=\"4\">&nbsp;</td><td>&nbsp;</td></tr>";
 			t.push(h);
 		}	

@@ -128,7 +128,8 @@
 }
 
 .st-equipment td {
-	text-align: center;
+	text-align: left;
+	text-transform: uppercase;
 }
 
 /* lifepath */
@@ -212,6 +213,10 @@
 .st-weapons td,
 .st-weapons-desc td {
 	text-align: center;
+}
+
+.st-weapons-desc td.st-name {
+	text-align: left;
 }
 
 /* skills */

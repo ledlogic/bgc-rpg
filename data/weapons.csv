@@ -1,5 +1,13 @@
-|Weapon|WA|Range|Damage|Shots|ROF|Cost|CP
-|M42-A1 Short Machinegun|2|200m|7d6|66|42|100000|10
-|12-Gauge Riot Shotgun|-1|50m|6d6|8|1|50000|5
-|Stomach Railgun|0|300m|14d6AP|3|2|600000|20
-|Combat Handgun|0|40m|4d6|15|2|40000|4
+|Weapon|WA|Range|Damage|Shots|ROF|Cost|CP|Source
+|M42-A1 Short Machinegun|2|200m|7d6|66|42|100000|10|BGC:RPG:128
+|12-Gauge Riot Shotgun|-1|50m|6d6|8|1|50000|5|BGC:RPG:128
+|Stomach Railgun|0|300m|14d6AP|3|2|600000|20|BGC:RPG:128
+|Anti-boomer Assault Gun|-2|100m|*|1|1|50000|6|BGC:RPG:129
+|Semi-Automatic Homing Rocket Launcher|+0|800m|3KAP|1|1|200000|24|BGC:RPG:129
+|50mm "Bernie" Recoiless Cannon|-1|500m|1.7K|1|1|300000|15|BGC:RPG:129
+|20/12 Anti-Boomer Gerlitch Rifle|+1|1000m|13d6AP|10|1|400000|22|BGC:RPG:129
+|Combat Handgun|0|40m|4d6|15|2|40000|4|BGC:RPG:141
+|Priss' Handgun|0|60m|8d6AP|7|2|133000|13|BGC:BA:97
+|Assault Module|1|300m|7d6|90|30|100000|10|BGC:BA:97
+|Battle Rifle|0|400m|8d6|75|25|90000|9|BGC:BA:97
+|Laser Cutter|-2|1m|9d6-EMW|∞|∞|120000|12|BGC:BA:97

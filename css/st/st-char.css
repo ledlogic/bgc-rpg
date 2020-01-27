@@ -160,6 +160,7 @@
 .st-talents-desc th,
 .st-equipment th,
 .st-weapons th,
+.st-weapons-desc th,
 .st-complications th {
 	text-align: center;
 	text-transform: uppercase;
@@ -209,7 +210,8 @@
 	width: 730px;
 }
 
-.st-weapons td {
+.st-weapons td,
+.st-weapons-desc td {
 	text-align: center;
 }
 
@@ -251,18 +253,12 @@
 	width: 100px;
 }
 
-.st-stats-desc th, .st-stats-desc td,
-.st-skills-desc th, .st-skills-desc td,
-.st-talents-desc th, .st-talents-desc td {
-	padding: 4px;
-}
-
 /* complications */
 
 .st-complications {
 	position: absolute;
 	font-size: 10px;
-	top: 518px; 
+	top: 468px; 
 	left: 0px; 
 	width: 1010px;
 }

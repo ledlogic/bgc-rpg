@@ -5,16 +5,16 @@ st.render = {
 		st.log("render.init");
 	},
 	render: function() {
-		st.log("rendering char");
+		st.log("render talents");
 		st.render.renderReset();
-		st.render.renderSpec();
+		st.render.renderData();
 		$(".st-page").removeClass("st-initial-state");
 	},
 	renderReset: function() {
 		$(".st-page-ft").html("");
 	},
-	renderSpec: function() {
-		st.log("rendering spec");
+	renderData: function() {
+		st.log("render data");
 		var that = st.char;
 
 		var t = [];

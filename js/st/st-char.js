@@ -2,31 +2,16 @@
 
 st.char = {
 	spec: {},
-	personalities: [],
-	valuesWho: [],
-	valuesWhat: [],
-	worldviews: [],
-	earlybackgrounds: [],
-	childhoodevents: [],
-	friendsenemies: [],
-	lovewar: [],
-	currentsituations: [],
-	currentoutlooks: [],
-	stats: [],
-	derivedstats: [],
-	str: [],
-	skills: [],
-	everymanskills: [],
 
 	MIN_AGE: 16,
 	MAX_TALENTS: 3,
 	MAX_SKILLS: 20,
 
 	init: function() {
-		//st.log("char.init");
+		st.log("char.init");
 	},
 	reset: function() {
-		//st.log("char.reset");
+		st.log("char.reset");
 		var that = st.char;
 		that.spec = {};
 		that.spec.points = {};
@@ -47,6 +32,8 @@ st.char = {
 		that.spec.points.total = 0;
 	},
 	random: function() {
+		st.log("random");
+
 		var that = st.char;
 		var data = st.data;
 		that.reset();
@@ -70,12 +57,15 @@ st.char = {
 		that.calcWeapons();
 		that.calcStats();
 		that.calcDerivedstats();
+		that.calcTemplate();
 		that.calcSkills();
 		that.calcTalents();
 
 		st.render.render();
 	},
 	calcPoints: function() {
+		st.log("calcStats");
+
 		var that = st.char;
 		var data = st.data;
 
@@ -139,6 +129,7 @@ st.char = {
 		}
 	},
 	calcAge: function() {
+		st.log("calcAge");
 		var that = st.char;
 
 		var age = st.math.die(1, 7, 16);
@@ -289,6 +280,7 @@ st.char = {
 		}
 	},
 	calcStats: function() {
+		st.log("calcStats");
 		var that = st.char;
 		var data = st.data;
 
@@ -304,6 +296,7 @@ st.char = {
 		}
 	},
 	calcDerivedstats: function() {
+		st.log("calcDerivedstats");
 		var that = st.char;
 		var data = st.data;
 		var derivedstats = that.spec.derivedstats;
@@ -335,6 +328,16 @@ st.char = {
 		derivedstats["HITS"] = that.spec.stats["BODY"] * 5;
 
 		derivedstats["X"] = (derivedstats["HITS"] / 5) + that.spec.stats["DEX"];
+	},
+	calcTemplate: function() {
+		st.log("calcTemplate");
+
+		var that = st.char;
+		var data = st.data;
+
+		var template = data.templates[st.math.dieArray(data.templates)];
+		st.log("chose template[" + template.name + "]");
+		that.spec.template = template.name;
 	},
 	calcSkills: function() {
 		var that = st.char;
@@ -381,6 +384,7 @@ st.char = {
 		that.spec.skills[k]++;
 	},
 	calcTalents: function() {
+		st.log("calcTalents");
 		var that = st.char;
 		var data = st.data;
 
@@ -415,6 +419,7 @@ st.char = {
 	// calcualate complications up to the amount in the value complication
 	// return the final computation
 	calcComplications: function() {
+		st.log("calcComplications");
 		var that = st.char;
 		var data = st.data;
 
@@ -513,6 +518,7 @@ st.char = {
 		});
 	},
 	calcWeapons: function() {
+		st.log("calcWeapons");
 		var that = st.char;
 		var data = st.data;
 		var weapons = that.spec.weapons;

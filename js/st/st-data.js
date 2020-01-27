@@ -367,4 +367,10 @@ st.data = {
 			.always(function() {
 			});
 	},
+	findTemplate: function(template) {
+		var data = st.data;
+		var r = _.find(data.templates,
+			function(item) { return item.name == template; });
+		return r;
+	}
 };

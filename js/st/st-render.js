@@ -28,7 +28,10 @@ st.render = {
 		t.push(template(that.spec));
 
 		// image
-		var h = "<div id=\"st-img\" class=\"st-img\"></div>";
+		var slug = data.findTemplate(that.spec.template).slug;
+		var h = "<div id=\"st-img\" class=\"st-img\">"
+			+ "<img src=\"img/" + slug + ".jpg\" />"
+			+ "</div>";
 		var template = _.template(h);
 		t.push(template(that.spec));
 						
@@ -40,7 +43,7 @@ st.render = {
 
 		// occupation
 		var h = "<label class=\"st-elem st-occupation-label\" for=\"st-occupation\">Occupation</label>"
-			+ "<input id=\"st-occupation\" class=\"st-elem st-occupation\" placeholder=\"Occupation\">";
+			+ "<input id=\"st-occupation\" class=\"st-elem st-occupation\" placeholder=\"Occupation\" value=\"<%- template %>\">";
 		var template = _.template(h);
 		t.push(template(that.spec));
 

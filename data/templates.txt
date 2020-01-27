@@ -1,0 +1,70 @@
+
+/*
+Education. Science (specifyi, High Tech. Basic Tech,
+MIISpec Tech.
+
+Options: Membership (corporation or university).
+Reputation.
+
+Equipment: White iabcoat. pocket computer (POWrZi. High
+lifestyle with stateofâ€”theâ€”art lab In ADP HQ.
+
+SKINS: Basil: Tech. Driving (Motorcycle), Fond-td'llandr
+Melee Weapons, Survival (City).
+Options: Knack (Drlving): Membership (gang): Contact (with
+a street tech): Rapid Healing.
+Equipment: Motorcycle, motorcycling leathers (KB 10). knife
+or chain. Poor lifestyle (slums, old trailer. e:c.).
+
+skills: Demoiilians, Education, i-achnig. Persuasron.
+Stealth.
+
+Options: Contacts idelï¬, universities).
+
+Equipment: Wealth 0 (slum apartmenti.
+
+Skills: 52le Tech. Business, Derlng (or maybe Piloting.
+Mechapiiot or snipnandling), Firearms, Navigation.
+Stealth.
+Options: Renown; High Pain Threshold: Knack (Driving or
+Piloting); Contacts (potential employers, like corps or crim-
+inal organizations).
+Equipment: Some kind of scoped-up vehicle for the urban
+envronmcnt often a car. truck. helicopter, or aerodyne.
+wrth cnncealeri smugglng compartment Combat magr
+num. KB 15 armored clothes. Good lifestyle (Wealth 3)
+With big garage.
+
+Skills: Basic Tech. Computers, Education. High Tech.
+Psychology. Pe'ception, Research. Superscience.
+Options: Membership (university or corporatlorliv
+Equipment: Casual clothes. scooter or car, poclret minir
+computer (Powell, Wealth varies from poor (struggling StuÂ»
+dent (in <|llTimPY job) to good (Wealth 2. tenured professor
+
+Private Eye
+Description: When people have problems
+they donâ€™t want to tel the police about. or
+have cases the cops dropped because of cor-
+porate pressure. they talk to you instead. Divorce cases
+where one partnerâ€™s dating a sexarold, execs worried their
+secondincommand's plotting against them. chrns trying to
+ï¬nd the secret identity oi vigilantes. parents whose kid has
+iun away to Paradise Loopâ€”itâ€˜s a crazy town, but at least
+you aren't short of work.
+
+SKIIIS: Cvmpuiersr Deleullve, Driving, Firearms. Hacking,
+Local Knowledge (MegoTokyo). Perception, Persuasion,
+
+Photography, Stealth
+
+Options: Contacts. Intuition. Plâ€˜s License.
+
+Equipment: Trenchcoat, bugging eel/ices. handgun. sedan,
+computer (POW 34), video camera. Average iifestyie
+(Wealth 1) with small apartment.
+
+or corporate consultant).
+
+
+*/

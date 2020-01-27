@@ -1,6 +1,7 @@
 [
 {
 "name": "AD Police Inspector",
+"slug": "police-inspector",
 "skills": ["Detective", "Perception", "Persuasion", "Firearms", "Driving", "Hand-to-Hand", "Athletics"],
 "options": ["Membership [AD Police]", "Contacts", "Combat Sense"],
 "equipment": ["Uniform with KD15 bulletprool vest (EVO)",
@@ -12,6 +13,7 @@
 },
 {
 "name": "Hacker",
+"slug": "hacker",
 "skills": ["Hacking", "Persuasion", "Research", "Perception", "Computers", "Steaith"],
 "options": ["Time Sense", "Contacts (other Hackers)"],
 "equipment": ["Casual clothes",
@@ -22,6 +24,7 @@
 },
 {
 "name": "Street Operative",
+"slug": "street-operative",
 "skills": ["Athletics", "Hand-to-Hand Perception", "Persuasion", "Melee", "Firearms", "Social (Street)"],
 "options": ["Blind Reaction", "Membership (Gang)"],
 "equipment": ["Punk-styled or sleazy clothes",
@@ -33,6 +36,7 @@
 },
 {
 "name": "Entertainer",
+"slug": "entertainer",
 "skills": ["Performance", "Artistry", "Dance", "Persuation", "Perception", "Wardrobe & Style"],
 "options": ["Perfect Pitch", "Renown"],
 "equipment": ["Stylish clothes and stage costumes",
@@ -43,6 +47,7 @@
 },
 {
 "name": "Executive",
+"slug": "executive",
 "skills": ["Business", "Espionage", "Persuation", "Perception", "Wardrobe & Style"],
 "options": ["Lightning Calculator", "Eidetic Memory", "Membership"],
 "equipment": ["Business suits (or other such garb)",
@@ -54,6 +59,7 @@
 },
 {
 "name": "Street Tech",
+"slug": "street-tech",
 "skills": ["High Tech", "Basic Tech", "Persuasion", "Area Knowledge", "Perception", "Firearms", "Milspec Tech"],
 "options": ["Knack"],
 "equipment": ["Grimy coveralls",
@@ -65,6 +71,7 @@
 },
 {
 "name": "Reporter",
+"slug": "reporter",
 "skills": ["Perception", "Photo & Film", "Persuasion", "Writing", "Area Knowledge", "Research", "Athletics"],
 "options": ["Acute Senses", "Intuition"],
 "equipment": ["Stylish clothes or businesswear",
@@ -75,6 +82,7 @@
 },
 {
 "name": "Agent",
+"slug": "agent",
 "skills": ["Persuasion", "Perception", "Stealth", "Disguise", "Espionage", "Driving", "Research"],
 "options": ["Membership or License", "Night Vision", "Acute Senses"],
 "equipment": ["Combat auto with silencer",
@@ -85,6 +93,7 @@
 },
 {
 "name": "Scientist",
+"slug": "scientist",
 "skills": ["Science (specify)", "Education", "Tech (specify)", "Research", "Persuasion"],
 "options": ["Lightning Calculator", "Eidetic Memory"],
 "equipment": ["Casual clothes",
@@ -96,6 +105,7 @@
 },
 {
 "name": "Soldier",
+"slug": "soldier",
 "skills": ["Firearms", "Athletics", "Perception", "Autofire", "Hand-to-Hand", "Heavy Weapons", "Gunnery", "Driving", "Mecha Pilot"],
 "options": ["Combat Sense", "Blind Reaction", "Ambidexterity"],
 "equipment": ["Fatigues",
@@ -106,6 +116,7 @@
 },
 {
 "name": "AD Police Frontline Officer",
+"slug": "police-officer",
 "skills": ["Athletics", "Autofire Weapons", "Driving", "Firearms", "Hand-to-Hand", "Heavy Weapons", "Melee Weapons", "Detective"],
 "options": ["Combat Sense", "Membership (AD Police)"],
 "equipment": ["ADP armor (by period) or Fatigues (KD15)",
@@ -121,6 +132,7 @@
 },
 {
 "name": "AD Police Mecha Pilot",
+"slug": "police-mecha",
 "skills": ["Athletics", "Gunnery", "Firearms", "Heavy Equipment", "Mechapilot"],
 "options": ["Combat Sense", "Membership (AD Police)"],
 "equipment": ["Skintight mecha pilot bodysuit (KB 10) worn under armor",
@@ -131,6 +143,7 @@
 },
 {
 "name": "Normal Police Detective",
+"slug": "police-detective",
 "skills": ["Computers", "Detective", "Driving", "Firearms", "Law", "Local Knowledge (MegaTokyo)", "Perception", "Persuasion", "Photogaphy"],
 "options": ["Contact", "Intuition"],
 "equipment": ["Police uniform With bulletproof vest (KD 10)",
@@ -144,6 +157,7 @@
 },
 {
 "name": "AD Police Pilot",
+"slug": "police-pilot",
 "skills": ["Athletics", "Electronic Warfare", "Firearms", "Gunnery", "Navigation", "Perception", "Pilot (Helicopter)"],
 "options": ["Combat Sense", "License (Pilot)", "Membership (AD Police)"],
 "equipment": ["Pilot's helmet (KD20. equipped with low-light, telescopic and targeting optics)",
@@ -155,6 +169,7 @@
 },
 {
 "name": "AD Police Operator",
+"slug": "police-operator",
 "skills": ["Computers", "Driving", "Electronic Warfare", "Hacking", "Firearms (at low level)", "Language (Computer Code)", "Local Knowledge (MegaTokyo)", "Persuasion", "Research", "Writing"],
 "options": ["Membership (AD Police)"],
 "equipment": ["Police uniform",
@@ -164,6 +179,7 @@
 },
 {
 "name": "K-9 Officer",
+"slug": "k9-officer",
 "skills": ["Animal Handling", "Driving", "Firearms", "Local Knowledge (MegaTokyo)", "Perception", "Persuasion"],
 "options": ["Membership (AD Police)", "Animal Empathy"],
 "equipment": ["Police dog (typically lNT 0, PRE 2, TECH 0, MOVE 9, REF 5, DEX 5, STR 3, CON 4, BOD 2. Perception +10, Tracking +10, Athletics +4. Hand-to-Hand +4: bite 3d6)",

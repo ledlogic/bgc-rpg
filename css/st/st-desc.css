@@ -4,6 +4,8 @@
 .st-stats-desc,
 .st-talents-desc,
 .st-weapons-desc {
+    text-align: center;
+	text-transform: uppercase;
 	width: 100%;
 }
 

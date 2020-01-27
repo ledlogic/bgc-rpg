@@ -239,7 +239,6 @@ st.render = {
 			+ "<a href=\"skills.html\">Skills</a>"
 			+ "</th></tr>");
 
-		// account for everyman skills
 		that.spec.skilltotal = 0;
 		var cnt = 0;
 		for(var i in that.spec.skills) {
@@ -248,7 +247,7 @@ st.render = {
 				+ (++cnt)
 				+ "</td>"
 				+ "<td class=\"st-stat\" colspan=\"8\">"
-				+ i
+				+ i.replace("(SPECIFY)", "(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)")
 				+ st.render.renderDefaultSkill(i)
 				+ "</td>"
 				+ "<td class=\"st-skill-val\" colspan=\"2\">"

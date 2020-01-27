@@ -6,6 +6,8 @@ st.char = {
 	MIN_AGE: 16,
 	MAX_TALENTS: 3,
 	MAX_SKILLS: 20,
+	AVG_STATS: 50,
+	AVG_SKILLS: 65,
 
 	init: function() {
 		st.log("char.init");
@@ -13,6 +15,8 @@ st.char = {
 	reset: function() {
 		st.log("char.reset");
 		var that = st.char;
+
+		// character specification
 		that.spec = {};
 		that.spec.points = {};
 		that.spec.stats = {};
@@ -79,10 +83,10 @@ st.char = {
 			that.spec.points.weapons = 5;
 		}
 
-		that.spec.points.stats = 50;
+		that.spec.points.stats = that.AVG_STATS;
 		that.spec.points.complicationsToTalents = ((-that.spec.points.complications * Math.random() * 0.5) / 3 >> 0) * 3;
 		that.spec.points.complicationsToSkills = -that.spec.points.complications - that.spec.points.complicationsToTalents;
-		that.spec.points.skills = 65 + that.spec.points.complicationsToSkills;
+		that.spec.points.skills = that.AVG_SKILLS + that.spec.points.complicationsToSkills;
 		that.spec.points.talents = that.spec.points.complicationsToTalents;
 		that.spec.points.campaign = that.spec.points.skills
 			+ that.spec.points.talents;
@@ -352,13 +356,39 @@ st.char = {
 			that.spec.points.everymanskillstotal += everymanAdjustment;
 		}
 
+		// template
+		var template = data.findTemplate(that.spec.template);
+		for (var i=0; i<template.skills.length; i++) {
+			var skill = template.skills[i];
+			if (!that.spec.skills[skill]) {
+				that.spec.skills[skill] = 0;
+			} else if (skill.indexOf(" (") > -1) {
+				var preskill = skill.substring(0, skill.indexOf(" ("));
+				if (that.spec.skills[skill]) {
+					var amt = that.spec.skills[preskill]
+					that.spec.skills.splice(preskill);
+					that.spec.skills[skill] = amt;
+				}
+			}
+		}
+
+		// addition
 		for (var i=0; i<that.spec.points.skills; i++) {
 			var r = st.math.dieN(10);
 			var skillSize = st.utils.mapSize(that.spec.skills);
-			if ((skillSize >= that.MAX_SKILLS) || (r > 6)) {
-				that.incrExistingSkill();
-			} else {
-				that.incrRandomSkill();
+
+			switch (true) {
+				case (skillSize >= that.MAX_SKILLS):
+					that.incrExistingSkill();
+					break;
+				case (r > 7):
+					that.incrExistingSkill();
+					break;
+				case (r > 4):
+					that.incrTemplateSkill();
+					break;
+				default: 
+					that.incrRandomSkill();
 			}
 		}
 		that.spec.skills = st.utils.sortObject(that.spec.skills);
@@ -382,6 +412,19 @@ st.char = {
 		var r = st.math.dieN(keys.length) - 1;
 		var k = keys[r];
 		that.spec.skills[k]++;
+	},
+	incrTemplateSkill: function() {
+		var that = st.char;
+		var data = st.data;
+
+		var template = data.findTemplate(that.spec.template);
+		var r = st.math.dieArray(template.skills);
+		var skill = template.skills[r];
+		if (!that.spec.skills[skill]) {
+			that.spec.skills[skill] = 1;
+		} else {
+			that.spec.skills[skill]++;
+		}
 	},
 	calcTalents: function() {
 		st.log("calcTalents");

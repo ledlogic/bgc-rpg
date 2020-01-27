@@ -10,6 +10,7 @@
 |CONCENTRATION|WILL|The abilities of focus and mental control. This would encompass feats of memory and recall, superpower and/or talent control, and physiological control.
 |DEMOLITIONS|TECH|Skill of using, setting, and handling explosives.
 |DETECTIVE|INT|Knowledge of criminal behavior, basic criminal law and deduction.
+|DISGUISE|TECH|The ability to change a character’s appearance through makeup, costumes, body language, and facial expression.
 |DOMESTIC|TECH|Skills at cooking, cleaning, washing, maintaining a household.
 |EDUCATION|INT|General knowledge, such as math, history, science, trivia, or current events.
 |ELECTRONIC WARFARE|TECH|Knowledge of military electroncs and tactics for using - and defeating - ECM, ECCM, and advanced sensor systems like radar and magnetometers.
@@ -37,17 +38,17 @@
 |PHYSICIAN|INT|Diagnosing, administering drugs, simple wound tending, and bedside manner.  Must specify one area of specialization.
 |PILOTING|DEX|Flying prop aircraft, civilian jets, aircraft-like spacecraft. Basically anything that banks, turns, and flies with a stick/rudder combination.
 |RESEARCH|INT|Skills in using libraries, databases, records, as well as uncovering information from obscure or uncommon sources.
-|SCIENTIST|INT|Knowledge of lab techniques, how to design experiments, how to write scientific papers, test hypotheses, etc. for your appropriate field of science. Must specify your area of study when this skill is purchased.
+|SCIENCE|INT|Knowledge of lab techniques, how to design experiments, how to write scientific papers, test hypotheses, etc. for your appropriate field of science. Must specify your area of study when this skill is purchased.
 |SHIPHANDLING|DEX|Ability to pilot watercraft such as sailing ships, freighters, warships etc. (specify).  In appropriate setting, can be used to non-fighter type spacecraft, such as spaacecruisers or starships (must specify).
 |SOCIAL|PERS|Knowing and skillfully using the appropriate mores of a culture, including proper conversation, social graces and rules.  The setting (which must be specified) could be anything form proper etiquette in a 16th century Shogunate Court, to dining at the Ritz, to the proper way to greet your goboys on the Street.
 |STEALTH|REF/BODY|The skill of hiding, shadowing, avoiding pursuit and/or notice.
 |SURVIVAL|WILL|The skills of orienting yourself and finding food, shelter and protection in a particularly adverse environment.  The environment (which must be specified) could be anything from the wilderness, to inner city New York, to the martian deserts.
 |TEACHING|PRE|The ability to impart information or skills to other. Can be used to train animals as well as teaching humans. Average this skill with the skill being taught; this is the level to which students can be raised
-|TECHNICAL-BASIC TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
-|TECHNICAL-HIGH TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
-|TECHNICAL-MILITARY TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
-|TECHNICAL-SUPERSCIENCE|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
-|TECHNICAL-AERONAUTICAL TECH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
-|TECHNICAL-PHARMACEUTICALS|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-BASIC|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-HIGH|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-MILITARY|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-SUPERSCIENCE|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-AERONAUTICAL|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
+|TECH-PHARMACEUTICALS|TECH|The skills of mechanic, laboratory technician, electrician or engineer, including knowledge of how to use any and all equipment relatign to that particular technical area.
 |WARDROBE & STYLE|PRE|A grasp of fashion, wardrobe, and personal grooming.
 |WRITING|INT/PERS|Composing salable songs, novels, poems, speeches and documents.

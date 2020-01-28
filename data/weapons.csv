@@ -1,13 +1,35 @@
-|Weapon|WA|Range|Damage|Shots|ROF|Cost|CP|Source
-|M42-A1 Short Machinegun|2|200m|7d6|66|42|100000|10|BGC:RPG:128
-|12-Gauge Riot Shotgun|-1|50m|6d6|8|1|50000|5|BGC:RPG:128
-|Stomach Railgun|0|300m|14d6AP|3|2|600000|20|BGC:RPG:128
-|Anti-boomer Assault Gun|-2|100m|*|1|1|50000|6|BGC:RPG:129
-|Semi-Automatic Homing Rocket Launcher|+0|800m|3KAP|1|1|200000|24|BGC:RPG:129
-|50mm "Bernie" Recoiless Cannon|-1|500m|1.7K|1|1|300000|15|BGC:RPG:129
-|20/12 Anti-Boomer Gerlitch Rifle|+1|1000m|13d6AP|10|1|400000|22|BGC:RPG:129
-|Combat Handgun|0|40m|4d6|15|2|40000|4|BGC:RPG:141
-|Priss' Handgun|0|60m|8d6AP|7|2|133000|13|BGC:BA:97
-|Assault Module|1|300m|7d6|90|30|100000|10|BGC:BA:97
-|Battle Rifle|0|400m|8d6|75|25|90000|9|BGC:BA:97
-|Laser Cutter|-2|1m|9d6-EMW|∞|∞|120000|12|BGC:BA:97
+|Type|Weapon|WA|Range|Damage|Shots|ROF|Cost|CP|Source
+|Melee|Knife|0|2m|3|-|-|3000|1|BGC:RPG:141
+|Melee|Tonfa|-1|2m|5|-|-|4000|1|BGC:RPG:141
+|Melee|Nunchucks|-1|2m|5|-|-|4000|1|BGC:RPG:141
+|Melee|Sword|+1|2m|7|-|-|10500|1|BGC:RPG:141
+|Melee|Chainsaw|-2|2m|8AP|-|-|14000|1|BGC:RPG:141
+|Handguns|Mini Revolver|-2|20m|3d6|4|2|10000|1|BGC:RPG:141
+|Handguns|Mini Handgun|-1|30m|4d6|8|2|30000|3|BGC:RPG:141
+|Handguns|Combat Handgun|0|40m|4d6|15|2|40000|4|BGC:RPG:141
+|Handguns|Combat Revolver|0|50m|5d6|6|2|50000|5|BGC:RPG:141
+|Handguns|.454 Magnum Auto|0|60m|7d6|11|2|70000|7|BGC:BA:141
+|Handguns|Member-II|-1|30m|8d6AP|3|2|110000|11|BGC:BA:141
+|Handguns|"Earth Shaker"|+1|80m|9d6AP|3|1|145000|14|BGC:BA:141
+|Handguns|Pistol Grenade|-2|50m|5m radius|1|1|3000|11|BGC:BA:141
+|Handguns|Priss' Handgun|0|60m|8d6AP|7|2|133000|13|BGC:BA:97
+|Assault|Sawn-Off Shotgun|-2|20m|6d6|2|1(x2)|40000|4|BGC:RPG:141
+|Assault|Pump Shotgun|-1|50m|6d6|8|1|50000|5|BGC:RPG:141
+|Assault|Submachinegun|0|150m|4d6|30|44|40000|4|BGC:RPG:141
+|Assault|Assault Rifle|-1|300m|7d6|30|30|60000|6|BGC:RPG:141
+|Assault|Machinegun|-1|400m|8d6|30|22|70000|7|BGC:RPG:141
+|Assault|Grenade Launcher|-2|200m|5m radius|6|1|140000|14|BGC:RPG:141
+|Assault|Grenades (Frag)|0|Throw|9d6 - 5m radius|1|1|2000|1|BGC:RPG:141
+|Assault|Grenades (Flash)|0|Throw|Blind for 1d6 turns - 5m radius|1|1|2000|1|BGC:RPG:141
+|Assault|Grenades (Stun)|0|Throw|9d6S - 5m radius|1|1|2000|1|BGC:RPG:141
+|Assault|Grenades (Gas)|0|Throw|Gas (Save vs 15) - 5m radius|1|1|2000|1|BGC:RPG:141
+|Assault|M42-A1 Short Machinegun|2|200m|7d6|66|42|100000|10|BGC:RPG:128
+|Assault|12-Gauge Riot Shotgun|-1|50m|6d6|8|1|50000|5|BGC:RPG:128
+|Assault|Stomach Railgun|0|300m|14d6AP|3|2|600000|20|BGC:RPG:128
+|Assault|Anti-boomer Assault Gun|-2|100m|*|1|1|50000|6|BGC:RPG:129
+|Assault|Semi-Automatic Homing Rocket Launcher|+0|800m|3KAP|1|1|200000|24|BGC:RPG:129
+|Assault|50mm "Bernie" Recoiless Cannon|-1|500m|1.7K|1|1|300000|15|BGC:RPG:129
+|Assault|20/12 Anti-Boomer Gerlitch Rifle|+1|1000m|13d6AP|10|1|400000|22|BGC:RPG:129
+|Assault|Assault Module|1|300m|7d6|90|30|100000|10|BGC:BA:97
+|Assault|Battle Rifle|0|400m|8d6|75|25|90000|9|BGC:BA:97
+|Assault|Laser Cutter|-2|1m|9d6-EMW|∞|∞|120000|12|BGC:BA:97

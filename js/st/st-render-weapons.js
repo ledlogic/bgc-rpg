@@ -26,7 +26,8 @@ st.render = {
 		st.log(data.weapons);
 
 		t.push("<tr>"
-			+ "<th class=\"st-name\">Weapon</th>"
+			+ "<th>Type</th>"
+			+ "<th class=\"st-weapon-name\">Weapon</th>"
 			+ "<th>WA</th>"
 			+ "<th>Range</th>"
 			+ "<th>Damage</th>"
@@ -37,7 +38,8 @@ st.render = {
 			+ "</tr>");
 
 		var h = "<tr>"
-			+ "<td class=\"st-name\"><%- weapon %></td>"
+			+ "<td><%- type %></td>"
+			+ "<td class=\"st-weapon-name\"><%- weapon %></td>"
 			+ "<td><%- wa %></td>"
 			+ "<td><%- range %></td>"
 			+ "<td><%- damage %></td>"

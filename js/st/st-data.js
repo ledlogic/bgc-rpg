@@ -299,6 +299,7 @@ st.data = {
 	weaponsResponse: function(d) {
 		for (var i=0; i<d.data.length; i++) {
 			st.data.weapons.push({
+				type:d.data[i]["Type"],
 				weapon:d.data[i]["Weapon"],
 				wa:d.data[i]["WA"],
 				range:d.data[i]["Range"],

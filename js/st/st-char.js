@@ -57,13 +57,23 @@ st.char = {
 
 		// calcPoints must come after complications
 		that.calcPoints();
-
 		that.calcWeapons();
 		that.calcStats();
 		that.calcDerivedstats();
+		
+		if (!st.char.passesMinStats()) {
+			setTimeout(st.char.random, 10);
+			return;
+		}
+		
 		that.calcTemplate();
 		that.calcSkills();
 		that.calcTalents();
+		
+		if (!st.char.passesMinSkills()) {
+			setTimeout(st.char.random, 10);
+			return;
+		}
 
 		st.render.render();
 	},
@@ -71,7 +81,6 @@ st.char = {
 		st.log("calcStats");
 
 		var that = st.char;
-		var data = st.data;
 
 		if (that.spec.points.complications < -20) {
 			that.spec.points.weapons = 20;
@@ -564,7 +573,6 @@ st.char = {
 		st.log("calcWeapons");
 		var that = st.char;
 		var data = st.data;
-		var weapons = that.spec.weapons;
 
 		var w = data.findWeapon("Handgun");
 		that.addWeapon(w);
@@ -588,5 +596,55 @@ st.char = {
 		var that = st.char;
 		var weapons = that.spec.weapons;
 		weapons.push(w);
+	},
+	
+	/**
+	 * Allows you to seek a certain stat level
+	 * 
+	 * ex. http://localhost:8080/bgc/?minstats=INT~6
+	 * ex. http://localhost:8080/bgc/?minstats=INT~6|TECH~6
+	 */
+	passesMinStats: function() {
+		var url = $.url();
+		var minstats = url.param('minstats');
+		if (minstats) {
+			var minstatPairs = minstats.split(",");
+			for (var i=0; i< minstatPairs.length; i++) {
+				var minstat = minstatPairs[i].split("~");
+				var statName = minstat[0];
+				var statValue = parseInt(minstat[1], 10);
+				var currentValue = st.char.spec.stats[statName];
+				
+				if (!currentValue || (currentValue < statValue)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	},
+	
+	/**
+	 * Allows you to seek a certain skill level
+	 * 
+	 * ex. http://localhost:8080/bgc/?minskills=PHYSICIAN~4
+	 * ex. http://localhost:8080/bgc/?minskills=PHYSICIAN~4|RESEARCH~4
+	 */
+	passesMinSkills: function() {
+		var url = $.url();
+		var minskills = url.param('minskills');
+		if (minskills) {
+			var minskillPairs = minskills.split(",");
+			for (var i=0; i< minskillPairs.length; i++) {
+				var minskill = minskillPairs[i].split("~");
+				var skillName = minskill[0];
+				var skillValue = parseInt(minskill[1], 10);
+				var currentValue = st.char.spec.skills[skillName];
+
+				if (!currentValue || (currentValue < skillValue)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 };

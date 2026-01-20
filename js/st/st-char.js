@@ -614,8 +614,12 @@ st.char = {
 				var statName = minstat[0];
 				var statValue = parseInt(minstat[1], 10);
 				var currentValue = st.char.spec.stats[statName];
-				
-				if (!currentValue || (currentValue < statValue)) {
+				if (!currentValue) {
+					st.log("No value: statName[" + statName + "], statValue[" + statValue + "], currentValue[" + currentValue + "]")
+					return false;
+				}
+				if (currentValue < statValue) {
+					st.log("Failed value: statName[" + statName + "], statValue[" + statValue + "], currentValue[" + currentValue + "]")
 					return false;
 				}
 			}
